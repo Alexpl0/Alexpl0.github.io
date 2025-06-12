@@ -459,20 +459,92 @@ body {
     box-shadow: 0 3px 10px rgba(13, 24, 38, 0.2);
 }
 
+/* Arreglo para las barras de distribución de clases */
+.class-distribution {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 80px;
+    background: linear-gradient(135deg, rgba(197, 204, 217, 0.1), rgba(217, 214, 210, 0.1));
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.class-bar {
+    background: linear-gradient(135deg, var(--color-bg-light), var(--color-bg-accent));
+    width: 40px;
+    min-height: 20px;
+    border-radius: 4px 4px 0 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: var(--color-bg-dark);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 5px 2px;
+    position: relative;
+    flex-direction: column;
+}
+
+/* Texto horizontal debajo de cada barra */
+.class-bar::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75rem;
+    color: var(--color-bg-dark);
+    white-space: nowrap;
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+}
+
+.class-distribution.unbalanced .class-bar {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.class-distribution.balanced .class-bar {
+    background: linear-gradient(135deg, var(--color-bg-accent), #27ae60);
+}
+
 /* Estilos específicos para la diapositiva de Objetivo General */
-.slide[data-slide="5"] .highlight-box {
-    min-height: 300px;
+.slide[data-slide="4"] .highlight-box {
+    background: linear-gradient(135deg, var(--color-bg-medium) 0%, var(--color-bg-light) 100%);
+    border: 3px solid var(--color-bg-light);
+    border-radius: 25px;
+    padding: 40px 30px;
+    margin: 40px auto;
+    box-shadow: 0 15px 35px rgba(13, 24, 38, 0.2);
+    color: var(--color-bg-dark);
+    max-width: 95%;
+    min-height: 60vh; /* Aumentamos la altura mínima */
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
 }
 
-.slide[data-slide="5"] .highlight-box p {
-    font-size: 1.4rem;
+.slide[data-slide="4"] .highlight-box p {
+    font-size: 1.6rem; /* Aumentamos el tamaño de fuente */
     line-height: 1.8;
+    text-align: center;
+    font-weight: 500;
     margin: 0;
-    padding: 20px;
+    letter-spacing: 0.5px;
+}
+
+/* Responsive para objetivo general */
+@media (max-width: 768px) {
+    .slide[data-slide="4"] .highlight-box {
+        padding: 30px 20px;
+        min-height: 50vh;
+    }
+    
+    .slide[data-slide="4"] .highlight-box p {
+        font-size: 1.3rem;
+        line-height: 1.6;
+    }
 }
 
 /* Estilos específicos para la diapositiva de Título */
