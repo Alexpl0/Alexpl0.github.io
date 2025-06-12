@@ -1,0 +1,23 @@
+{
+  "name": "emotion-analyzer-presentation",
+  "version": "1.0.0",
+  "description": "A presentation for the Emotion Analyzer project using HTML, CSS, and JavaScript.",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "live-server src"
+  },
+  "keywords": [
+    "emotion",
+    "analyzer",
+    "presentation",
+    "html",
+    "css",
+    "javascript"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}
