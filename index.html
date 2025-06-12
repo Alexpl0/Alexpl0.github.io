@@ -253,6 +253,9 @@
                             <div class="audio-visual clean">16 kHz, 16 bits estándar</div>
                         </div>
                     </div>
+                    <p class="preprocessing-description">
+                        <strong>Proceso:</strong> Conversión de todos los archivos a frecuencia de muestreo de 22.05 kHz y resolución de 16 bits. Normalización RMS para equilibrar niveles de volumen entre grabaciones de diferentes fuentes.
+                    </p>
                 </div>
 
                 <div class="preprocessing-item">
@@ -268,6 +271,9 @@
                             <div class="audio-visual validated">Solo archivos válidos >1s</div>
                         </div>
                     </div>
+                    <p class="preprocessing-description">
+                        <strong>Proceso:</strong> Se limitará el mínimo de duración de audios a 1 segundo. Eliminación de archivos silenciosos, corruptos o con ruido excesivo mediante validación automática de integridad.
+                    </p>
                 </div>
 
                 <div class="preprocessing-item">
@@ -283,6 +289,9 @@
                             <div class="audio-visual filtered">Señal limpia y clara</div>
                         </div>
                     </div>
+                    <p class="preprocessing-description">
+                        <strong>Proceso:</strong> Aplicación de filtros paso-alto (80 Hz) y paso-bajo (8 kHz) para eliminar componentes espectrales irrelevantes. Reducción de ruido espectral conservativa para mejorar calidad de señal.
+                    </p>
                 </div>
 
                 <div class="preprocessing-item">
@@ -298,6 +307,9 @@
                             <div class="audio-visual segmented">Ventanas de 2-4s con solapamiento</div>
                         </div>
                     </div>
+                    <p class="preprocessing-description">
+                        <strong>Proceso:</strong> Segmentación de grabaciones largas (>4s) en ventanas de 3 segundos con 50% de solapamiento. Detección de actividad vocal (VAD) para extraer solo segmentos de habla activa.
+                    </p>
                 </div>
 
                 <div class="preprocessing-item">
@@ -323,6 +335,9 @@
                             </div>
                         </div>
                     </div>
+                    <p class="preprocessing-description">
+                        <strong>Proceso:</strong> Uso de sobremuestreo SMOTE para clases minoritarias y submuestreo estratificado para mayorías. Objetivo: distribución equilibrada entre las 7 categorías emocionales para evitar sesgos del modelo.
+                    </p>
                 </div>
             </div>
         </div>

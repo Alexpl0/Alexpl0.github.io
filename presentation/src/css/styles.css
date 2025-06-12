@@ -731,7 +731,7 @@ body {
 }
 
 .class-distribution.balanced .class-bar {
-    background: linear-gradient(135deg, var(--color-bg-accent), var(--color-bg-card));
+    background: linear-gradient(135deg, var(--color-diagram-3), var(--color-diagram-1));
     color: var(--color-bg-dark);
 }
 
@@ -923,5 +923,30 @@ body {
 .spectrogram-analysis img:hover {
     transform: scale(1.02);
     box-shadow: 0 15px 35px rgba(13, 24, 38, 0.4) !important;
+}
+
+/* Estilos para descripciones de preprocesamiento */
+.preprocessing-description {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: linear-gradient(135deg, rgba(197, 204, 217, 0.1), rgba(217, 214, 210, 0.1));
+    border-radius: 8px;
+    border-left: 3px solid var(--color-bg-light);
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: var(--color-bg-medium);
+}
+
+.preprocessing-description strong {
+    color: var(--color-bg-dark);
+    font-weight: 600;
+}
+
+/* Responsive para descripciones */
+@media (max-width: 768px) {
+    .preprocessing-description {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
 }
 
