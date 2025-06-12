@@ -361,14 +361,6 @@
             <div class="highlight-box">
                 <p>Las CNN procesan espectrogramas de audio como imágenes bidimensionales, detectando patrones espacio-temporales característicos de diferentes estados emocionales.</p>
             </div>
-            
-            <!-- Espacio para imagen de CNN -->
-            <div class="cnn-diagram-placeholder">
-                <div class="image-placeholder">
-                    <p>[IMAGEN: Arquitectura CNN para Análisis de Audio]</p>
-                    <p>Diagrama mostrando las capas convolucionales procesando espectrogramas</p>
-                </div>
-            </div>
 
             <h3>Justificación de uso:</h3>
             <ul>
@@ -377,11 +369,70 @@
                 <li>Invariancia traslacional para diferentes tiempos de expresión</li>
                 <li>Capacidad de generalización jerárquica</li>
             </ul>
+
+            <h3>Ventajas y Limitaciones:</h3>
+            <div class="advantages-disadvantages">
+                <div class="advantages">
+                    <h4>Ventajas</h4>
+                    <ul>
+                        <li>Extracción automática de características</li>
+                        <li>Robustez ante variaciones locales</li>
+                        <li>Escalabilidad computacional</li>
+                        <li>Interpretabilidad parcial</li>
+                    </ul>
+                </div>
+                <div class="disadvantages">
+                    <h4>Limitaciones</h4>
+                    <ul>
+                        <li>Dependencia de grandes volúmenes de datos</li>
+                        <li>Sensibilidad a la calidad del preprocesamiento</li>
+                        <li>Interpretabilidad limitada</li>
+                        <li>Posible sesgo hacia características específicas</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
-        <!-- Diapositiva 13: Arquitectura de la Red Neuronal -->
+        <!-- Diapositiva 13: Análisis Espectral Detallado -->
         <div class="slide hidden" data-slide="13">
-            <h2>11. Arquitectura de la Red Neuronal</h2>
+            <h2>11. Análisis Espectral: Procesamiento de Datos por CNN</h2>
+            <div class="highlight-box">
+                <p>Ejemplo de cómo las CNN procesan las diferentes representaciones espectrales del audio emocional</p>
+            </div>
+            
+            <!-- Imagen de espectrograma con análisis detallado -->
+            <div class="spectrogram-analysis">
+                <img src="presentation/src/assets/images/MESD_1_Neutral_F_A_mecanico.png" alt="Análisis Espectral Completo - MESD Neutral" style="max-width: 100%; border-radius: 15px; box-shadow: 0 10px 25px rgba(13, 24, 38, 0.3);">
+                
+                <div class="analysis-grid">
+                    <div class="analysis-item">
+                        <h4>🌊 Forma de Onda</h4>
+                        <p><strong>Superior izquierda:</strong> Representa la amplitud de la señal de audio a lo largo del tiempo. Las variaciones muestran la intensidad vocal y patrones de entonación característicos del habla emocional neutra.</p>
+                    </div>
+                    
+                    <div class="analysis-item">
+                        <h4>📊 Espectrograma Lineal</h4>
+                        <p><strong>Superior derecha:</strong> Visualización tiempo-frecuencia que muestra cómo se distribuye la energía espectral. Los colores cálidos indican mayor energía en esas frecuencias específicas durante momentos particulares.</p>
+                    </div>
+                    
+                    <div class="analysis-item">
+                        <h4>🎵 Espectrograma Mel</h4>
+                        <p><strong>Inferior izquierda:</strong> Representación perceptualmente relevante que imita cómo el oído humano procesa las frecuencias. Las bandas Mel capturan características espectrales cruciales para el reconocimiento emocional.</p>
+                    </div>
+                    
+                    <div class="analysis-item">
+                        <h4>🎹 Cromograma</h4>
+                        <p><strong>Inferior derecha:</strong> Análisis de las clases de pitch (Do, Re, Mi...) presentes en la voz. Revela patrones tonales que pueden ser distintivos para diferentes estados emocionales.</p>
+                    </div>
+                </div>
+            </div>
+
+            <p><strong>¿Cómo procesan esto las CNN?</strong> Cada representación proporciona información complementaria que los filtros convolucionales capturan automáticamente, creando mapas de características que identifican patrones emocionales únicos.</p>
+        </div>
+
+        <!-- Diapositiva 14: Arquitectura de la Red Neuronal -->
+        <div class="slide hidden" data-slide="14">
+            <h2>12. Arquitectura de la Red Neuronal</h2>
             
             <div class="neural-architecture">
                 <div class="layer-box input">
@@ -444,35 +495,9 @@
             </div>
         </div>
 
-        <!-- Diapositiva 14: Ventajas y Limitaciones -->
-        <div class="slide hidden" data-slide="14">
-            <h2>Ventajas y Limitaciones de CNN</h2>
-            <div class="advantages-disadvantages">
-                <div class="advantages">
-                    <h3>Ventajas</h3>
-                    <ul>
-                        <li>Extracción automática de características</li>
-                        <li>Robustez ante variaciones locales</li>
-                        <li>Escalabilidad computacional</li>
-                        <li>Interpretabilidad parcial</li>
-                        <li>Generalización jerárquica</li>
-                    </ul>
-                </div>
-                <div class="disadvantages">
-                    <h3>Limitaciones</h3>
-                    <ul>
-                        <li>Dependencia de grandes volúmenes de datos</li>
-                        <li>Sensibilidad a la calidad del preprocesamiento</li>
-                        <li>Interpretabilidad limitada</li>
-                        <li>Posible sesgo hacia características específicas</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
         <!-- Diapositiva 15: Recursos -->
         <div class="slide hidden" data-slide="15">
-            <h2>12. Recursos</h2>
+            <h2>13. Recursos</h2>
             <div class="dataset-card">
                 <h3>Lenguaje y Frameworks</h3>
                 <ul>
@@ -495,7 +520,7 @@
 
         <!-- Diapositiva 16: Alcance del Proyecto -->
         <div class="slide hidden" data-slide="16">
-            <h2>13. Alcance del Proyecto</h2>
+            <h2>14. Alcance del Proyecto</h2>
             <div class="advantages-disadvantages">
                 <div class="advantages">
                     <h3>Incluido en el Proyecto</h3>

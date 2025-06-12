@@ -2,7 +2,7 @@
 // It handles slide navigation, progress bar updates, and keyboard controls.
 
 let currentSlide = 1;
-let totalSlides = 17; // Cambiado de 16 a 17
+let totalSlides = 17; 
 
 function showSlide(n) {
     // Hide all slides
