@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analizador de Emociones por Voz mediante IA</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="presentation/src/css/styles.css">
 </head>
 <body>
     <div class="progress-bar">
@@ -214,21 +214,21 @@
             <h2>8. Visualización de Características Acústicas</h2>
             <div class="graph-section">
                 <h3>1. Distribución del Pitch Fundamental por Emoción</h3>
-                <img src="assets/images/histograma_pitch_por_emocion.png" alt="Histograma Pitch por Emoción" style="max-width: 90%; border: 1px solid #ccc;">
+                <img src="presentation/src/assets/images/histograma_pitch_por_emocion.png" alt="Histograma Pitch por Emoción" style="max-width: 90%; border: 1px solid #ccc;">
                 <p>
                     <strong>¿Qué muestra?</strong> La distribución del pitch fundamental (frecuencia de la voz) para cada emoción. Se observa que emociones como alegría y enojo tienden a tener un pitch más alto, mientras que la tristeza se concentra en valores bajos. Esto ayuda a diferenciar emociones a partir de la voz.
                 </p>
             </div>
             <div class="graph-section">
                 <h3>2. Matriz de Correlación entre MFCC y Emociones</h3>
-                <img src="assets/images/heatmap_correlacion_mfcc_emocion.png" alt="Mapa de calor MFCC-Emoción" style="max-width: 90%; border: 1px solid #ccc;">
+                <img src="presentation/src/assets/images/heatmap_correlacion_mfcc_emocion.png" alt="Mapa de calor MFCC-Emoción" style="max-width: 90%; border: 1px solid #ccc;">
                 <p>
                     <strong>¿Qué muestra?</strong> El grado de correlación entre los coeficientes MFCC (características espectrales de la voz) y las emociones. Los colores indican si un MFCC está más asociado a una emoción específica, guiando la selección de características para el modelo.
                 </p>
             </div>
             <div class="graph-section">
                 <h3>3. Proyección PCA de Características Acústicas</h3>
-                <img src="assets/images/pca_emociones.png" alt="PCA Emociones" style="max-width: 90%; border: 1px solid #ccc;">
+                <img src="presentation/src/assets/images/pca_emociones.png" alt="PCA Emociones" style="max-width: 90%; border: 1px solid #ccc;">
                 <p>
                     <strong>¿Qué muestra?</strong> Una reducción de dimensionalidad (PCA) de las características acústicas, donde cada punto es una grabación y el color indica la emoción. Permite visualizar qué tan separables son las emociones en el espacio de características.
                 </p>
@@ -549,6 +549,6 @@
         <button class="nav-btn" onclick="nextSlide()">Siguiente →</button>
     </div>
 
-    <script src="js/script.js"></script>
+    <script src="presentation/src/js/script.js"></script>
 </body>
 </html>
