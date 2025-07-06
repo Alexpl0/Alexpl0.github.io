@@ -2,17 +2,22 @@
 // It handles slide navigation, progress bar updates, and keyboard controls.
 
 let currentSlide = 1;
-let totalSlides = 17; 
+// Updated total number of slides to 28
+let totalSlides = 28; 
 
 function showSlide(n) {
     // Hide all slides
     const slides = document.querySelectorAll('.slide');
-    slides.forEach(slide => slide.classList.add('hidden'));
+    slides.forEach(slide => slide.style.display = 'none');
     
     // Show current slide
     const current = document.querySelector(`[data-slide="${n}"]`);
     if (current) {
-        current.classList.remove('hidden');
+        current.style.display = 'flex'; // Use flex to maintain layout
+        // Trigger animation
+        current.style.animation = 'none';
+        current.offsetHeight; /* trigger reflow */
+        current.style.animation = null; 
     }
     
     // Update counter
@@ -50,6 +55,3 @@ document.addEventListener('keydown', function(e) {
 
 // Initialize
 showSlide(1);
-
-// Auto-advance slides (optional - remove if not wanted)
-// setInterval(nextSlide, 10000); // Advance every 10 seconds

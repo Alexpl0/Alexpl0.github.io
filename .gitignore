@@ -1,0 +1,4 @@
+# Ignorar archivos de acceso directo de Google Drive
+*.gdoc
+*.gsheet
+*.gslides
