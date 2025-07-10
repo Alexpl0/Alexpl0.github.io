@@ -14,28 +14,29 @@ Media queries for responsiveness */
 
 /* Variables CSS */
 :root {
-    --color-bg-dark: #0D1826;
-    --color-bg-medium: #1A2A40;
-    --color-bg-light: #4C6173;
-    --color-bg-accent: #C5CCD9;
-    --color-bg-card: #D9D6D2;
-    --color-primary: #11998e;
-    --color-secondary: #667eea;
-    --color-tertiary: #f093fb;
+    /* Nueva Paleta de Colores Azules */
+    --color-primary: #0726D9;      /* Azul brillante (para acentos, enlaces, títulos) */
+    --color-secondary: #1760BF;     /* Azul medio (para fondos de cajas, gradientes) */
+    --color-accent: #3D9DF2;      /* Azul cielo (para acentos secundarios, bordes) */
+    --color-light-accent: #52C5F2;     /* Cian claro (para detalles sutiles) */
+
+    /* Paleta de Fondos y UI */
+    --color-bg-dark: #031240;      /* Azul noche (para el fondo principal) */
+    --color-bg-card: #FFFFFF;      /* Blanco puro (para el fondo de las diapositivas) */
+    --color-bg-subtle: #F0F8FF;   /* Azul Alice (un gris azulado muy claro para fondos de cajas) */
+    
+    /* Paleta de Texto */
+    --color-text-dark: #031240;     /* Azul noche (para texto principal sobre fondos claros) */
+    --color-text-medium: #4C6173;   /* Gris azulado (para texto secundario) */
+    --color-text-light: #FFFFFF;     /* Blanco puro (para texto sobre fondos oscuros) */
+
+    /* Colores Semánticos (se mantienen por funcionalidad) */
     --color-success: #27ae60;
     --color-danger: #e74c3c;
     --color-warning: #f39c12;
-    --color-info: #3498db;
-    --color-neutral: #f9f9f9;
+    --color-info: var(--color-accent); /* Usar un color de la nueva paleta */
     --color-white: #fff;
-    --color-black: #333;
-    /* Nuevos colores para diagramas */
-    --color-diagram-1: #0D1826;
-    --color-diagram-2: #1A2A40;
-    --color-diagram-3: #4C6173;
-    --color-diagram-4: #C5CCD9;
-    --color-diagram-5: #667eea;
-    --color-diagram-6: #11998e;
+    --color-black: #333; /* Mantener para referencias específicas si es necesario */
 }
 
 * {
@@ -47,9 +48,9 @@ Media queries for responsiveness */
 /* Body styles */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, var(--color-bg-dark) 0%, var(--color-bg-medium) 30%, var(--color-bg-light) 70%, var(--color-bg-accent) 100%);
+    background: linear-gradient(135deg, var(--color-bg-dark) 0%, var(--color-secondary) 100%);
     min-height: 100vh;
-    color: var(--color-black);
+    color: var(--color-text-dark);
 }
 
 /* Presentation container styles */
@@ -62,22 +63,23 @@ body {
 
 /* Slide styles */
 .slide {
-    background: rgba(217, 214, 210, 0.95);
+    background: rgba(255, 255, 255, 0.95);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 40px;
     margin-bottom: 30px;
-    box-shadow: 0 20px 40px rgba(13, 24, 38, 0.2);
+    box-shadow: 0 20px 40px rgba(3, 18, 64, 0.2);
     opacity: 0;
     transform: translateY(30px);
     animation: slideIn 0.8s ease-out forwards;
-    border: 1px solid rgba(197, 204, 217, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     min-height: 600px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     position: relative; /* Para el posicionamiento del pie de página */
+    padding-bottom: 60px; /* Espacio extra para el footer */
 }
 
 .slide:nth-child(even) {
@@ -92,36 +94,36 @@ body {
 }
 
 .slide h1 {
-    color: var(--color-bg-dark);
+    color: var(--color-text-dark);
     font-size: 2.5rem;
     margin-bottom: 20px;
     text-align: center;
     font-weight: 700;
-    text-shadow: 0 1px 3px rgba(13, 24, 38, 0.1);
-    background: linear-gradient(135deg, var(--color-bg-dark), var(--color-bg-medium));
+    text-shadow: 0 1px 3px rgba(3, 18, 64, 0.1);
+    background: linear-gradient(135deg, var(--color-text-dark), var(--color-secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
 .slide h2 {
-    color: var(--color-bg-dark);
+    color: var(--color-text-dark);
     font-size: 2rem;
     margin-bottom: 30px;
-    border-bottom: 3px solid var(--color-bg-light);
+    border-bottom: 3px solid var(--color-accent);
     padding-bottom: 10px;
     font-weight: 600;
 }
 
 .slide h3 {
-    color: var(--color-bg-medium);
+    color: var(--color-secondary);
     font-size: 1.4rem;
     margin: 25px 0 15px 0;
     font-weight: 600;
 }
 
 .slide h4 {
-    color: var(--color-bg-medium);
+    color: var(--color-secondary);
     font-size: 1.2rem;
     margin: 15px 0 8px 0;
     font-weight: 600;
@@ -131,7 +133,7 @@ body {
     line-height: 1.6;
     margin-bottom: 10px;
     font-size: 1.1rem;
-    color: var(--color-bg-dark);
+    color: var(--color-text-dark);
 }
 
 .slide ul {
@@ -141,22 +143,22 @@ body {
 
 /* Highlight box styles */
 .highlight-box {
-    background: linear-gradient(135deg, var(--color-bg-medium) 0%, var(--color-bg-light) 100%);
-    color: var(--color-bg-card);
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
+    color: var(--color-text-light);
     padding: 25px;
     border-radius: 15px;
     margin: 30px 0;
-    box-shadow: 0 10px 20px rgba(26, 42, 64, 0.3);
+    box-shadow: 0 10px 20px rgba(3, 18, 64, 0.3);
     min-height: 80px;
 }
 
 .highlight-box h3 {
-    color: var(--color-bg-accent);
+    color: var(--color-text-light);
     margin-bottom: 15px;
 }
 
 .highlight-box p {
-    color: var(--color-bg-card);
+    color: var(--color-text-light);
 }
 
 /* Statistics grid styles */
@@ -168,51 +170,51 @@ body {
 }
 
 .stat-item {
-    background: linear-gradient(135deg, var(--color-bg-light) 0%, var(--color-bg-accent) 100%);
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-light-accent) 100%);
     padding: 20px;
     border-radius: 15px;
     text-align: center;
-    color: var(--color-bg-dark);
+    color: var(--color-text-dark);
     font-weight: bold;
-    box-shadow: 0 10px 20px rgba(76, 97, 115, 0.3);
+    box-shadow: 0 10px 20px rgba(61, 157, 242, 0.2);
     min-height: 100px;
 }
 
 .stat-item h3 {
-    color: var(--color-bg-dark);
+    color: var(--color-text-dark);
     font-size: 1.8rem;
     margin-bottom: 8px;
 }
 
 .stat-item p {
-    color: var(--color-bg-medium);
+    color: var(--color-secondary);
     font-size: 0.9rem;
 }
 
 .dataset-card {
-    background: linear-gradient(135deg, var(--color-bg-accent) 0%, rgba(217, 214, 210, 0.8) 100%);
+    background: var(--color-bg-subtle);
     padding: 20px;
     border-radius: 15px;
     margin: 15px 0;
-    border-left: 5px solid var(--color-bg-light);
-    color: var(--color-bg-dark);
-    box-shadow: 0 5px 15px rgba(76, 97, 115, 0.2);
+    border-left: 5px solid var(--color-secondary);
+    color: var(--color-text-dark);
+    box-shadow: 0 5px 15px rgba(3, 18, 64, 0.05);
     min-height: 120px;
 }
 
 .dataset-card h3 {
-    color: var(--color-bg-dark);
+    color: var(--color-text-dark);
     margin-bottom: 15px;
 }
 
 .methodology-step {
-    background: rgba(197, 204, 217, 0.3);
+    background: rgba(61, 157, 242, 0.1);
     padding: 15px;
     border-radius: 10px;
     margin: 10px 0;
-    border-left: 4px solid var(--color-bg-light);
-    color: var(--color-bg-dark);
-    box-shadow: 0 2px 8px rgba(76, 97, 115, 0.1);
+    border-left: 4px solid var(--color-accent);
+    color: var(--color-text-dark);
+    box-shadow: 0 2px 8px rgba(61, 157, 242, 0.1);
     min-height: 50px;
 }
 
@@ -225,31 +227,31 @@ body {
 }
 
 .advantages {
-    background: linear-gradient(135deg, var(--color-bg-accent) 0%, rgba(217, 214, 210, 0.8) 100%);
+    background: var(--color-bg-subtle);
     padding: 20px;
     border-radius: 15px;
-    color: var(--color-bg-dark);
-    box-shadow: 0 5px 15px rgba(197, 204, 217, 0.3);
+    color: var(--color-text-dark);
+    box-shadow: 0 5px 15px rgba(3, 18, 64, 0.05);
 }
 
 .advantages h3, .advantages h4 {
-    color: var(--color-bg-dark);
+    color: var(--color-text-dark);
 }
 
 .disadvantages {
-    background: linear-gradient(135deg, var(--color-bg-medium) 0%, var(--color-bg-light) 100%);
+    background: linear-gradient(135deg, var(--color-bg-dark) 0%, var(--color-secondary) 100%);
     padding: 20px;
     border-radius: 15px;
-    color: var(--color-bg-card);
-    box-shadow: 0 5px 15px rgba(26, 42, 64, 0.3);
+    color: var(--color-text-light);
+    box-shadow: 0 5px 15px rgba(3, 18, 64, 0.2);
 }
 
 .disadvantages h3, .disadvantages h4 {
-    color: var(--color-bg-accent);
+    color: var(--color-light-accent);
 }
 
 .disadvantages p, .disadvantages li {
-    color: var(--color-bg-card);
+    color: var(--color-text-light);
 }
 
 /* Navigation styles */
@@ -263,22 +265,20 @@ body {
 }
 
 .nav-btn {
-    background: linear-gradient(135deg, var(--color-bg-dark), var(--color-bg-medium));
-    color: var(--color-bg-accent);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: var(--color-text-light);
     border: none;
     padding: 12px 20px;
     border-radius: 25px;
     cursor: pointer;
     font-weight: bold;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(13, 24, 38, 0.4);
+    box-shadow: 0 5px 15px rgba(7, 38, 217, 0.4);
 }
 
 .nav-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(13, 24, 38, 0.6);
-    background: linear-gradient(135deg, var(--color-bg-medium), var(--color-bg-light));
-    color: var(--color-bg-card);
+    box-shadow: 0 8px 25px rgba(7, 38, 217, 0.6);
 }
 
 /* Progress bar styles */
@@ -288,13 +288,13 @@ body {
     left: 0;
     width: 100%;
     height: 4px;
-    background: rgba(217, 214, 210, 0.3);
+    background: rgba(255, 255, 255, 0.2);
     z-index: 1000;
 }
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--color-bg-dark), var(--color-bg-medium), var(--color-bg-light), var(--color-bg-accent));
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent), var(--color-light-accent));
     width: 0%;
     transition: width 0.3s ease;
 }
@@ -307,13 +307,13 @@ body {
     position: fixed;
     top: 20px;
     right: 20px;
-    background: rgba(217, 214, 210, 0.95);
+    background: rgba(255, 255, 255, 0.9);
     padding: 10px 20px;
     border-radius: 20px;
     font-weight: bold;
-    color: var(--color-bg-dark);
-    border: 1px solid rgba(197, 204, 217, 0.4);
-    box-shadow: 0 3px 10px rgba(13, 24, 38, 0.2);
+    color: var(--color-text-dark);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 3px 10px rgba(3, 18, 64, 0.2);
     z-index: 2000;
 }
 
@@ -324,9 +324,9 @@ body {
     gap: 25px;
     margin: 30px 0;
     padding: 20px;
-    background: linear-gradient(135deg, rgba(76, 97, 115, 0.1), rgba(197, 204, 217, 0.1));
+    background: var(--color-bg-subtle);
     border-radius: 20px;
-    box-shadow: 0 10px 20px rgba(13, 24, 38, 0.1);
+    box-shadow: 0 10px 20px rgba(3, 18, 64, 0.05);
 }
 
 .single-chart-container {
@@ -347,7 +347,7 @@ body {
     max-width: 80%;
     height: auto;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(13, 24, 38, 0.2);
+    box-shadow: 0 10px 30px rgba(3, 18, 64, 0.1);
 }
 
 .single-chart-container p {
@@ -361,7 +361,7 @@ body {
     width: 100%;
     border-radius: 15px;
     margin: 15px 0;
-    box-shadow: 0 8px 25px rgba(13, 24, 38, 0.15);
+    box-shadow: 0 8px 25px rgba(3, 18, 64, 0.1);
 }
 
 /* Comparison Table Styles */
@@ -369,49 +369,49 @@ body {
     width: 100%;
     margin: 20px 0;
     border-collapse: collapse;
-    background: rgba(255, 255, 255, 0.5);
+    background: var(--color-bg-card);
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 8px 25px rgba(13, 24, 38, 0.15);
+    box-shadow: 0 8px 25px rgba(3, 18, 64, 0.1);
 }
 .comparison-table th, .comparison-table td {
     padding: 15px;
     text-align: left;
-    border-bottom: 1px solid rgba(76, 97, 115, 0.2);
+    border-bottom: 1px solid rgba(61, 157, 242, 0.2);
 }
 .comparison-table th {
-    background-color: var(--color-bg-light);
-    color: var(--color-bg-card);
+    background-color: var(--color-secondary);
+    color: var(--color-text-light);
     font-weight: 600;
 }
 .comparison-table td {
-    color: var(--color-bg-dark);
+    color: var(--color-text-dark);
 }
 .comparison-table tr:last-child td {
     border-bottom: none;
 }
 .comparison-table td:first-child {
     font-weight: bold;
-    color: var(--color-bg-medium);
+    color: var(--color-primary);
 }
 
 /* Code Snippet Styles */
 pre {
-    background: #2d2d2d;
-    color: #f8f8f2;
-    padding: 15px;
+    background: #011627; /* Un azul muy oscuro para el código */
+    color: #d6deeb;
+    padding: 20px;
     border-radius: 10px;
     overflow-x: auto;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.85rem;
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
     margin: 10px 0;
-    border: 1px solid var(--color-bg-light);
+    border: 1px solid var(--color-secondary);
 }
 
 .code-description {
     font-size: 0.9rem !important;
     font-style: italic;
-    color: var(--color-bg-medium) !important;
+    color: var(--color-text-medium) !important;
     margin-top: -5px;
     margin-bottom: 20px !important;
 }
@@ -424,8 +424,8 @@ pre {
     right: 40px;
     font-size: 0.8rem;
     font-style: italic;
-    color: var(--color-bg-medium);
-    border-top: 1px solid rgba(76, 97, 115, 0.2);
+    color: var(--color-text-medium);
+    border-top: 1px solid rgba(61, 157, 242, 0.2);
     padding-top: 10px;
 }
 
@@ -444,40 +444,25 @@ pre {
     align-items: center;
 }
 .methodology-diagram-iterative .step {
-    background: var(--color-bg-light);
-    color: var(--color-bg-card);
+    background: var(--color-secondary);
+    color: var(--color-text-light);
     padding: 15px 25px;
     border-radius: 10px;
     margin: 10px 0;
     text-align: center;
     min-width: 220px;
-    box-shadow: 0 5px 15px rgba(13, 24, 38, 0.2);
+    box-shadow: 0 5px 15px rgba(23, 96, 191, 0.2);
 }
 .methodology-diagram-iterative .arrow-down,
 .methodology-diagram-iterative .arrow-up {
     font-size: 2rem;
-    color: var(--color-bg-light);
+    color: var(--color-secondary);
 }
 .methodology-diagram-iterative .arrow-loop-right,
 .methodology-diagram-iterative .arrow-loop-left {
     font-size: 2.5rem;
-    color: var(--color-bg-light);
+    color: var(--color-secondary);
     margin: 0 20px;
-}
-
-/* Preprocessing Slide Layout */
-.preprocessing-content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.preprocessing-content ul {
-    font-size: 1.2rem;
-}
-.preprocessing-content li {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
 }
 
 /* StandardScaler Slide */
@@ -489,62 +474,39 @@ pre {
     gap: 20px;
 }
 .scaler-step {
-    background: rgba(255,255,255,0.2);
+    background: var(--color-bg-subtle);
     padding: 20px;
     border-radius: 15px;
     text-align: center;
     flex: 1;
-    border: 1px solid var(--color-bg-light);
+    border: 1px solid var(--color-accent);
 }
 .scaler-arrow {
     font-size: 2.5rem;
-    color: var(--color-bg-dark);
+    color: var(--color-text-dark);
 }
 .formula {
     font-family: 'Courier New', Courier, monospace;
     font-size: 1.2rem;
     color: var(--color-primary);
-    background: rgba(13, 24, 38, 0.1);
+    background: rgba(7, 38, 217, 0.05);
     padding: 10px;
     border-radius: 5px;
     margin-top: 15px;
 }
 
-/* CNN Theory Slide Layout */
-.cnn-theory-layout {
-    display: flex;
-    gap: 30px;
-    align-items: flex-start;
-}
-.cnn-text {
-    flex: 2;
-}
-.cnn-audio {
-    flex: 1;
-    background: rgba(255,255,255,0.2);
-    padding: 20px;
-    border-radius: 15px;
-}
-.cnn-audio h4 {
-    margin-top: 0;
-}
-audio {
-    width: 100%;
-    margin-top: 15px;
-}
-
 /* Interactive Plot (iFrame) Container */
-.interactive-plot-container {
+.iframe-plot-container {
     width: 100%;
     height: 450px; /* Altura ajustada para el gráfico */
     margin: 15px 0;
 }
-.interactive-plot-container iframe {
+.iframe-plot-container iframe {
     width: 100%;
     height: 100%;
     border: none;
     border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(13, 24, 38, 0.15);
+    box-shadow: 0 8px 25px rgba(3, 18, 64, 0.1);
 }
 .plot-description {
     text-align: center;
@@ -561,44 +523,86 @@ audio {
     margin: 20px 0;
 }
 .layer-box {
-    padding: 15px 20px;
+    padding: 10px 15px;
     border-radius: 15px;
     text-align: center;
     width: 90%;
-    color: var(--color-white);
-    box-shadow: 0 8px 20px rgba(13, 24, 38, 0.3);
-    border: 1px solid rgba(197, 204, 217, 0.2);
+    color: var(--color-text-light);
+    box-shadow: 0 8px 20px rgba(3, 18, 64, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 .layer-box h4 {
-    margin: 0 0 10px 0;
-    font-size: 1.2rem;
+    margin: 0 0 8px 0;
+    font-size: 1.1rem;
     color: inherit;
     border-bottom: 1px solid rgba(255,255,255,0.3);
-    padding-bottom: 10px;
+    padding-bottom: 8px;
 }
 .layer-box p {
-    margin: 0 0 10px 0;
-    font-size: 1rem;
+    margin: 0 0 5px 0;
+    font-size: 0.95rem;
     opacity: 0.9;
     color: inherit;
 }
 .layer-box ul {
     text-align: left;
     font-size: 0.9rem;
-    margin: 10px 0 0 0;
-    padding-left: 25px;
+    margin: 8px 0 0 0;
+    padding-left: 20px;
 }
 .layer-box li {
-    font-size: 0.9rem;
-    margin-bottom: 8px;
+    font-size: 0.85rem;
+    margin-bottom: 5px;
     color: inherit;
 }
-.layer-box.input { background: linear-gradient(135deg, var(--color-bg-dark) 0%, var(--color-bg-medium) 100%); }
-.layer-box.conv { background: linear-gradient(135deg, var(--color-bg-medium) 0%, var(--color-bg-light) 100%); }
-.layer-box.pool { background: linear-gradient(135deg, var(--color-bg-light) 0%, var(--color-diagram-5) 100%); }
-.layer-box.dense { background: linear-gradient(135deg, var(--color-diagram-5) 0%, var(--color-secondary) 100%); }
-.layer-box.output { background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-bg-accent) 100%); color: var(--color-bg-dark); }
-.neural-architecture .arrow { font-size: 2rem; color: var(--color-bg-light); }
+.layer-box .layer-desc {
+    font-style: italic;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+.layer-box.input { background: linear-gradient(135deg, var(--color-bg-dark) 0%, var(--color-secondary) 100%); }
+.layer-box.conv { background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-accent) 100%); }
+.layer-box.pool { background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-light-accent) 100%); }
+.layer-box.dense { background: linear-gradient(135deg, var(--color-light-accent) 0%, var(--color-primary) 100%); }
+.layer-box.output { background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%); color: var(--color-text-light); }
+.neural-architecture .arrow { font-size: 2rem; color: var(--color-secondary); margin: -5px 0;}
+
+/* Neurons Table Slide */
+.cnn-details {
+    margin: 20px auto;
+    background: var(--color-bg-subtle);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(3, 18, 64, 0.05);
+    border: 1px solid var(--color-accent);
+}
+.cnn-details > p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.cnn-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+.cnn-table th, .cnn-table td {
+    padding: 10px 12px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-accent);
+}
+.cnn-table th {
+    background-color: var(--color-secondary);
+    color: var(--color-text-light);
+}
+.cnn-table tr:nth-child(even) {
+    background-color: rgba(61, 157, 242, 0.1);
+}
+.cnn-table .cnn-total td {
+    font-weight: bold;
+    background-color: var(--color-secondary);
+    color: var(--color-text-light);
+    border-top: 2px solid var(--color-primary);
+}
 
 /* Farewell slide specific styles */
 .farewell-slide {
@@ -609,7 +613,7 @@ audio {
     width: 100%;
 }
 .contact-section h3 {
-    color: var(--color-bg-dark);
+    color: var(--color-text-dark);
     text-align: center;
     margin-bottom: 20px;
 }
@@ -623,7 +627,7 @@ audio {
     align-items: center;
     gap: 10px;
     text-decoration: none;
-    color: var(--color-bg-medium);
+    color: var(--color-secondary);
     font-weight: 600;
     transition: color 0.3s ease;
 }
@@ -633,7 +637,7 @@ audio {
 .instagram-logo {
     width: 24px;
     height: 24px;
-    stroke: var(--color-bg-medium);
+    stroke: var(--color-secondary);
     transition: stroke 0.3s ease;
 }
 .contact-item:hover .instagram-logo {
@@ -656,4 +660,315 @@ audio {
     .single-chart-container img {
         max-width: 100%;
     }
+}
+
+/* ================================================= */
+/* === ESTILOS PARA DIAPOSITIVA 9 & 10 (Charts) === */
+/* ================================================= */
+.chart-observation {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--color-text-medium);
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    background-color: var(--color-bg-subtle);
+    border-radius: 8px;
+}
+
+.mfcc-explanation {
+    margin-top: 20px;
+}
+.mfcc-table {
+    width: 100%;
+    margin-top: 25px;
+    border-collapse: collapse;
+    background: var(--color-bg-card);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(3, 18, 64, 0.1);
+}
+.mfcc-table th, .mfcc-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(61, 157, 242, 0.2);
+}
+.mfcc-table th {
+    background-color: var(--color-secondary);
+    color: var(--color-text-light);
+    font-weight: 600;
+}
+.mfcc-table td {
+    color: var(--color-text-dark);
+}
+.mfcc-table tr:last-child td {
+    border-bottom: none;
+}
+.mfcc-table td:first-child {
+    font-weight: bold;
+    color: var(--color-primary);
+}
+
+/* ================================================= */
+/* === ESTILOS PARA DIAPOSITIVA 11 (Preprocessing) === */
+/* ================================================= */
+.preprocessing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.preprocessing-step-card {
+    background: var(--color-bg-subtle);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    border: 1px solid var(--color-accent);
+    box-shadow: 0 8px 16px rgba(3, 18, 64, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.preprocessing-step-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(3, 18, 64, 0.12);
+}
+
+.preprocessing-step-card .icon-container {
+    margin-bottom: 15px;
+    height: 50px; /* Altura fija para alinear iconos */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.preprocessing-step-card .icon-container svg {
+    width: 50px;
+    height: 50px;
+    stroke: var(--color-primary);
+    stroke-width: 1.5;
+}
+
+.preprocessing-step-card h4 {
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.preprocessing-step-card p {
+    font-size: 0.95rem;
+    color: var(--color-text-dark);
+    line-height: 1.5;
+}
+
+
+/* ================================================= */
+/* === ESTILOS PARA DIAPOSITIVA 19 (CNN 1D) === */
+/* ================================================= */
+
+/* Nuevo layout de rejilla para la diapositiva */
+.cnn-theory-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Columna izquierda más ancha */
+    gap: 30px;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+}
+
+.cnn-text h4, .cnn-side-panel h4 {
+    color: var(--color-text-dark);
+    border-left: 4px solid var(--color-primary);
+    padding-left: 10px;
+    margin-bottom: 15px;
+}
+
+/* Contenedor del bloque de pseudocódigo */
+.code-block-container {
+    background-color: #011627;
+    border-radius: 8px; /* Bordes menos redondeados para estilo Windows */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    margin: 20px 0;
+    overflow: hidden;
+    border: 1px solid var(--color-secondary);
+}
+
+/* Cabecera del bloque de código (estilo Windows) */
+.code-block-header {
+    background-color: #0078D4; /* Azul de Windows */
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Para separar título y botones */
+}
+
+.code-block-header .code-title {
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Contenedor para los botones de la ventana */
+.window-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.control-btn {
+    width: 16px;
+    height: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.control-btn.minimize::after {
+    content: '_';
+    position: relative;
+    top: -4px;
+}
+
+.control-btn.maximize::after {
+    content: '□';
+    font-size: 12px;
+}
+
+.control-btn.close::after {
+    content: '×';
+    font-size: 16px;
+}
+
+.control-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.control-btn.close:hover {
+    background-color: #E81123; /* Rojo al pasar sobre el botón de cerrar */
+}
+
+
+/* Estilo del pseudocódigo en sí */
+.cnn-theory-layout pre {
+    background-color: transparent; /* El contenedor ya tiene fondo */
+    border: none;
+    margin: 0;
+    padding: 15px 20px;
+    font-size: 0.9rem;
+    color: #d6deeb;
+    white-space: pre-wrap; /* Ajustar línea si es necesario */
+}
+
+.cnn-theory-layout pre .comment {
+    color: #6a9955; /* Color de comentario más verde (estilo VS Code) */
+    font-style: italic;
+}
+
+/* Información de las funciones de activación */
+.activation-function-info {
+    margin-top: 20px;
+    padding: 15px;
+    background: var(--color-bg-subtle);
+    border-radius: 10px;
+    border: 1px solid var(--color-accent);
+}
+
+.activation-function-info p {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.activation-function-info .formula {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: var(--color-secondary);
+    color: var(--color-text-light);
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Panel lateral derecho */
+.cnn-side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Estilos para ventajas y desventajas (sin íconos) */
+.advantages-disadvantages-1d {
+    background: var(--color-bg-subtle);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(3, 18, 64, 0.05);
+}
+
+.advantages-disadvantages-1d ul {
+    list-style-type: '• '; /* Usar un bullet point simple */
+    padding-left: 20px; /* Espacio para el bullet */
+    margin: 10px 0 0 0;
+}
+
+.advantages-disadvantages-1d li {
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    padding-left: 5px; /* Espacio entre bullet y texto */
+}
+
+/* Estilos para la muestra de audio */
+.cnn-audio-sample {
+    background: var(--color-bg-subtle);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(3, 18, 64, 0.05);
+}
+
+.cnn-audio-sample p {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    font-style: italic;
+    color: var(--color-text-medium);
+}
+
+.cnn-audio-sample audio {
+    width: 100%;
+    border-radius: 50px; /* Bordes redondeados para el reproductor */
+    border: 1px solid var(--color-accent);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Personalización (limitada) de la barra del reproductor */
+.cnn-audio-sample audio::-webkit-media-controls-panel {
+    background-color: var(--color-bg-card);
+}
+
+.cnn-audio-sample audio::-webkit-media-controls-play-button,
+.cnn-audio-sample audio::-webkit-media-controls-current-time-display,
+.cnn-audio-sample audio::-webkit-media-controls-time-remaining-display,
+.cnn-audio-sample audio::-webkit-media-controls-mute-button,
+.cnn-audio-sample audio::-webkit-media-controls-volume-slider {
+    color: var(--color-text-dark);
+    filter: brightness(1);
+}
+
+/* ================================================= */
+/* === ESTILOS PARA DIAPOSITIVA 21 (TABLA CNN) === */
+/* ================================================= */
+.cnn-table-footnote {
+    text-align: right;
+    margin-top: 15px;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--color-text-medium);
 }

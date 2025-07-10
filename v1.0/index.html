@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="../presentation/src/assets/logo.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de Emociones en la Voz con IA</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+    
+    <div class="slide-counter" id="slideCounter">1 / 29</div>
+
+    <div class="presentation-container">
+        <!-- Diapositivas 1-15 (Sin cambios) -->
+        <div class="slide" data-slide="1">
+            <h1>Análisis de Emociones en la Voz con Inteligencia Artificial</h1>
+            <div class="highlight-box">
+                <h3>Explorando Patrones Acústicos para la Clasificación del Habla Afectiva</h3>
+                <p style="text-align: center; font-size: 1.2rem; margin-top: 20px;">
+                    Un enfoque técnico para la modelación de características prosódicas y espectrales.
+                </p>
+            </div>
+            <div class="team-info">
+                <h3>Equipo de Desarrollo</h3>
+                <p><strong>Alejandro Pérez</strong></p>
+                <p><strong>Yusmany Rejopachi</strong></p>
+                <p><strong>Jair Gutiérrez</strong></p>
+            </div>
+        </div>
+        <div class="slide hidden" data-slide="2">
+            <h2>1. Justificación Técnica</h2>
+            <div class="highlight-box">
+                <h3>¿Por qué Audio para Reconocimiento Emocional?</h3>
+                <p>La voz humana contiene una firma acústica compleja, rica en información latente sobre el estado afectivo del hablante.</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item"><h3>Características Prosódicas</h3><p>El pitch, la intensidad y el ritmo del habla son indicadores clave del estado emocional.</p></div>
+                <div class="stat-item"><h3>Patrones Espectrales</h3><p>La distribución de energía en las frecuencias (formantes) varía sistemáticamente con la emoción.</p></div>
+                <div class="stat-item"><h3>Señal No Estructurada</h3><p>El habla es una fuente de datos compleja, ideal para ser modelada con técnicas de IA.</p></div>
+            </div>
+            <p><strong>¿Por qué Inteligencia Artificial?</strong></p>
+            <ul>
+                <li><strong>Extracción de Patrones:</strong> Capacidad para identificar automáticamente características complejas en espectrogramas, indetectables para el análisis tradicional.</li>
+                <li><strong>Análisis Objetivo:</strong> Los modelos de IA ofrecen una cuantificación consistente y reproducible de las características vocales.</li>
+                <li><strong>Modelado de Alta Dimensión:</strong> Habilidad para procesar miles de características extraídas de una sola señal de audio.</li>
+            </ul>
+        </div>
+        <div class="slide hidden" data-slide="3">
+            <h2>2. Descripción del Problema</h2>
+            <div class="highlight-box">
+                <h3>Problema Técnico Principal</h3>
+                <p>El desafío de clasificar estados emocionales a partir de la señal del habla, que es inherentemente variable, ruidosa y de alta dimensionalidad.</p>
+            </div>
+            <h3>¿Qué reto técnico abordamos?</h3>
+            <ul>
+                <li>Desarrollar un modelo capaz de analizar las sutiles variaciones en grabaciones de voz.</li>
+                <li>Identificar y diferenciar patrones acústicos para 7 emociones distintas: <strong>alegría, tristeza, enojo, miedo, sorpresa, disgusto y neutralidad.</strong></li>
+                <li>Manejar la variabilidad entre diferentes hablantes, idiomas y calidades de grabación.</li>
+                <li>Construir un pipeline de datos robusto, desde el preprocesamiento de la señal hasta la clasificación.</li>
+            </ul>
+            <footer class="footnote">
+                <strong>Pipeline:</strong> Secuencia de pasos de procesamiento de datos, donde la salida de un paso es la entrada del siguiente.
+            </footer>
+        </div>
+        <div class="slide hidden" data-slide="4">
+            <h2>3. Objetivo General</h2>
+            <div class="highlight-box" style="display: flex; align-items: center; justify-content: center; text-align: center; min-height: 50vh;">
+                <p style="font-size: 1.5rem; line-height: 1.7;">Desarrollar y evaluar un modelo de inteligencia artificial para la clasificación de emociones humanas a partir del análisis de características acústicas y espectrales del habla, estableciendo un pipeline completo desde el preprocesamiento de la señal hasta la predicción del modelo.</p>
+            </div>
+        </div>
+        <div class="slide hidden" data-slide="5">
+            <h2>4. Objetivos Específicos</h2>
+            <div class="methodology-step"><strong>1.</strong> Integrar y preprocesar múltiples conjuntos de datos de audio emocional</div>
+            <div class="methodology-step"><strong>2.</strong> Extraer y analizar características acústicas relevantes del habla emocional</div>
+            <div class="methodology-step"><strong>3.</strong> Diseñar, entrenar y optimizar modelos especializados de aprendizaje automático</div>
+            <div class="methodology-step"><strong>4.</strong> Evaluar el rendimiento utilizando métricas estándar de clasificación</div>
+            <div class="methodology-step"><strong>5.</strong> Implementar técnicas de reducción de dimensionalidad y visualización</div>
+        </div>
+        <div class="slide hidden" data-slide="6">
+            <h2>5. Metodología Iterativa</h2>
+            <p>Adoptamos un enfoque de desarrollo cíclico, permitiendo la retroalimentación y mejora continua en cada fase del proyecto.</p>
+            <div class="methodology-diagram-iterative">
+                <div class="step-container">
+                    <div class="step">Adquisición de Datos</div>
+                    <div class="arrow-down">↓</div>
+                    <div class="step">Análisis Exploratorio</div>
+                    <div class="arrow-down">↓</div>
+                    <div class="step">Preprocesamiento</div>
+                </div>
+                <div class="step-container">
+                    <div class="arrow-loop-right">⤴</div>
+                    <div class="step">Evaluación</div>
+                    <div class="arrow-up">↑</div>
+                     <div class="step">Entrenamiento</div>
+                    <div class="arrow-up">↑</div>
+                    <div class="step">Extracción de Características</div>
+                    <div class="arrow-loop-left">⤵</div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 20px;">Este modelo permite regresar a pasos anteriores si los resultados de la evaluación no son satisfactorios, por ejemplo, volviendo al preprocesamiento o a la extracción de características para refinar el modelo.</p>
+        </div>
+        <div class="slide hidden" data-slide="7">
+            <h2>6. Adquisición de Conjuntos de Datos</h2>
+            <div class="dataset-card"><h3>Conjunto 1: Base de Datos de Habla Emocional Mexicana (MESD)</h3><ul><li><strong>Cantidad:</strong> 864 grabaciones de audio</li><li><strong>Características:</strong> Español mexicano, 6 emociones + neutralidad</li><li><strong>Utilidad:</strong> Adaptación específica al habla mexicana</li></ul></div>
+            <div class="dataset-card"><h3>Conjunto 2: Audio de Habla Emocional RAVDESS</h3><ul><li><strong>Cantidad:</strong> 1,440 grabaciones vocales</li><li><strong>Características:</strong> Calidad profesional, 24 actores</li><li><strong>Utilidad:</strong> Benchmarks robustos de rendimiento</li></ul></div>
+            <div class="dataset-card"><h3>Conjunto 3: Toronto Emotional Speech Set (TESS)</h3><ul><li><strong>Cantidad:</strong> 2,800 muestras de audio</li><li><strong>Características:</strong> Alta calidad, actrices entrenadas</li><li><strong>Utilidad:</strong> Datos consistentes y controlados para el modelo base</li></ul></div>
+             <footer class="footnote">
+                <strong>Nota:</strong> Se sustituyó un dataset originalmente planeado por TESS debido a que el primero fue retirado de Kaggle, asegurando la disponibilidad y reproducibilidad del proyecto.
+            </footer>
+        </div>
+        <div class="slide hidden" data-slide="8">
+            <h2>7. Análisis Exploratorio de Datos (EDA)</h2>
+            <h3>Preguntas principales de investigación:</h3>
+            <ul>
+                <li>¿Existen diferencias espectrales consistentes entre estados emocionales?</li>
+                <li>¿Cómo varían las características prosódicas entre emociones?</li>
+                <li>¿Qué nivel de variabilidad existe dentro de cada categoría?</li>
+            </ul>
+            <h3>Visualizaciones Seleccionadas:</h3>
+            <div class="methodology-step"><strong>1.</strong> Histogramas de Características Prosódicas</div>
+            <div class="methodology-step"><strong>2.</strong> Mapas de Calor de Correlación Espectral</div>
+            <div class="methodology-step"><strong>3.</strong> Gráficos de Dispersión de Componentes Principales</div>
+        </div>
+        <div class="slide hidden" data-slide="9">
+            <h2>8. Visualización: Distribución del Pitch</h2>
+            <div class="single-chart-container">
+                <h3>Pitch Fundamental por Emoción</h3>
+                <img src="presentation/src/assets/images/histograma_pitch_por_emocion.png" alt="Histograma Pitch por Emoción">
+                <p>
+                    Esta gráfica muestra la distribución de la frecuencia fundamental (Pitch o F0) para cada emoción. El eje X representa el Pitch en Hertz (Hz), que corresponde a qué tan grave o agudo es un sonido. El eje Y muestra la densidad de probabilidad. Se observa que emociones como "alegría" y "sorpresa" tienden a tener un pitch más alto, mientras que la "tristeza" se asocia con tonos más graves.
+                </p>
+            </div>
+        </div>
+        <div class="slide hidden" data-slide="10">
+            <h2>9. Visualización: Correlación de MFCC</h2>
+            <div class="single-chart-container">
+                <h3>Correlación entre MFCC y Emociones</h3>
+                <img src="graficas/mfcc/heatmap_correlacion_mfcc_emocion.png" alt="Mapa de calor MFCC-Emoción">
+                <p>
+                    Este mapa de calor muestra la correlación entre los 13 coeficientes MFCC y las categorías emocionales. Los colores cálidos (rojo) indican una correlación positiva, mientras que los fríos (azul) indican una negativa. Esta visualización nos ayuda a entender qué coeficientes son más importantes para distinguir entre emociones, guiando la selección de características para el modelo.
+                </p>
+            </div>
+            <footer class="footnote">
+                <strong>MFCCs (Coeficientes Cepstrales en la Frecuencia Mel):</strong> Característica que representa el espectro de una señal de audio de una manera compacta, imitando la percepción del oído humano. https://turing.iimas.unam.mx/~ivanvladimir/posts/mfcc/
+            </footer>
+        </div>
+        <div class="slide hidden" data-slide="11">
+            <h2>10. Preprocesamiento de Datos</h2>
+            <div class="preprocessing-content">
+                <p>Se aplicaron varios pasos para limpiar y estandarizar los datos de audio, asegurando la calidad para el entrenamiento del modelo.</p>
+                <ul>
+                    <li><strong>Normalización de Audio:</strong> Unificar todos los archivos a 22.05 kHz y 16 bits.</li>
+                    <li><strong>Eliminación de Datos Corruptos:</strong> Descartar archivos inválidos o de duración menor a 1 segundo.</li>
+                    <li><strong>Filtrado de Ruido:</strong> Aplicar filtros para eliminar ruido de fondo y frecuencias no relevantes.</li>
+                    <li><strong>Segmentación Temporal:</strong> Dividir audios largos en ventanas de 3 segundos con solapamiento.</li>
+                    <li><strong>Balanceo de Clases:</strong> Usar SMOTE para sobremuestrear clases minoritarias y equilibrar el dataset.</li>
+                </ul>
+            </div>
+            <footer class="footnote">
+                <strong>Solapamiento:</strong> Técnica donde las ventanas de audio se superponen para no perder información en los bordes. <strong>SMOTE:</strong> Técnica para crear muestras sintéticas de las clases minoritarias y así balancear el dataset.
+            </footer>
+        </div>
+        <div class="slide hidden" data-slide="12">
+            <h2>11. Preprocesamiento para Reducción Dimensional</h2>
+            <h3>¿Qué fue necesario para poder usar PCA y LDA correctamente?</h3>
+            <div class="highlight-box" style="background: linear-gradient(135deg, var(--color-bg-accent), var(--color-bg-card));">
+                <h3 style="color: var(--color-bg-dark);">Estandarización de Características (Scaling)</h3>
+                <p style="color: var(--color-bg-dark);">
+                    Técnicas como PCA y LDA son muy sensibles a la escala de las variables de entrada. Sin un escalado previo, las características con rangos de valores más grandes (como el pitch) dominarían a las de rangos más pequeños (como los MFCCs), sesgando el análisis.
+                </p>
+            </div>
+            <p>La estandarización asegura que todas las características contribuyan de manera equitativa al análisis, resultando en un modelo más justo y preciso.</p>
+        </div>
+        <div class="slide hidden" data-slide="13">
+            <h2>12. ¿Cómo Funciona StandardScaler?</h2>
+            <div class="scaler-explanation">
+                <div class="scaler-step">
+                    <h4>1. Cálculo de la Media</h4>
+                    <p>Primero, calcula la media (promedio) de cada una de las características (columnas) en el conjunto de datos de entrenamiento.</p>
+                    <p class="formula">μ = (Σx) / n</p>
+                </div>
+                <div class="scaler-arrow">→</div>
+                <div class="scaler-step">
+                    <h4>2. Cálculo de la Desviación Estándar</h4>
+                    <p>Luego, calcula la desviación estándar, que mide cuánta variación o dispersión existe respecto a la media.</p>
+                     <p class="formula">σ = √[Σ(x-μ)² / n]</p>
+                </div>
+                <div class="scaler-arrow">→</div>
+                <div class="scaler-step">
+                    <h4>3. Transformación (Z-score)</h4>
+                    <p>Finalmente, para cada valor, resta la media y lo divide por la desviación estándar. Esto centra los datos en 0 y les da una varianza de 1.</p>
+                    <p class="formula">z = (x - μ) / σ</p>
+                </div>
+            </div>
+             <footer class="footnote">
+                <strong>StandardScaler:</strong> Técnica de preprocesamiento que estandariza las características al remover la media y escalar a una varianza unitaria.
+            </footer>
+        </div>
+        <div class="slide hidden" data-slide="14">
+            <h2>13. Implementación Básica del Algoritmo</h2>
+            <h3>1. División de Datos (Train/Test Split)</h3>
+            <pre><code>from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42, stratify=y
+)</code></pre>
+            <p class="code-description">Se dividen los datos en conjuntos de entrenamiento (70%) y prueba (30%). `stratify=y` asegura que la proporción de cada emoción sea la misma en ambos conjuntos.</p>
+            <h3>2. Entrenamiento del Modelo (.fit)</h3>
+            <pre><code>from sklearn.linear_model import LogisticRegression
+
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+
+model = LogisticRegression(max_iter=1000)
+model.fit(X_train_scaled, y_train)</code></pre>
+            <p class="code-description">Se escalan los datos de entrenamiento y luego se entrena el modelo de Regresión Logística con ellos.</p>
+            <h3>3. Predicción y Evaluación (.predict + .score)</h3>
+            <pre><code>X_test_scaled = scaler.transform(X_test)
+y_pred = model.predict(X_test_scaled)
+accuracy = accuracy_score(y_test, y_pred)</code></pre>
+            <p class="code-description">Se usan el `scaler` y el `model` ya entrenados para hacer predicciones sobre los datos de prueba y se calcula la precisión.</p>
+        </div>
+        <div class="slide hidden" data-slide="15">
+            <h2>14. Reducción de Dimensionalidad: PCA vs. LDA</h2>
+            <div class="advantages-disadvantages">
+                <div class="advantages">
+                    <h4>Análisis de Componentes Principales (PCA)</h4>
+                    <ul>
+                        <li><strong>Tipo:</strong> No Supervisado.</li>
+                        <li><strong>Objetivo:</strong> Encontrar los ejes que maximizan la varianza de los datos.</li>
+                        <li><strong>Funcionamiento:</strong> Ignora las etiquetas y solo se enfoca en la dispersión de los datos.</li>
+                    </ul>
+                </div>
+                <div class="disadvantages">
+                    <h4>Análisis Discriminante Lineal (LDA)</h4>
+                    <ul>
+                        <li><strong>Tipo:</strong> Supervisado.</li>
+                        <li><strong>Objetivo:</strong> Encontrar los ejes que maximizan la separación entre las clases.</li>
+                        <li><strong>Funcionamiento:</strong> Usa las etiquetas para encontrar la mejor proyección para clasificar.</li>
+                    </ul>
+                </div>
+            </div>
+            <footer class="footnote">
+               <strong>Supervisado:</strong> El algoritmo aprende de datos que han sido etiquetados (p. ej., un audio etiquetado como "alegría"). <strong>No Supervisado:</strong> El algoritmo aprende de datos sin etiquetar, buscando patrones por sí mismo.
+            </footer>
+        </div>
+
+        <!-- ***** INICIO DE DIAPOSITIVAS ACTUALIZADAS ***** -->
+
+        <!-- Diapositiva 16: PCA 3D (Actualizada) -->
+        <div class="slide hidden" data-slide="16">
+            <h2>15. Visualización 3D: PCA</h2>
+            <div class="iframe-plot-container">
+                <iframe src="graficas/plots_3d/pca_3d_plot.html"></iframe>
+            </div>
+            <p class="plot-description">
+                Esta gráfica muestra los datos proyectados en los 3 Componentes Principales (PC1, PC2, PC3), que juntos capturan la mayor parte de la varianza de los datos (aprox. 68%). Cada punto es un audio y su color corresponde a una emoción. PCA, al ser no supervisado, no intenta separar los colores, sino mostrar la dispersión natural de los datos. Observamos que algunas emociones como 'enojo' y 'alegría' forman cúmulos algo definidos, pero hay un considerable solapamiento general.
+            </p>
+            <footer class="footnote">
+                <strong>Varianza:</strong> Medida de qué tan dispersos están los datos. <strong>Dispersión:</strong> Grado en que los datos se distribuyen o se alejan de un valor central.
+            </footer>
+        </div>
+
+        <!-- Diapositiva 17: LDA 3D (Actualizada) -->
+        <div class="slide hidden" data-slide="17">
+            <h2>16. Visualización 3D: LDA</h2>
+            <div class="iframe-plot-container">
+                <iframe src="graficas/plots_3d/lda_3d_plot.html"></iframe>
+            </div>
+            <p class="plot-description">
+                Aquí, los ejes (LD1, LD2, LD3) son calculados por LDA para maximizar la separación entre las emociones (los colores). A diferencia de PCA, el objetivo es puramente discriminativo. El resultado es una separación mucho más clara y cúmulos más compactos. Esto demuestra visualmente que las características acústicas que extrajimos contienen información muy relevante para distinguir entre las diferentes clases de emociones.
+            </p>
+        </div>
+        <div class="slide hidden" data-slide="18">
+            <h2>17. Comparación Final y Reflexión</h2>
+            <h3>Tabla Comparativa</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Criterio</th>
+                        <th>Análisis de Componentes Principales (PCA)</th>
+                        <th>Análisis Discriminante Lineal (LDA)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tipo</td>
+                        <td>No Supervisado</td>
+                        <td>Supervisado</td>
+                    </tr>
+                    <tr>
+                        <td>Objetivo</td>
+                        <td>Maximizar la varianza de los datos</td>
+                        <td>Maximizar la separabilidad entre clases</td>
+                    </tr>
+                    <tr>
+                        <td>Uso de Etiquetas</td>
+                        <td>No utiliza las etiquetas de las emociones</td>
+                        <td>Utiliza las etiquetas para encontrar los ejes</td>
+                    </tr>
+                    <tr>
+                        <td>Resultado Visual</td>
+                        <td>Muestra la dispersión general de los datos</td>
+                        <td>Muestra qué tan bien se pueden separar las clases</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>Opinión Reflexiva</h3>
+            <p>Al comparar ambas técnicas, <strong>LDA demuestra ser más efectivo para visualizar la separabilidad de las clases</strong> en nuestro problema. Mientras que PCA es útil para entender la estructura general de la varianza en los datos, LDA, al ser un método supervisado, logra crear proyecciones donde las emociones forman cúmulos más definidos y distinguibles. Esto sugiere que las características extraídas, cuando se proyectan con un objetivo de clasificación, son altamente discriminativas.</p>
+        </div>
+        <div class="slide hidden" data-slide="19">
+            <h2>18. Fundamento Teórico: Redes Neuronales Convolucionales (CNN)</h2>
+            <div class="cnn-theory-layout">
+                <div class="cnn-text">
+                    <h4>Pseudocódigo: ¿Cómo funciona una CNN?</h4>
+                    <pre>
+Entrada = Imagen o espectrograma
+
+// 1. Capas Convolucionales
+Para cada filtro en la capa:
+    Desliza el filtro sobre la imagen
+    Calcula la suma ponderada (convolución)
+    Aplica función de activación (ReLU)
+
+// 2. Capas de Pooling
+Reduce el tamaño de la imagen (ej. toma el valor máximo en cada región)
+
+// 3. Capas Densas (Fully Connected)
+Aplana la salida anterior
+Conecta con neuronas densas
+Aplica función de activación
+
+// 4. Capa de Salida
+Calcula probabilidades para cada clase (Softmax)
+                    </pre>
+
+                    <div class="cnn-details">
+                        <h4>Función de Activación</h4>
+                        <div class="formula">ReLU(x) = max(0, x)</div>
+                        <p>Utilizamos <strong>ReLU</strong> en las capas ocultas y <strong>Softmax</strong> en la salida para clasificación multiclase.</p>
+                    </div>
+
+                    <h4>Ventajas</h4>
+                    <ul>
+                        <li>Extracción automática de características.</li>
+                        <li>Robustez ante pequeñas variaciones.</li>
+                        <li>Alto rendimiento en tareas de clasificación de imágenes.</li>
+                    </ul>
+                    <h4>Desventajas</h4>
+                    <ul>
+                        <li>Requieren grandes cantidades de datos.</li>
+                        <li>Computacionalmente intensivas.</li>
+                        <li>Su lógica interna puede ser difícil de interpretar ("caja negra").</li>
+                    </ul>
+                </div>
+                <div class="cnn-audio">
+                    <h4>Audio de Ejemplo (Disgusto)</h4>
+                    <p>Este es el audio del cual se generaron los siguientes espectrogramas.</p>
+                    <audio controls>
+                        <source src="graficas/espectrogramas/03-01-07-02-02-02-11.wav" type="audio/wav">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+                </div>
+            </div>
+        </div>
+        <div class="slide hidden" data-slide="20">
+            <h2>Análisis Espectral (1/4): Forma de Onda</h2>
+            <div class="single-chart-container">
+                <img src="graficas/espectrogramas/espectrograma_waveform.png" alt="Forma de Onda">
+                <p>Esta gráfica muestra la <strong>amplitud</strong> de la señal (eje Y) a lo largo del <strong>tiempo</strong> (eje X). Representa la variación de la presión del aire, que percibimos como volumen. Nos permite observar la dinámica general del habla, como pausas y cambios de intensidad.</p>
+            </div>
+        </div>
+        <div class="slide hidden" data-slide="21">
+            <h2>Análisis Espectral (2/4): Espectrograma Lineal</h2>
+            <div class="single-chart-container">
+                <img src="graficas/espectrogramas/espectrograma_linear.png" alt="Espectrograma Lineal">
+                <p>Aquí, el eje X es el <strong>tiempo</strong>, el eje Y es la <strong>frecuencia en Hertz (Hz)</strong>, y el <strong>color</strong> representa la energía o intensidad de cada frecuencia. Los colores cálidos (amarillo) indican alta energía. Esta vista nos permite ver qué frecuencias componen el sonido en cada instante.</p>
+            </div>
+        </div>
+        <div class="slide hidden" data-slide="22">
+            <h2>Análisis Espectral (3/4): Espectrograma Mel</h2>
+            <div class="single-chart-container">
+                <img src="graficas/espectrogramas/espectrograma_mel.png" alt="Espectrograma Mel">
+                <p>Es una variación del espectrograma lineal donde la escala de frecuencia (eje Y) se ajusta a la <strong>escala Mel</strong>, que imita cómo el oído humano percibe el sonido. Damos más resolución a las bajas frecuencias, que son cruciales para entender el habla. Esta es la representación que alimentará a nuestra CNN.</p>
+            </div>
+        </div>
+        <div class="slide hidden" data-slide="23">
+            <h2>Análisis Espectral (4/4): Cromograma</h2>
+            <div class="single-chart-container">
+                <img src="graficas/espectrogramas/espectrograma_chroma.png" alt="Cromograma">
+                <p>Esta gráfica muestra la energía distribuida entre las <strong>12 clases de notas musicales</strong> (Do, Do#, Re...). Es muy útil para capturar la <strong>entonación y melodía</strong> del habla, que son aspectos importantes de la expresión emocional, independientemente del timbre de la voz.</p>
+            </div>
+        </div>
+        <div class="slide hidden" data-slide="24">
+            <h2>19. Arquitectura de la Red Neuronal</h2>
+            <div class="neural-architecture">
+                <div class="layer-box input">
+                    <h4>Capa de Entrada</h4>
+                    <p>Espectrograma Mel<br><span class="layer-shape">128 × 128 × 1</span></p>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="layer-box conv">
+                    <h4>Conv2D (32 filtros) + ReLU</h4>
+                    <ul>
+                        <li><strong>Conv2D:</strong> Aplica 32 filtros para extraer patrones espaciales del espectrograma.</li>
+                        <li><strong>ReLU:</strong> Activa solo los valores positivos, permitiendo no linealidad.</li>
+                    </ul>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="layer-box pool">
+                    <h4>MaxPooling2D</h4>
+                    <ul>
+                        <li><strong>MaxPooling2D:</strong> Reduce la dimensión espacial tomando el valor máximo en regiones pequeñas, haciendo la red más eficiente y robusta.</li>
+                    </ul>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="layer-box flatten">
+                    <h4>Flatten</h4>
+                    <ul>
+                        <li><strong>Flatten:</strong> Convierte la salida 2D en un vector 1D para conectar con la capa densa.</li>
+                    </ul>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="layer-box dense">
+                    <h4>Capa Densa (128) + ReLU</h4>
+                    <ul>
+                        <li><strong>Densa:</strong> Combina toda la información aprendida para la clasificación.</li>
+                        <li><strong>ReLU:</strong> Activa solo los valores positivos.</li>
+                    </ul>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="layer-box output">
+                    <h4>Capa de Salida (Softmax)</h4>
+                    <p>Asigna una probabilidad a cada una de las 7 clases de emoción.<br><span class="layer-shape">7</span></p>
+                </div>
+            </div>
+            <footer class="footnote">
+                <strong>Conv2D:</strong> Capa convolucional bidimensional, detecta patrones espaciales.<br>
+                <strong>MaxPooling2D:</strong> Reduce la resolución espacial, mantiene las características más importantes.<br>
+                <strong>Flatten:</strong> Convierte la matriz en un vector.<br>
+                <strong>Densa:</strong> Capa totalmente conectada.<br>
+                <strong>Softmax:</strong> Convierte los valores en probabilidades para cada clase.<br>
+                <strong>ReLU:</strong> Función de activación que deja pasar solo valores positivos.
+            </footer>
+        </div>
+
+        <!-- Nueva diapositiva: Resumen de Neuronas -->
+        <div class="slide hidden" data-slide="25">
+            <h2>20. Resumen de Neuronas por Capa</h2>
+            <div class="cnn-details">
+                <p>
+                    La siguiente tabla muestra cuántas neuronas (o unidades de activación) hay en cada paso de la red neuronal convolucional, desde la entrada (espectrograma) hasta la salida (clases de emoción). Cada capa transforma la información y la representa de manera diferente:
+                </p>
+                <ul class="cnn-table-explanation">
+                    <li><strong>Conv2D (32 filtros):</strong> Aplica 32 filtros sobre la imagen, generando 32 mapas de activación.</li>
+                    <li><strong>MaxPooling2D:</strong> Reduce la dimensión espacial, manteniendo solo los valores máximos de cada región.</li>
+                    <li><strong>Flatten:</strong> Convierte la salida 2D/3D en un vector 1D.</li>
+                    <li><strong>Densa (128):</strong> Capa totalmente conectada con 128 neuronas.</li>
+                    <li><strong>Salida:</strong> 7 neuronas, una por cada emoción.</li>
+                </ul>
+                <table class="cnn-table">
+                    <tr>
+                        <th>Capa</th>
+                        <th>Forma de salida</th>
+                        <th>Neuronas</th>
+                        <th>Activación</th>
+                    </tr>
+                    <tr>
+                        <td>Entrada</td>
+                        <td>128 × 128 × 1</td>
+                        <td>16,384</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>Conv2D (32 filtros)</td>
+                        <td>128 × 128 × 32</td>
+                        <td>524,288</td>
+                        <td>ReLU</td>
+                    </tr>
+                    <tr>
+                        <td>MaxPooling2D</td>
+                        <td>64 × 64 × 32</td>
+                        <td>131,072</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>Flatten</td>
+                        <td>1 × 131,072</td>
+                        <td>131,072</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>Densa (128)</td>
+                        <td>128</td>
+                        <td>128</td>
+                        <td>ReLU</td>
+                    </tr>
+                    <tr>
+                        <td>Salida</td>
+                        <td>7</td>
+                        <td>7</td>
+                        <td>Softmax</td>
+                    </tr>
+                    <tr class="cnn-total">
+                        <td colspan="2"><strong>Total de neuronas</strong></td>
+                        <td colspan="2"><strong>802,971</strong></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="slide hidden" data-slide="26">
+            <h2>21. Alcance del Proyecto</h2>
+            <div class="advantages-disadvantages">
+                <div class="advantages">
+                    <h3>Incluido en el Proyecto</h3>
+                    <ul>
+                        <li>Modelo de IA para clasificar 7 emociones desde audio.</li>
+                        <li>Pipeline completo: carga, preprocesamiento y evaluación.</li>
+                        <li>Procesamiento de archivos WAV de 1 a 10 segundos.</li>
+                        <li>Comparación de técnicas de reducción de dimensionalidad (PCA vs. LDA).</li>
+                        <li>Métricas de rendimiento del modelo (Accuracy, F1-Score).</li>
+                    </ul>
+                </div>
+                <div class="disadvantages">
+                    <h3>Limitaciones y Exclusiones</h3>
+                    <ul>
+                        <li>Análisis exclusivo de la modalidad de audio.</li>
+                        <li>No se desarrolla una aplicación de usuario final (GUI o web).</li>
+                        <li>El modelo no opera en tiempo real.</li>
+                        <li>No se realiza una validación clínica ni se infieren diagnósticos.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Diapositiva 27: Gracias (Actualizada) -->
+        <div class="slide hidden farewell-slide" data-slide="27">
+            <h1 class="farewell-title">¡Gracias!</h1>
+            <p class="farewell-message">
+                Este proyecto demuestra la viabilidad de usar IA para extraer y clasificar<br>
+                patrones emocionales complejos a partir de la señal de voz.
+            </p>
+            <div class="highlight-box">
+                <h3>🤔 ¿Preguntas o Comentarios?</h3>
+            </div>
+            <div class="contact-section">
+                <h3>Contacto del Equipo</h3>
+                <div class="contact-grid">
+                    <href="https://www.instagram.com/alexpl.0?igsh=MTAwNTM2cnRxYmQ0eQ==" target="_blank" class="contact-item">
+                        <svg class="instagram-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        <span>Alejandro Pérez</span>
+                    </a>
+                    <href="https://www.instagram.com/davidsandoval____?igsh=MWllczVjNHpqMjRpcg==" target="_blank" class="contact-item">
+                        <svg class="instagram-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        <span>Yusmany Rejopachi</span>
+                    </a>
+                    <href="https://www.instagram.com/_jair.gg?igsh=MWVxeDdlcTR1OW1lZg==" target="_blank" class="contact-item">
+                        <svg class="instagram-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        <span>Jair Gutierrez</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">← Anterior</button>
+        <button class="nav-btn" onclick="nextSlide()">Siguiente →</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
