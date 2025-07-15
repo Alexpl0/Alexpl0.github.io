@@ -14,7 +14,7 @@ print("Librerías instaladas.")
 # Importamos solo lo necesario para la configuración.
 import os
 import json
-from google.colab import files
+from google.colab import files # type: ignore
 
 # Configuración de la API de Kaggle usando variables de entorno
 print("\n--- Configurando la API de Kaggle ---")

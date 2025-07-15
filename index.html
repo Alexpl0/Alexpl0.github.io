@@ -6,16 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Análisis de Emociones en la Voz con IA</title>
     <link rel="stylesheet" href="presentation/src/css/styles.css">
+    <!-- Soporte para LaTeX (MathJax) -->
+    <script>
+        MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
 </head>
 <body>
     <div class="progress-bar">
         <div class="progress-fill" id="progressFill"></div>
     </div>
     
-    <div class="slide-counter" id="slideCounter">1 / 24</div>
+    <div class="slide-counter" id="slideCounter">1 / 34</div>
 
     <div class="presentation-container">
-        <!-- Diapositivas 1-7 se mantienen intactas -->
+        <!-- Diapositivas 1-5 se mantienen intactas -->
         <div class="slide" data-slide="1">
             <h1>Análisis de Emociones en la Voz con Inteligencia Artificial</h1>
             <div class="highlight-box">
@@ -80,29 +95,35 @@
             <div class="methodology-step"><strong>4.</strong> Evaluar el rendimiento utilizando métricas estándar de clasificación</div>
             <div class="methodology-step"><strong>5.</strong> Implementar técnicas de reducción de dimensionalidad y visualización</div>
         </div>
+
         <div class="slide hidden" data-slide="6">
             <h2>5. Metodología Iterativa</h2>
-            <p>Adoptamos un enfoque de desarrollo cíclico, permitiendo la retroalimentación y mejora continua en cada fase del proyecto.</p>
-            <div class="methodology-diagram-iterative">
-                <div class="step-container">
-                    <div class="step">Adquisición de Datos</div>
-                    <div class="arrow-down">↓</div>
-                    <div class="step">Análisis Exploratorio</div>
-                    <div class="arrow-down">↓</div>
-                    <div class="step">Preprocesamiento</div>
+            <p>Adoptamos un enfoque de desarrollo cíclico, que nos permite refinar y mejorar continuamente nuestro modelo basándonos en los resultados obtenidos.</p>
+            <div class="iterative-cycle-diagram">
+                <div class="cycle-center-text">
+                    Retroalimentación y Mejora Continua
                 </div>
-                <div class="step-container">
-                    <div class="arrow-loop-right">⤴</div>
-                    <div class="step">Evaluación</div>
-                    <div class="arrow-up">↑</div>
-                     <div class="step">Entrenamiento</div>
-                    <div class="arrow-up">↑</div>
-                    <div class="step">Extracción de Características</div>
-                    <div class="arrow-loop-left">⤵</div>
+                <div class="cycle-step" style="--i:0;">
+                    <h4>1. Adquisición de Datos</h4>
+                </div>
+                <div class="cycle-step" style="--i:1;">
+                    <h4>2. Análisis y Preprocesamiento</h4>
+                </div>
+                <div class="cycle-step" style="--i:2;">
+                    <h4>3. Extracción de Características</h4>
+                </div>
+                <div class="cycle-step" style="--i:3;">
+                    <h4>4. Entrenamiento del Modelo</h4>
+                </div>
+                <div class="cycle-step" style="--i:4;">
+                    <h4>5. Evaluación y Resultados</h4>
                 </div>
             </div>
-            <p style="text-align: center; margin-top: 20px;">Este modelo permite regresar a pasos anteriores si los resultados de la evaluación no son satisfactorios, por ejemplo, volviendo al preprocesamiento o a la extracción de características para refinar el modelo.</p>
+            <footer class="footnote" style="position: relative; border-top: none; text-align: center; margin-top: 20px;">
+                Los resultados de la fase de <strong>Evaluación</strong> informan ajustes en las fases anteriores, creando un ciclo de refinamiento.
+            </footer>
         </div>
+
         <div class="slide hidden" data-slide="7">
             <h2>6. Adquisición de Conjuntos de Datos</h2>
             <div class="dataset-card"><h3>Conjunto 1: Base de Datos de Habla Emocional Mexicana (MESD)</h3><ul><li><strong>Cantidad:</strong> 864 grabaciones de audio</li><li><strong>Características:</strong> Español mexicano, 6 emociones + neutralidad</li><li><strong>Utilidad:</strong> Adaptación específica al habla mexicana</li></ul></div>
@@ -112,7 +133,6 @@
                 <strong>Nota:</strong> Se sustituyó un dataset originalmente planeado por TESS debido a que el primero fue retirado de Kaggle, asegurando la disponibilidad y reproducibilidad del proyecto.
             </footer>
         </div>
-
         <div class="slide hidden" data-slide="8">
             <h2>7. Análisis Exploratorio de Datos (EDA)</h2>
             <h3>Preguntas principales de investigación:</h3>
@@ -129,13 +149,11 @@
                 <strong>Nota:</strong> Las siguientes visualizaciones fueron generadas con un script de Python para analizar las características del dataset RAVDESS.
             </footer>
         </div>
-
-        <!-- ***** INICIO DE DIAPOSITIVA ACTUALIZADA (9) ***** -->
         <div class="slide hidden" data-slide="9">
             <h2>8. Visualización: Distribución del Pitch</h2>
             <div class="single-chart-container">
                 <h3>Análisis de Pitch: Distribución de Frecuencia Fundamental (F0) por Emoción</h3>
-                <img src="graficas/eda/distribucion_pitch_por_emocion.png" alt="Histograma Pitch por Emoción">
+                <img src="graficas/distribucion_pitch_por_emocion.png" alt="Histograma Pitch por Emoción">
                 <p>
                     Esta gráfica nos muestra cómo se distribuye el <strong>tono de voz (Pitch)</strong> para cada emoción. El <strong>eje X</strong> representa la frecuencia en Hertz, donde valores más altos significan un tono más agudo. El <strong>eje Y</strong> indica la densidad de probabilidad, es decir, qué tan comunes son ciertos tonos para una emoción.
                 </p>
@@ -144,15 +162,12 @@
                 </footer>
             </div>
         </div>
-        <!-- ***** FIN DE DIAPOSITIVA ACTUALIZADA (9) ***** -->
-
-        <!-- ***** INICIO DE DIAPOSITIVA ACTUALIZADA (10) ***** -->
         <div class="slide hidden" data-slide="10">
             <h2>9. Visualización y Análisis de MFCCs</h2>
             <div class="mfcc-explanation">
                 <div class="single-chart-container">
                     <h3>Análisis Espectral: Distribución de los Primeros 13 MFCCs por Emoción</h3>
-                    <img src="graficas/eda/distribucion_mfcc_por_emocion.png" alt="Gráficos de Violín de MFCCs por Emoción" style="max-width: 100%; border: 1px solid var(--color-accent);">
+                    <img src="graficas/distribucion_mfcc_por_emocion.png" alt="Gráficos de Violín de MFCCs por Emoción" style="max-width: 100%; border: 1px solid var(--color-accent);">
                 </div>
                 <p style="text-align: center; margin-top: 20px;">
                     Esta visualización nos permite comparar la "forma" del sonido para cada emoción a través de los <strong>Coeficientes Cepstrales en la Frecuencia Mel (MFCCs)</strong>. Cada "violín" muestra el rango y la concentración de valores para un coeficiente (eje X) y una emoción (color).
@@ -184,59 +199,119 @@
                 </table>
             </div>
         </div>
-        <!-- ***** FIN DE DIAPOSITIVA ACTUALIZADA (10) ***** -->
 
         <div class="slide hidden" data-slide="11">
-            <h2>10. Pipeline de Preprocesamiento de Datos</h2>
-            <p>Para asegurar la calidad y consistencia de los datos antes del entrenamiento, se aplicó un pipeline de preprocesamiento con los siguientes pasos clave:</p>
-            <div class="preprocessing-grid">
-                <!-- Tarjeta 1: Normalización -->
-                <div class="preprocessing-step-card">
-                    <div class="icon-container">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h3m14 0h3M12 2v3m0 14v3"/><circle cx="12" cy="12" r="7"/></svg>
-                    </div>
-                    <h4>Normalización de Audio</h4>
-                    <p>Unificar todos los archivos a una frecuencia de muestreo de 22.05 kHz y una resolución de 16 bits para estandarizar la calidad.</p>
+            <h2 class="technical-title">El Viaje del Audio: De la Onda al Vector</h2>
+            <p>Antes de que la IA pueda analizar una emoción, debemos traducir la onda de sonido a un lenguaje que entienda: los números. Este proceso se llama <strong>Extracción de Características</strong>. A continuación, veremos el paso a paso de cómo convertimos un archivo de audio en un único vector de 180 características.</p>
+            <div class="process-flow-diagram">
+                <div class="flow-step">
+                    <div class="flow-icon">🔊</div>
+                    <div class="flow-text">Audio Original (.wav)</div>
                 </div>
-                <!-- Tarjeta 2: Validación -->
-                <div class="preprocessing-step-card">
-                    <div class="icon-container">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <h4>Validación de Datos</h4>
-                    <p>Descartar archivos de audio corruptos, inválidos o con una duración demasiado corta (menor a 1 segundo) para el análisis.</p>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="flow-icon">#️⃣</div>
+                    <div class="flow-text">Digitalización (Muestreo)</div>
                 </div>
-                <!-- Tarjeta 3: Filtrado -->
-                <div class="preprocessing-step-card">
-                    <div class="icon-container">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
-                    </div>
-                    <h4>Filtrado de Ruido</h4>
-                    <p>Aplicar filtros digitales para eliminar el ruido de fondo y las frecuencias que no son relevantes para el habla humana.</p>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="flow-icon">🖼️</div>
+                    <div class="flow-text">Ventaneo (Frames)</div>
                 </div>
-                <!-- Tarjeta 4: Segmentación -->
-                <div class="preprocessing-step-card">
-                    <div class="icon-container">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 16.5L18 20l-1.5 1.5L13 18l-1.5 1.5L10 18l-1.5 1.5L7 18l-1.5 1.5L4 18l-1.5 1.5L1 18M3 6l1.5-1.5L6 6l1.5-1.5L9 6l1.5-1.5L12 6l1.5-1.5L15 6l1.5-1.5L18 6l1.5-1.5L21 6l1.5-1.5L24 6"/><path d="M3 10l1.5-1.5L6 10l1.5-1.5L9 10l1.5-1.5L12 10l1.5-1.5L15 10l1.5-1.5L18 10l1.5-1.5L21 10l1.5-1.5L24 10"/></svg>
-                    </div>
-                    <h4>Segmentación Temporal</h4>
-                    <p>Dividir los audios más largos en ventanas de 3 segundos con solapamiento para aumentar la cantidad de muestras de entrenamiento.</p>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="flow-icon">📊</div>
+                    <div class="flow-text">FFT y MFCCs (Por Ventana)</div>
                 </div>
-                 <!-- Tarjeta 5: Balanceo -->
-                <div class="preprocessing-step-card">
-                    <div class="icon-container">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3L2 9l10 6 10-6-10-6zM2 15l10 6 10-6M2 9l10 6 10-6"/></svg>
-                    </div>
-                    <h4>Balanceo de Clases</h4>
-                    <p>Utilizar técnicas como SMOTE para sobremuestrear las clases minoritarias y asegurar que el modelo no se sesgue.</p>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                     <div class="flow-icon">🧬</div>
+                    <div class="flow-text">Vector Final (Promedio)</div>
                 </div>
             </div>
-            <footer class="footnote" style="margin-top: 20px;">
-                <strong>SMOTE:</strong> Técnica para crear muestras sintéticas de las clases minoritarias y así balancear el dataset.
-            </footer>
+            <footer class="footnote">Este es el corazón del preprocesamiento: transformar datos no estructurados (audio) en datos estructurados (un vector).</footer>
         </div>
-
         <div class="slide hidden" data-slide="12">
+            <h2 class="technical-title">Paso 1: Digitalización y Ventaneo</h2>
+            <div class="technical-step-layout">
+                <div class="step-explanation">
+                    <h4>1.1 Digitalización</h4>
+                    <p>Una onda de sonido es una señal analógica continua. Para que una computadora la procese, debemos <strong>muestrearla</strong>. Esto significa tomar "fotos" o mediciones de su amplitud a intervalos de tiempo regulares.</p>
+                    <ul>
+                        <li><strong>Frecuencia de Muestreo (sr):</strong> 22,050 Hz. Tomamos 22,050 mediciones por segundo.</li>
+                        <li><strong>Resultado (`x[n]`):</strong> Obtenemos un largo arreglo de números, donde cada número es la amplitud del sonido en un instante.</li>
+                    </ul>
+                    <h4>1.2 Ventaneo (Framing)</h4>
+                    <p>El habla no es estática. Para analizarla, la dividimos en pequeños segmentos superpuestos llamados <strong>ventanas</strong> o <strong>frames</strong>, donde asumimos que el sonido es estable.</p>
+                     <ul>
+                        <li><strong>Tamaño de Ventana:</strong> ~25 milisegundos.</li>
+                        <li><strong>Resultado:</strong> En lugar de un arreglo largo, ahora tenemos una colección de muchos arreglos pequeños (las ventanas).</li>
+                    </ul>
+                </div>
+                <div class="step-visualization">
+                    <img src="presentation/src/assets/images/audio wave sampling and framing.png" alt="Diagrama de Digitalización y Ventaneo" style="width:100%; border-radius: 10px;">
+                    <p class="viz-caption">La onda de sonido se divide en múltiples ventanas (frames) para su análisis.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide hidden" data-slide="13">
+            <h2 class="technical-title">Paso 2: La Transformada de Fourier (FFT)</h2>
+             <div class="technical-step-layout">
+                <div class="step-explanation">
+                    <h4>¿Qué es y para qué sirve?</h4>
+                    <p>Para cada una de esas ventanas, necesitamos saber qué frecuencias la componen. La <strong>Transformada Rápida de Fourier (FFT)</strong> es la herramienta matemática que lo hace posible.</p>
+                    <p>La FFT descompone la señal del dominio del tiempo (amplitud vs. tiempo) al <strong>dominio de la frecuencia</strong> (energía vs. frecuencia). Es como pasar de ver la onda completa a ver un ecualizador que nos muestra qué tan fuertes son los graves, los medios y los agudos en ese instante.</p>
+                    <div class="formula-block">
+                         <span class="formula-title">Modelo Matemático: Transformada Discreta de Fourier</span>
+                         <p>$$X_k = \sum_{n=0}^{N-1} x_n \cdot e^{-i \frac{2\pi}{N} kn}$$</p>
+                         <ul>
+                            <li>$X_k$: El espectro resultante (un número complejo que contiene amplitud y fase para la frecuencia $k$).</li>
+                            <li>$x_n$: El valor de la muestra $n$ en la ventana de audio.</li>
+                            <li>$N$: El número total de muestras en la ventana.</li>
+                            <li>$k$: El índice de la frecuencia que se está calculando (desde 0 hasta $N-1$).</li>
+                         </ul>
+                    </div>
+                </div>
+                <div class="step-visualization">
+                    <img src="presentation/src/assets/images/time domain to frequency domain FFT.png" alt="Diagrama de FFT" style="width:100%; border-radius: 10px;">
+                    <p class="viz-caption">La FFT convierte una ventana de audio en su espectro de frecuencias.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide hidden" data-slide="14">
+            <h2 class="technical-title">Paso 3: MFCCs - El "ADN" de la Voz</h2>
+             <div class="technical-step-layout">
+                <div class="step-explanation">
+                    <h4>Más allá del Espectro</h4>
+                    <p>El espectro de la FFT es útil, pero no es eficiente. Los <strong>Coeficientes Cepstrales en la Frecuencia Mel (MFCCs)</strong> son una forma mucho más inteligente de resumir la información del espectro, imitando cómo funciona el oído humano.</p>
+                    <ol>
+                        <li><strong>Escala Mel:</strong> Primero, se aplica un banco de filtros al espectro para agrupar las frecuencias de una manera logarítmica, similar a nuestra percepción auditiva.</li>
+                        <li><strong>Logaritmo:</strong> Se toma el logaritmo de las energías, de nuevo, para imitar cómo percibimos la sonoridad.</li>
+                        <li><strong>DCT:</strong> Finalmente, se aplica la Transformada de Coseno Discreta (DCT), una operación que comprime toda esa información espectral en unos pocos coeficientes.</li>
+                    </ol>
+                     <p>El resultado son los MFCCs: una descripción numérica muy compacta y robusta del <strong>timbre</strong> de la voz en esa ventana.</p>
+                </div>
+                <div class="step-visualization">
+                    <img src="presentation/src/assets/images/MFCC block diagram.png" alt="Proceso de MFCC" style="width:100%; border-radius: 10px;">
+                    <p class="viz-caption">Flujo simplificado para obtener los MFCCs a partir del espectro.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide hidden" data-slide="15">
+            <h2 class="technical-title">Paso 4: El Vector Final de Características</h2>
+            <div class="technical-step-layout full-width">
+                 <div class="step-explanation">
+                    <h4>Del Análisis por Ventana al Resumen Global</h4>
+                    <p>Hasta ahora, hemos calculado un conjunto de 180 características (40 MFCCs, 12 de Croma, 128 del Espectrograma Mel) para <strong>cada una de las ventanas</strong> de nuestro audio. Esto nos da una matriz o tabla donde las filas son las ventanas y las columnas son las características.</p>
+                    <p>Para que nuestro modelo CNN 1D pueda procesar el audio como una sola entidad, necesitamos un único vector que lo represente. La solución más directa y efectiva para este tipo de arquitectura es **calcular el promedio (la media) de cada característica a lo largo de todas las ventanas**.</p>
+                </div>
+                <div class="step-visualization">
+                     <img src="presentation/src/assets/images/feature matrix averaging to vector.png" alt="Proceso de Promedio" style="width:80%; margin: 20px auto; display: block; border-radius: 10px;">
+                     <p class="viz-caption">Se promedia cada columna de características para obtener el vector final de 180 dimensiones que describe todo el clip de audio.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide hidden" data-slide="16">
             <h2>11. Preprocesamiento para Reducción Dimensional</h2>
             <h3>¿Qué fue necesario para poder usar PCA y LDA correctamente?</h3>
             <div class="highlight-box" style="background: linear-gradient(135deg, var(--color-accent), var(--color-bg-card));">
@@ -247,7 +322,7 @@
             </div>
             <p>La estandarización asegura que todas las características contribuyan de manera equitativa al análisis, resultando en un modelo más justo y preciso.</p>
         </div>
-        <div class="slide hidden" data-slide="13">
+        <div class="slide hidden" data-slide="17">
             <h2>12. ¿Cómo Funciona StandardScaler?</h2>
             <div class="scaler-explanation">
                 <div class="scaler-step">
@@ -272,8 +347,7 @@
                 <strong>StandardScaler:</strong> Técnica de preprocesamiento que estandariza las características al remover la media y escalar a una varianza unitaria.
             </footer>
         </div>
-
-        <div class="slide hidden" data-slide="14">
+        <div class="slide hidden" data-slide="18">
             <h2>13. Implementación del Modelo CNN 1D</h2>
             <h3>1. Preparación de Datos (Código Real del Proyecto)</h3>
             <pre><code>from sklearn.model_selection import train_test_split
@@ -316,8 +390,7 @@ history = model.fit(
 )</code></pre>
             <p class="code-description">Definimos la arquitectura de la CNN 1D, la compilamos con el optimizador 'adam' y la función de pérdida para clasificación multiclase. Finalmente, la entrenamos con los datos de entrenamiento, usando un 20% de estos para validación interna en cada época.</p>
         </div>
-
-        <div class="slide hidden" data-slide="15">
+        <div class="slide hidden" data-slide="19">
             <h2>14. Reducción de Dimensionalidad: PCA vs. LDA</h2>
             <div class="advantages-disadvantages">
                 <div class="advantages">
@@ -341,7 +414,7 @@ history = model.fit(
                <strong>Supervisado:</strong> El algoritmo aprende de datos que han sido etiquetados (p. ej., un audio etiquetado como "alegría"). <strong>No Supervisado:</strong> El algoritmo aprende de datos sin etiquetar, buscando patrones por sí mismo.
             </footer>
         </div>
-        <div class="slide hidden" data-slide="16">
+        <div class="slide hidden" data-slide="20">
             <h2>15. Visualización 3D: PCA</h2>
             <div class="iframe-plot-container">
                 <iframe src="graficas/plots_3d/pca_3d_plot.html"></iframe>
@@ -353,7 +426,7 @@ history = model.fit(
                 <strong>Varianza:</strong> Medida de qué tan dispersos están los datos. <strong>Dispersión:</strong> Grado en que los datos se distribuyen o se alejan de un valor central.
             </footer>
         </div>
-        <div class="slide hidden" data-slide="17">
+        <div class="slide hidden" data-slide="21">
             <h2>16. Visualización 3D: LDA</h2>
             <div class="iframe-plot-container">
                 <iframe src="graficas/plots_3d/lda_3d_plot.html"></iframe>
@@ -362,8 +435,7 @@ history = model.fit(
                 Aquí, los ejes (LD1, LD2, LD3) son calculados por LDA para maximizar la separación entre las emociones. El resultado es una separación mucho más clara y cúmulos más compactos, lo que confirma visualmente que nuestras características son muy efectivas para la clasificación.
             </p>
         </div>
-        
-        <div class="slide hidden" data-slide="18">
+        <div class="slide hidden" data-slide="22">
             <h2>17. Comparación Final y Reflexión</h2>
             <h3>Tabla Comparativa</h3>
             <table class="comparison-table">
@@ -400,8 +472,7 @@ history = model.fit(
             <h3>Opinión Reflexiva</h3>
             <p>Al comparar ambas técnicas, <strong>LDA demuestra ser más efectivo para visualizar la separabilidad de las clases</strong> en nuestro problema. Mientras que PCA es útil para entender la estructura general de la varianza en los datos, LDA, al ser un método supervisado, logra crear proyecciones donde las emociones forman cúmulos más definidos y distinguibles. Esto sugiere que las características extraídas, cuando se proyectan con un objetivo de clasificación, son altamente discriminativas.</p>
         </div>
-
-        <div class="slide hidden" data-slide="19">
+        <div class="slide hidden" data-slide="23">
             <h2>18. Fundamento Teórico: Red Neuronal Convolucional 1D</h2>
             <div class="cnn-theory-layout">
                 <div class="cnn-text">
@@ -468,8 +539,7 @@ Predicción = Emoción con la probabilidad más alta
                 </div>
             </div>
         </div>
-
-        <div class="slide hidden" data-slide="20">
+        <div class="slide hidden" data-slide="24">
             <h2>19. Arquitectura del Modelo CNN 1D</h2>
             <p>Esta es la arquitectura de Keras que implementamos. Keras es una librería de alto nivel que facilita la construcción de redes neuronales. La red está diseñada para procesar la secuencia de 180 características extraídas de cada audio y aprender a clasificar la emoción.</p>
             <div class="neural-architecture">
@@ -510,8 +580,112 @@ Predicción = Emoción con la probabilidad más alta
                 </div>
             </div>
         </div>
-
-        <div class="slide hidden" data-slide="21">
+        <div class="slide hidden" data-slide="25">
+            <h2 class="technical-title">Dentro de la "Caja Negra": La Red Neuronal</h2>
+            <p>Ahora que tenemos nuestro vector de 180 características, es el turno de la Red Neuronal Convolucional 1D. Su trabajo es tomar este vector y, a través de una serie de capas y operaciones matemáticas, clasificarlo en una de las siete emociones. Veremos cómo lo hace.</p>
+            <div class="process-flow-diagram">
+                <div class="flow-step">
+                    <div class="flow-icon">🧬</div>
+                    <div class="flow-text">Vector de 180 Características</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="flow-icon">🔍</div>
+                    <div class="flow-text">Capas Convolucionales</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="flow-icon">🧠</div>
+                    <div class="flow-text">Capas Densas (Clasificación)</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                     <div class="flow-icon">🏷️</div>
+                    <div class="flow-text">Predicción de Emoción</div>
+                </div>
+            </div>
+             <footer class="footnote">El modelo aprende a asociar patrones en el vector de entrada con una etiqueta de emoción específica.</footer>
+        </div>
+        <div class="slide hidden" data-slide="26">
+            <h2 class="technical-title">Red Neuronal - Paso 1: Convolución</h2>
+            <div class="technical-step-layout">
+                <div class="step-explanation">
+                    <h4>Los Detectores de Patrones</h4>
+                    <p>La operación de <strong>convolución</strong> es el corazón de la CNN. Un "filtro" (un pequeño vector de pesos que el modelo aprende) se desliza a lo largo de nuestro vector de 180 características.</p>
+                    <p>En cada posición, calcula el <strong>producto punto</strong> entre el filtro y la sección del vector. El resultado es un número alto si la sección del vector se "parece" al patrón que el filtro está buscando.</p>
+                    <p>Nuestro modelo usa 256 filtros en la primera capa, cada uno buscando un patrón simple y diferente. El resultado son 256 "mapas de características" que nos dicen dónde se encontraron esos patrones.</p>
+                </div>
+                <div class="step-visualization">
+                    <img src="presentation/src/assets/images/1Dconvolutionanimationgif.gif" alt="Animación de Convolución 1D" style="width:100%; border-radius: 10px;">
+                    <p class="viz-caption">Un filtro (amarillo) se desliza sobre la entrada (azul) para producir un mapa de características (verde).</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide hidden" data-slide="27">
+            <h2 class="technical-title">Red Neuronal - Paso 2: ReLU y Pooling</h2>
+            <div class="technical-step-layout">
+                <div class="step-explanation">
+                    <h4>Filtrar y Resumir</h4>
+                    <p>Después de la convolución, se aplican dos operaciones simples pero cruciales:</p>
+                    <ol>
+                        <li><strong>Activación ReLU:</strong> A cada número en los mapas de características, le aplicamos la función `ReLU(x) = max(0, x)`. Esto elimina todas las activaciones negativas, permitiendo que el modelo se enfoque solo en la presencia significativa de un patrón.</li>
+                        <li><strong>MaxPooling:</strong> Reducimos el tamaño de cada mapa de características. Por ejemplo, de cada 5 valores nos quedamos solo con el más alto. Esto hace al modelo más eficiente y robusto, ya que se concentra en si un patrón apareció en una región, no en su posición exacta.</li>
+                    </ol>
+                </div>
+                <div class="step-visualization">
+                    <img src="presentation/src/assets/images/ReLU and Max Pooling diagram.png" alt="Diagrama de ReLU y Pooling" style="width:100%; border-radius: 10px;">
+                    <p class="viz-caption">ReLU elimina los valores negativos. MaxPooling resume la información, quedándose con los picos de activación.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide hidden" data-slide="28">
+            <h2 class="technical-title">Red Neuronal - Paso 3: Capas Profundas</h2>
+             <div class="technical-step-layout full-width">
+                 <div class="step-explanation">
+                    <h4>Creando Abstracción</h4>
+                    <p>El verdadero poder de las redes profundas viene de <strong>apilar</strong> estas capas. La salida de un bloque `Convolución -> ReLU -> Pooling` se convierte en la entrada del siguiente.</p>
+                    <p>Los filtros de la segunda capa ya no buscan patrones en el vector original, sino que buscan <strong>patrones de patrones</strong>. Por ejemplo, un filtro puede aprender a activarse si detecta el "patrón A" seguido del "patrón B" de la capa anterior. Esto crea una jerarquía de características, donde el modelo aprende conceptos cada vez más complejos y abstractos.</p>
+                </div>
+                <div class="step-visualization">
+                     <img src="presentation/src/assets/images/CNN feature hierarchy.png" alt="Arquitectura Profunda" style="width:90%; margin: 20px auto; display: block; border-radius: 10px;">
+                     <p class="viz-caption">Las capas se apilan para que el modelo aprenda de lo simple a lo complejo.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide hidden" data-slide="29">
+            <h2 class="technical-title">Red Neuronal - Paso 4: Clasificación Final</h2>
+            <div class="technical-step-layout">
+                <div class="step-explanation">
+                    <h4>La Toma de Decisión</h4>
+                    <ol>
+                        <li><strong>Flatten (Aplanar):</strong> Después de la última capa de pooling, todos los mapas de características se "aplanan" y se unen en un solo vector larguísimo.</li>
+                        <li><strong>Capas Densas:</strong> Este vector entra a una o más capas "densas", donde cada neurona está conectada a todas las del vector aplanado. Estas capas aprenden a "votar" por una emoción basándose en la combinación de todos los patrones detectados.</li>
+                        <li><strong>Capa de Salida (Softmax):</strong> La última capa tiene 7 neuronas (una por emoción). La función <strong>Softmax</strong> toma las 7 puntuaciones finales y las convierte en un vector de probabilidades que suma 1.</li>
+                    </ol>
+                </div>
+                <div class="step-visualization">
+                    <img src="presentation/src/assets/images/neural network flatten dense layer softmax.png" alt="Diagrama de Capas Densas y Softmax" style="width:100%; border-radius: 10px;">
+                    <p class="viz-caption">Las características abstractas se conectan a las capas de decisión, que emiten una probabilidad para cada clase.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide hidden" data-slide="30">
+            <h2 class="technical-title">El Aprendizaje: ¿Cómo se Entrena el Modelo?</h2>
+             <div class="technical-step-layout full-width">
+                 <div class="step-explanation">
+                    <h4>Ajustando 171,783 Parámetros</h4>
+                    <p>El entrenamiento es un ciclo de optimización para ajustar los pesos de los filtros y las capas densas.</p>
+                    <ol>
+                        <li><strong>Predicción (Forward Pass):</strong> Se pasa un audio a través de la red para obtener una predicción de probabilidad.</li>
+                        <li><strong>Cálculo del Error (Pérdida):</strong> Se compara la predicción con la etiqueta real usando una <strong>función de pérdida</strong> (`categorical_crossentropy`). El resultado es un número que nos dice qué tan "equivocado" estuvo el modelo.</li>
+                        <li><strong>Backpropagation:</strong> Usando cálculo diferencial (la regla de la cadena), el error se propaga hacia atrás por toda la red. Se calcula cómo contribuyó cada uno de los 171,783 pesos al error final (el gradiente).</li>
+                        <li><strong>Actualización de Pesos:</strong> Un algoritmo optimizador (en nuestro caso, `Adam`) ajusta cada peso ligeramente en la dirección que reduce el error.</li>
+                    </ol>
+                    <p>Este ciclo se repite miles de veces con todos los datos de entrenamiento hasta que el error es mínimo y el modelo se vuelve preciso.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide hidden" data-slide="31">
             <h2>20. Resumen de Neuronas y Parámetros</h2>
             <div class="cnn-details">
                 <p>
@@ -579,7 +753,7 @@ Predicción = Emoción con la probabilidad más alta
         </div>
 
         <!-- Diapositivas Finales -->
-        <div class="slide hidden" data-slide="22">
+        <div class="slide hidden" data-slide="32">
             <h2>21. Recursos</h2>
             <div class="dataset-card">
                 <h3>Lenguaje y Frameworks</h3>
@@ -598,7 +772,7 @@ Predicción = Emoción con la probabilidad más alta
                 </ul>
             </div>
         </div>
-        <div class="slide hidden" data-slide="23">
+        <div class="slide hidden" data-slide="33">
             <h2>22. Alcance del Proyecto</h2>
             <div class="advantages-disadvantages">
                 <div class="advantages">
@@ -620,7 +794,7 @@ Predicción = Emoción con la probabilidad más alta
                 </div>
             </div>
         </div>
-        <div class="slide hidden farewell-slide" data-slide="24">
+        <div class="slide hidden" data-slide="34">
             <h1 class="farewell-title">¡Gracias!</h1>
             <p class="farewell-message">
                 Este proyecto demuestra la efectividad de las CNN 1D para modelar secuencias<br>
