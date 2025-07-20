@@ -609,23 +609,6 @@ pre {
 }
 
 
-@media (max-width: 768px) {
-    .slide {
-        padding: 20px;
-        margin-bottom: 20px;
-    }
-    .slide h1 { font-size: 2rem; }
-    .slide h2 { font-size: 1.5rem; }
-    .advantages-disadvantages, .image-gallery, .scaler-explanation, .cnn-theory-layout, .contact-grid {
-        grid-template-columns: 1fr;
-        flex-direction: column;
-        gap: 20px;
-    }
-    .single-chart-container img {
-        max-width: 100%;
-    }
-}
-
 /* ================================================= */
 /* === ESTILOS PARA DIAPOSITIVAS DETALLADAS (NUEVO) === */
 /* ================================================= */
@@ -1140,4 +1123,230 @@ pre {
     font-size: 0.85rem;
     font-style: italic;
     color: var(--color-text-medium);
+}
+
+/* ================================================= */
+/* === MEDIA QUERIES PARA RESPONSIVIDAD === */
+/* ================================================= */
+
+/* Para pantallas más pequeñas que 768px (tabletas y móviles) */
+@media (max-width: 768px) {
+    .presentation-container {
+        padding: 15px;
+    }
+
+    .slide {
+        padding: 25px;
+        margin-bottom: 20px;
+        min-height: auto; /* Permitir que la altura se ajuste al contenido */
+        padding-bottom: 80px; /* Aumentar espacio para el pie de página en móvil */
+    }
+
+    .slide h1 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .slide h2 {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+        padding-bottom: 8px;
+    }
+
+    .slide h3 {
+        font-size: 1.2rem;
+        margin: 20px 0 10px 0;
+    }
+
+    .slide h4 {
+        font-size: 1.1rem;
+        margin: 10px 0 5px 0;
+    }
+
+    .slide p, .slide li {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    /* Ajustes para layouts de cuadrícula */
+    .stats-grid,
+    .advantages-disadvantages,
+    .training-steps-grid,
+    .technical-step-layout,
+    .cnn-theory-layout,
+    .contact-grid,
+    .image-gallery {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+        gap: 20px;
+        flex-direction: column; /* Asegura que los elementos se apilen */
+    }
+
+    .technical-step-layout.full-width {
+        grid-template-columns: 1fr; /* También en una columna */
+    }
+
+    /* Confirmación explícita para .scaler-explanation para apilar verticalmente */
+    .scaler-explanation {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .stat-item {
+        padding: 15px;
+    }
+
+    .highlight-box {
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    .dataset-card, .methodology-step {
+        padding: 15px;
+        margin: 10px 0;
+    }
+
+    /* Navegación y contador */
+    .navigation {
+        bottom: 15px;
+        right: 15px;
+        gap: 8px;
+    }
+
+    .nav-btn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    .slide-counter {
+        top: 15px;
+        right: 15px;
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+
+    /* Gráficas y iframes */
+    .iframe-plot-container {
+        height: 350px; /* Reducir altura para móviles */
+    }
+
+    /* Diagrama de ciclo iterativo */
+    .iterative-cycle-diagram {
+        width: 300px;
+        height: 300px;
+        margin: 30px auto;
+    }
+    .cycle-center-text {
+        width: 100px;
+        height: 100px;
+        font-size: 0.8rem;
+        padding: 10px;
+    }
+    .cycle-step {
+        width: 90px;
+        height: 90px;
+        transform: rotate(calc(72deg * var(--i))) translateY(-150px) rotate(calc(-72deg * var(--i)));
+    }
+    .cycle-step:hover {
+        transform: rotate(calc(72deg * var(--i))) translateY(-160px) rotate(calc(-72deg * var(--i)));
+    }
+    .cycle-step h4 {
+        font-size: 0.8rem;
+    }
+
+    /* Diagrama de flujo de proceso */
+    .process-flow-diagram {
+        flex-wrap: wrap; /* Permite que los elementos fluyan a la siguiente línea */
+        justify-content: center;
+        margin-top: 30px;
+    }
+    .flow-step {
+        width: 100px; /* Ajustar ancho */
+        margin: 10px; /* Espacio entre pasos */
+    }
+    .flow-arrow {
+        display: none; /* Ocultar flechas entre pasos si se apilan */
+    }
+    /* Si quieres flechas verticales en móvil, podrías añadir:
+    .flow-step:not(:last-child)::after {
+        content: '↓';
+        display: block;
+        font-size: 1.5rem;
+        margin-top: 10px;
+        color: var(--color-accent);
+    }
+    */
+
+    /* Ajustes para tablas */
+    .comparison-table, .mfcc-table, .cnn-table {
+        font-size: 0.85rem;
+    }
+    .comparison-table th, .comparison-table td,
+    .mfcc-table th, .mfcc-table td,
+    .cnn-table th, .cnn-table td {
+        padding: 10px;
+    }
+
+    /* Ajustes para bloques de código */
+    pre {
+        padding: 15px;
+        font-size: 0.8rem;
+    }
+    .code-block-header {
+        padding: 6px 10px;
+    }
+    .code-block-header .code-title {
+        font-size: 0.8rem;
+    }
+    .control-btn {
+        width: 14px;
+        height: 14px;
+        font-size: 12px;
+        line-height: 12px;
+    }
+    .control-btn.close::after {
+        font-size: 14px;
+    }
+
+    /* Ajustes para el pie de página */
+    .footnote {
+        font-size: 0.75rem;
+        left: 25px;
+        right: 25px;
+        bottom: 10px;
+    }
+
+    /* Ajustes específicos para diapositiva 19 (CNN 1D) */
+    .cnn-theory-layout {
+        grid-template-columns: 1fr; /* Una sola columna */
+    }
+    .cnn-text, .cnn-side-panel {
+        width: 100%;
+    }
+}
+
+/* Para pantallas muy pequeñas (ej. iPhone SE) */
+@media (max-width: 480px) {
+    .slide {
+        padding: 15px;
+    }
+    .slide h1 {
+        font-size: 1.8rem;
+    }
+    .slide h2 {
+        font-size: 1.4rem;
+    }
+    .nav-btn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+    .slide-counter {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+    .iframe-plot-container {
+        height: 300px;
+    }
+    .mfcc-table th, .mfcc-table td {
+        padding: 8px;
+    }
 }
