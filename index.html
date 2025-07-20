@@ -30,7 +30,7 @@
     <div class="slide-counter" id="slideCounter">1 / 34</div>
 
     <div class="presentation-container">
-        <!-- Diapositivas 1-5 se mantienen intactas -->
+        <!-- Diapositivas 1-14 se mantienen intactas -->
         <div class="slide" data-slide="1">
             <h1>Análisis de Emociones en la Voz con Inteligencia Artificial</h1>
             <div class="highlight-box">
@@ -95,7 +95,6 @@
             <div class="methodology-step"><strong>4.</strong> Evaluar el rendimiento utilizando métricas estándar de clasificación</div>
             <div class="methodology-step"><strong>5.</strong> Implementar técnicas de reducción de dimensionalidad y visualización</div>
         </div>
-
         <div class="slide hidden" data-slide="6">
             <h2>5. Metodología Iterativa</h2>
             <p>Adoptamos un enfoque de desarrollo cíclico, que nos permite refinar y mejorar continuamente nuestro modelo basándonos en los resultados obtenidos.</p>
@@ -123,7 +122,6 @@
                 Los resultados de la fase de <strong>Evaluación</strong> informan ajustes en las fases anteriores, creando un ciclo de refinamiento.
             </footer>
         </div>
-
         <div class="slide hidden" data-slide="7">
             <h2>6. Adquisición de Conjuntos de Datos</h2>
             <div class="dataset-card"><h3>Conjunto 1: Base de Datos de Habla Emocional Mexicana (MESD)</h3><ul><li><strong>Cantidad:</strong> 864 grabaciones de audio</li><li><strong>Características:</strong> Español mexicano, 6 emociones + neutralidad</li><li><strong>Utilidad:</strong> Adaptación específica al habla mexicana</li></ul></div>
@@ -199,7 +197,6 @@
                 </table>
             </div>
         </div>
-
         <div class="slide hidden" data-slide="11">
             <h2 class="technical-title">El Viaje del Audio: De la Onda al Vector</h2>
             <p>Antes de que la IA pueda analizar una emoción, debemos traducir la onda de sonido a un lenguaje que entienda: los números. Este proceso se llama <strong>Extracción de Características</strong>. A continuación, veremos el paso a paso de cómo convertimos un archivo de audio en un único vector de 180 características.</p>
@@ -302,12 +299,21 @@
             <div class="technical-step-layout full-width">
                  <div class="step-explanation">
                     <h4>Del Análisis por Ventana al Resumen Global</h4>
-                    <p>Hasta ahora, hemos calculado un conjunto de 180 características (40 MFCCs, 12 de Croma, 128 del Espectrograma Mel) para <strong>cada una de las ventanas</strong> de nuestro audio. Esto nos da una matriz o tabla donde las filas son las ventanas y las columnas son las características.</p>
-                    <p>Para que nuestro modelo CNN 1D pueda procesar el audio como una sola entidad, necesitamos un único vector que lo represente. La solución más directa y efectiva para este tipo de arquitectura es **calcular el promedio (la media) de cada característica a lo largo de todas las ventanas**.</p>
+                    <p>El proceso anterior nos da una matriz $M$ de características, donde cada fila $t$ corresponde a una ventana de tiempo y cada columna $j$ a una de las 180 características.</p>
+                    <p>Para obtener un único vector $V$ que represente todo el audio, calculamos la media de cada característica a lo largo de todas las ventanas de tiempo $T$.</p>
+                    <div class="formula-block">
+                        <span class="formula-title">Cálculo del Vector Promedio</span>
+                        <p>$$V_j = \frac{1}{T} \sum_{t=1}^{T} M_{t,j}$$</p>
+                        <ul>
+                           <li>$V_j$: Es el valor final de la característica $j$ en nuestro vector.</li>
+                           <li>$T$: Es el número total de ventanas (frames) en el audio.</li>
+                           <li>$M_{t,j}$: Es el valor de la característica $j$ en la ventana de tiempo $t$.</li>
+                        </ul>
+                   </div>
+                   <p>Este proceso condensa la información temporal en una sola "ficha técnica" que describe las propiedades acústicas promedio de todo el clip.</p>
                 </div>
                 <div class="step-visualization">
                      <img src="presentation/src/assets/images/feature matrix averaging to vector.png" alt="Proceso de Promedio" style="width:80%; margin: 20px auto; display: block; border-radius: 10px;">
-                     <p class="viz-caption">Se promedia cada columna de características para obtener el vector final de 180 dimensiones que describe todo el clip de audio.</p>
                 </div>
             </div>
         </div>
@@ -620,6 +626,7 @@ Predicción = Emoción con la probabilidad más alta
                     <p class="viz-caption">Un filtro (amarillo) se desliza sobre la entrada (azul) para producir un mapa de características (verde).</p>
                 </div>
             </div>
+            <footer class="footnote"><strong>Producto Punto:</strong> Una operación matemática que multiplica los elementos correspondientes de dos vectores y suma los resultados. Mide qué tan 'alineados' o similares son los dos vectores.</footer>
         </div>
         <div class="slide hidden" data-slide="27">
             <h2 class="technical-title">Red Neuronal - Paso 2: ReLU y Pooling</h2>
@@ -671,17 +678,27 @@ Predicción = Emoción con la probabilidad más alta
         </div>
         <div class="slide hidden" data-slide="30">
             <h2 class="technical-title">El Aprendizaje: ¿Cómo se Entrena el Modelo?</h2>
-             <div class="technical-step-layout full-width">
-                 <div class="step-explanation">
-                    <h4>Ajustando 171,783 Parámetros</h4>
-                    <p>El entrenamiento es un ciclo de optimización para ajustar los pesos de los filtros y las capas densas.</p>
-                    <ol>
-                        <li><strong>Predicción (Forward Pass):</strong> Se pasa un audio a través de la red para obtener una predicción de probabilidad.</li>
-                        <li><strong>Cálculo del Error (Pérdida):</strong> Se compara la predicción con la etiqueta real usando una <strong>función de pérdida</strong> (`categorical_crossentropy`). El resultado es un número que nos dice qué tan "equivocado" estuvo el modelo.</li>
-                        <li><strong>Backpropagation:</strong> Usando cálculo diferencial (la regla de la cadena), el error se propaga hacia atrás por toda la red. Se calcula cómo contribuyó cada uno de los 171,783 pesos al error final (el gradiente).</li>
-                        <li><strong>Actualización de Pesos:</strong> Un algoritmo optimizador (en nuestro caso, `Adam`) ajusta cada peso ligeramente en la dirección que reduce el error.</li>
-                    </ol>
-                    <p>Este ciclo se repite miles de veces con todos los datos de entrenamiento hasta que el error es mínimo y el modelo se vuelve preciso.</p>
+            <p>El entrenamiento es un ciclo de optimización para ajustar los 171,783 pesos de los filtros y las capas densas. Se repite miles de veces hasta que el error es mínimo.</p>
+            <div class="training-steps-grid">
+                <div class="training-step-card">
+                    <div class="step-number">1</div>
+                    <h4>Predicción (Forward Pass)</h4>
+                    <p>El modelo recibe datos de entrada y genera una predicción de la emoción, propagando la información a través de sus capas.</p>
+                </div>
+                <div class="training-step-card">
+                    <div class="step-number">2</div>
+                    <h4>Cálculo de la Pérdida (Error)</h4>
+                    <p>Comparamos la predicción del modelo con la etiqueta de emoción real. La función de pérdida (entropía cruzada categórica) cuantifica qué tan "equivocado" estuvo el modelo.</p>
+                </div>
+                <div class="training-step-card">
+                    <div class="step-number">3</div>
+                    <h4>Backpropagation (Retropropagación)</h4>
+                    <p>El error calculado se propaga hacia atrás a través de la red. Esto nos permite determinar cómo cada peso individual contribuyó al error total.</p>
+                </div>
+                <div class="training-step-card">
+                    <div class="step-number">4</div>
+                    <h4>Actualización de Pesos (Optimización)</h4>
+                    <p>Utilizando un optimizador (como Adam), los pesos del modelo se ajustan ligeramente en la dirección que minimiza la función de pérdida, preparando al modelo para una mejor predicción en la siguiente iteración.</p>
                 </div>
             </div>
         </div>
@@ -689,7 +706,7 @@ Predicción = Emoción con la probabilidad más alta
             <h2>20. Resumen de Neuronas y Parámetros</h2>
             <div class="cnn-details">
                 <p>
-                    Esta tabla detalla la estructura de nuestro modelo. La **"Forma de Salida"** muestra cómo cambian las dimensiones de los datos después de cada capa. Los **"Parámetros"** son los pesos o "conocimientos" que el modelo aprende durante el entrenamiento. En total, nuestro modelo debe aprender y ajustar **171,783 parámetros** para poder realizar la clasificación.
+                    Esta tabla detalla la estructura de nuestro modelo. La <strong>Forma de Salida</strong> muestra cómo cambian las dimensiones de los datos después de cada capa. Los <strong>Parámetros</strong> son los pesos o "conocimientos" que el modelo aprende durante el entrenamiento. En total, nuestro modelo debe aprender y ajustar **171,783 parámetros** para poder realizar la clasificación.
                 </p>
                 <table class="cnn-table">
                     <thead>

@@ -2,8 +2,8 @@
 // It handles slide navigation, progress bar updates, and keyboard controls.
 
 let currentSlide = 1;
-// Updated total number of slides to reflect the new detailed version
-let totalSlides = 35; 
+// Updated total number of slides to reflect the final version
+let totalSlides = 34; 
 
 function showSlide(n) {
     // Hide all slides

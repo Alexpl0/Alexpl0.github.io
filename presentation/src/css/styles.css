@@ -721,7 +721,7 @@ pre {
     width: 100%;
     height: 80%;
     transform: translateY(-50%);
-    background-image: url('https://i.imgur.com/8JtD5cQ.png');
+    background-image: url('presentation/src/assets/images/onda_audio.png');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -761,6 +761,7 @@ pre {
     font-weight: bold;
     padding: 20px;
     box-shadow: 0 0 20px rgba(3, 18, 64, 0.5);
+    z-index: 10;
 }
 .cycle-step {
     position: absolute;
@@ -785,17 +786,6 @@ pre {
     text-align: center;
     margin: 0;
     padding: 5px;
-}
-.cycle-arrow {
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 16px solid var(--color-secondary);
-    transform-origin: center 200px;
-    transform: rotate(calc(72deg * var(--i) + 36deg));
-    opacity: 0.6;
 }
 
 /* ================================================= */
@@ -1099,7 +1089,50 @@ pre {
 }
 
 /* ================================================= */
-/* === ESTILOS PARA DIAPOSITIVA 21 (TABLA CNN) === */
+/* === ESTILOS PARA DIAPOSITIVA 30 (Training) === */
+/* ================================================= */
+.training-steps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 40px;
+}
+.training-step-card {
+    background: var(--color-bg-subtle);
+    border-radius: 15px;
+    padding: 25px;
+    border-left: 5px solid;
+    box-shadow: 0 8px 16px rgba(3, 18, 64, 0.08);
+    position: relative;
+    min-height: 200px; /* Aumentar la altura mínima para el nuevo contenido */
+}
+/* Colores de borde actualizados para que coincidan con la paleta azul */
+.training-step-card:nth-child(1) { border-color: var(--color-primary); }
+.training-step-card:nth-child(2) { border-color: var(--color-secondary); }
+.training-step-card:nth-child(3) { border-color: var(--color-accent); }
+.training-step-card:nth-child(4) { border-color: var(--color-light-accent); }
+
+.training-step-card .step-number {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 3rem;
+    font-weight: bold;
+    color: rgba(0,0,0,0.05);
+}
+.training-step-card h4 {
+    font-size: 1.3rem;
+    color: var(--color-text-dark);
+    margin-bottom: 10px;
+}
+.training-step-card p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+
+/* ================================================= */
+/* === ESTILOS PARA DIAPOSITIVA 31 (TABLA CNN) === */
 /* ================================================= */
 .cnn-table-footnote {
     text-align: right;
