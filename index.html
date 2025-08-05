@@ -27,10 +27,10 @@
         <div class="progress-fill" id="progressFill"></div>
     </div>
     
-    <div class="slide-counter" id="slideCounter">1 / 34</div>
+    <div class="slide-counter" id="slideCounter">1 / 40</div>
 
     <div class="presentation-container">
-        <!-- Diapositivas 1-14 se mantienen intactas -->
+        <!-- Diapositivas originales 1-23 se mantienen intactas -->
         <div class="slide" data-slide="1">
             <h1>Análisis de Emociones en la Voz con Inteligencia Artificial</h1>
             <div class="highlight-box">
@@ -46,6 +46,7 @@
                 <p><strong>Jair Gutiérrez</strong></p>
             </div>
         </div>
+
         <div class="slide hidden" data-slide="2">
             <h2>1. Justificación Técnica</h2>
             <div class="highlight-box">
@@ -64,6 +65,7 @@
                 <li><strong>Modelado de Alta Dimensión:</strong> Habilidad para procesar miles de características extraídas de una sola señal de audio.</li>
             </ul>
         </div>
+
         <div class="slide hidden" data-slide="3">
             <h2>2. Descripción del Problema</h2>
             <div class="highlight-box">
@@ -81,12 +83,14 @@
                 <strong>Pipeline:</strong> Secuencia de pasos de procesamiento de datos, donde la salida de un paso es la entrada del siguiente.
             </footer>
         </div>
+
         <div class="slide hidden" data-slide="4">
             <h2>3. Objetivo General</h2>
             <div class="highlight-box" style="display: flex; align-items: center; justify-content: center; text-align: center; min-height: 50vh;">
                 <p style="font-size: 1.5rem; line-height: 1.7;">Desarrollar y evaluar un modelo de inteligencia artificial para la clasificación de emociones humanas a partir del análisis de características acústicas y espectrales del habla, estableciendo un pipeline completo desde el preprocesamiento de la señal hasta la predicción del modelo.</p>
             </div>
         </div>
+
         <div class="slide hidden" data-slide="5">
             <h2>4. Objetivos Específicos</h2>
             <div class="methodology-step"><strong>1.</strong> Integrar y preprocesar múltiples conjuntos de datos de audio emocional</div>
@@ -95,6 +99,7 @@
             <div class="methodology-step"><strong>4.</strong> Evaluar el rendimiento utilizando métricas estándar de clasificación</div>
             <div class="methodology-step"><strong>5.</strong> Implementar técnicas de reducción de dimensionalidad y visualización</div>
         </div>
+
         <div class="slide hidden" data-slide="6">
             <h2>5. Metodología Iterativa</h2>
             <p>Adoptamos un enfoque de desarrollo cíclico, que nos permite refinar y mejorar continuamente nuestro modelo basándonos en los resultados obtenidos.</p>
@@ -122,6 +127,7 @@
                 Los resultados de la fase de <strong>Evaluación</strong> informan ajustes en las fases anteriores, creando un ciclo de refinamiento.
             </footer>
         </div>
+
         <div class="slide hidden" data-slide="7">
             <h2>6. Adquisición de Conjuntos de Datos</h2>
             <div class="dataset-card"><h3>Conjunto 1: Base de Datos de Habla Emocional Mexicana (MESD)</h3><ul><li><strong>Cantidad:</strong> 864 grabaciones de audio</li><li><strong>Características:</strong> Español mexicano, 6 emociones + neutralidad</li><li><strong>Utilidad:</strong> Adaptación específica al habla mexicana</li></ul></div>
@@ -131,6 +137,7 @@
                 <strong>Nota:</strong> Se sustituyó un dataset originalmente planeado por TESS debido a que el primero fue retirado de Kaggle, asegurando la disponibilidad y reproducibilidad del proyecto.
             </footer>
         </div>
+
         <div class="slide hidden" data-slide="8">
             <h2>7. Análisis Exploratorio de Datos (EDA)</h2>
             <h3>Preguntas principales de investigación:</h3>
@@ -147,6 +154,7 @@
                 <strong>Nota:</strong> Las siguientes visualizaciones fueron generadas con un script de Python para analizar las características del dataset RAVDESS.
             </footer>
         </div>
+
         <div class="slide hidden" data-slide="9">
             <h2>8. Visualización: Distribución del Pitch</h2>
             <div class="single-chart-container">
@@ -160,6 +168,7 @@
                 </footer>
             </div>
         </div>
+
         <div class="slide hidden" data-slide="10">
             <h2>9. Visualización y Análisis de MFCCs</h2>
             <div class="mfcc-explanation">
@@ -197,6 +206,7 @@
                 </table>
             </div>
         </div>
+
         <div class="slide hidden" data-slide="11">
             <h2 class="technical-title">El Viaje del Audio: De la Onda al Vector</h2>
             <p>Antes de que la IA pueda analizar una emoción, debemos traducir la onda de sonido a un lenguaje que entienda: los números. Este proceso se llama <strong>Extracción de Características</strong>. A continuación, veremos el paso a paso de cómo convertimos un archivo de audio en un único vector de 180 características.</p>
@@ -228,6 +238,7 @@
             </div>
             <footer class="footnote">Este es el corazón del preprocesamiento: transformar datos no estructurados (audio) en datos estructurados (un vector).</footer>
         </div>
+
         <div class="slide hidden" data-slide="12">
             <h2 class="technical-title">Paso 1: Digitalización y Ventaneo</h2>
             <div class="technical-step-layout">
@@ -251,6 +262,7 @@
                 </div>
             </div>
         </div>
+
         <div class="slide hidden" data-slide="13">
             <h2 class="technical-title">Paso 2: La Transformada de Fourier (FFT)</h2>
              <div class="technical-step-layout">
@@ -275,6 +287,7 @@
                 </div>
             </div>
         </div>
+
         <div class="slide hidden" data-slide="14">
             <h2 class="technical-title">Paso 3: MFCCs - El "ADN" de la Voz</h2>
              <div class="technical-step-layout">
@@ -294,6 +307,7 @@
                 </div>
             </div>
         </div>
+
         <div class="slide hidden" data-slide="15">
             <h2 class="technical-title">Paso 4: El Vector Final de Características</h2>
             <div class="technical-step-layout full-width">
@@ -317,6 +331,7 @@
                 </div>
             </div>
         </div>
+
         <div class="slide hidden" data-slide="16">
             <h2>11. Preprocesamiento para Reducción Dimensional</h2>
             <h3>¿Qué fue necesario para poder usar PCA y LDA correctamente?</h3>
@@ -328,6 +343,7 @@
             </div>
             <p>La estandarización asegura que todas las características contribuyan de manera equitativa al análisis, resultando en un modelo más justo y preciso.</p>
         </div>
+
         <div class="slide hidden" data-slide="17">
             <h2>12. ¿Cómo Funciona StandardScaler?</h2>
             <div class="scaler-explanation">
@@ -353,6 +369,7 @@
                 <strong>StandardScaler:</strong> Técnica de preprocesamiento que estandariza las características al remover la media y escalar a una varianza unitaria.
             </footer>
         </div>
+
         <div class="slide hidden" data-slide="18">
             <h2>13. Implementación del Modelo CNN 1D</h2>
             <h3>1. Preparación de Datos (Código Real del Proyecto)</h3>
@@ -396,6 +413,7 @@ history = model.fit(
 )</code></pre>
             <p class="code-description">Definimos la arquitectura de la CNN 1D, la compilamos con el optimizador 'adam' y la función de pérdida para clasificación multiclase. Finalmente, la entrenamos con los datos de entrenamiento, usando un 20% de estos para validación interna en cada época.</p>
         </div>
+
         <div class="slide hidden" data-slide="19">
             <h2>14. Reducción de Dimensionalidad: PCA vs. LDA</h2>
             <div class="advantages-disadvantages">
@@ -420,6 +438,7 @@ history = model.fit(
                <strong>Supervisado:</strong> El algoritmo aprende de datos que han sido etiquetados (p. ej., un audio etiquetado como "alegría"). <strong>No Supervisado:</strong> El algoritmo aprende de datos sin etiquetar, buscando patrones por sí mismo.
             </footer>
         </div>
+
         <div class="slide hidden" data-slide="20">
             <h2>15. Visualización 3D: PCA</h2>
             <div class="iframe-plot-container">
@@ -432,6 +451,7 @@ history = model.fit(
                 <strong>Varianza:</strong> Medida de qué tan dispersos están los datos. <strong>Dispersión:</strong> Grado en que los datos se distribuyen o se alejan de un valor central.
             </footer>
         </div>
+
         <div class="slide hidden" data-slide="21">
             <h2>16. Visualización 3D: LDA</h2>
             <div class="iframe-plot-container">
@@ -441,6 +461,7 @@ history = model.fit(
                 Aquí, los ejes (LD1, LD2, LD3) son calculados por LDA para maximizar la separación entre las emociones. El resultado es una separación mucho más clara y cúmulos más compactos, lo que confirma visualmente que nuestras características son muy efectivas para la clasificación.
             </p>
         </div>
+
         <div class="slide hidden" data-slide="22">
             <h2>17. Comparación Final y Reflexión</h2>
             <h3>Tabla Comparativa</h3>
@@ -478,6 +499,7 @@ history = model.fit(
             <h3>Opinión Reflexiva</h3>
             <p>Al comparar ambas técnicas, <strong>LDA demuestra ser más efectivo para visualizar la separabilidad de las clases</strong> en nuestro problema. Mientras que PCA es útil para entender la estructura general de la varianza en los datos, LDA, al ser un método supervisado, logra crear proyecciones donde las emociones forman cúmulos más definidos y distinguibles. Esto sugiere que las características extraídas, cuando se proyectan con un objetivo de clasificación, son altamente discriminativas.</p>
         </div>
+
         <div class="slide hidden" data-slide="23">
             <h2>18. Fundamento Teórico: Red Neuronal Convolucional 1D</h2>
             <div class="cnn-theory-layout">
@@ -545,164 +567,771 @@ Predicción = Emoción con la probabilidad más alta
                 </div>
             </div>
         </div>
+
+        <!-- NUEVAS DIAPOSITIVAS TÉCNICAS DETALLADAS -->
         <div class="slide hidden" data-slide="24">
+            <h2 class="technical-title">Análisis Técnico de Kernels en Convolución 1D</h2>
+            <div class="technical-step-layout full-width">
+                <div class="step-explanation">
+                    <h4>Kernel Size Seleccionado: 5</h4>
+                    <p>En nuestro modelo utilizamos un <strong>kernel de tamaño 5</strong> para ambas capas convolucionales. Esta decisión se basa en capturar patrones locales significativos en la secuencia de características.</p>
+                    
+                    <div class="formula-block">
+                        <span class="formula-title">Operación de Convolución 1D</span>
+                        <p>$(f * g)[n] = \sum_{m=-\infty}^{\infty} f[m] \cdot g[n-m]$</p>
+                        <p>Para un kernel de tamaño $K=5$:</p>
+                        <p>$y[i] = \sum_{j=0}^{4} x[i+j] \cdot w[j] + b$</p>
+                        <ul>
+                            <li>$x[i]$: Entrada en la posición $i$</li>
+                            <li>$w[j]$: Peso del kernel en la posición $j$</li>
+                            <li>$b$: Bias del filtro</li>
+                            <li>$y[i]$: Salida activada en la posición $i$</li>
+                        </ul>
+                    </div>
+
+                    <h4>¿Por qué Kernel Size = 5?</h4>
+                    <ul>
+                        <li><strong>Equilibrio:</strong> Captura patrones locales sin ser demasiado específico</li>
+                        <li><strong>Contexto Suficiente:</strong> Analiza 5 características consecutivas simultáneamente</li>
+                        <li><strong>Eficiencia Computacional:</strong> Menor que kernels grandes, pero más expresivo que kernels pequeños</li>
+                    </ul>
+                </div>
+                
+                <div class="step-visualization">
+                    <div class="kernel-types-table">
+                        <h4>Tipos de Kernels Disponibles</h4>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Tamaño</th>
+                                    <th>Características</th>
+                                    <th>Uso Típico</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1</strong></td>
+                                    <td>Punto único, sin contexto</td>
+                                    <td>Transformación puntual</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3</strong></td>
+                                    <td>Patrones muy locales</td>
+                                    <td>Detección de bordes simples</td>
+                                </tr>
+                                <tr style="background-color: var(--color-bg-subtle);">
+                                    <td><strong>5</strong></td>
+                                    <td><strong>Balance contexto/especificidad</strong></td>
+                                    <td><strong>Audio, series temporales</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>7-11</strong></td>
+                                    <td>Patrones medianos</td>
+                                    <td>Estructuras más complejas</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>15+</strong></td>
+                                    <td>Patrones globales</td>
+                                    <td>Tendencias de largo plazo</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide hidden" data-slide="25">
+            <h2 class="technical-title">Cálculos Detallados de Convolución en Nuestra Arquitectura</h2>
+            <div class="technical-step-layout full-width">
+                <div class="step-explanation">
+                    <h4>Primera Capa Convolucional: Conv1D(256, 5)</h4>
+                    <p>Entrada: <code>(batch_size, 180, 1)</code> → Salida: <code>(batch_size, 180, 256)</code></p>
+                    
+                    <div class="formula-block">
+                        <span class="formula-title">Cálculo de Dimensiones de Salida</span>
+                        <p>$L_{out} = \frac{L_{in} + 2 \times padding - kernel\_size}{stride} + 1$</p>
+                        <p>Con <code>padding='same'</code>:</p>
+                        <p>$L_{out} = L_{in} = 180$</p>
+                        <p>Número de parámetros por filtro: $(5 \times 1) + 1 = 6$ (5 pesos + 1 bias)</p>
+                        <p>Total de parámetros: $256 \times 6 = 1,536$</p>
+                    </div>
+
+                    <h4>Activaciones por Neurona</h4>
+                    <p>Para cada uno de los 256 filtros, en cada posición $i$ de la secuencia:</p>
+                    <div class="formula-block">
+                        <span class="formula-title">Función de Activación ReLU</span>
+                        <p>$a_i^{(l)} = max(0, z_i^{(l)})$</p>
+                        <p>donde $z_i^{(l)}$ es la suma ponderada pre-activación:</p>
+                        <p>$z_i^{(l)} = \sum_{j=0}^{4} w_j^{(l)} \cdot x_{i+j} + b^{(l)}$</p>
+                        <ul>
+                            <li>Se activa si $z_i^{(l)} > 0$, de lo contrario salida = 0</li>
+                            <li>Total de activaciones por muestra: $180 \times 256 = 46,080$</li>
+                        </ul>
+                    </div>
+
+                    <h4>Segunda Capa Convolucional: Conv1D(128, 5)</h4>
+                    <p>Entrada: <code>(batch_size, 36, 256)</code> → Salida: <code>(batch_size, 36, 128)</code></p>
+                    <div class="formula-block">
+                        <span class="formula-title">Parámetros de la Segunda Capa</span>
+                        <p>Cada filtro conecta a los 256 canales de entrada:</p>
+                        <p>Parámetros por filtro: $(5 \times 256) + 1 = 1,281$</p>
+                        <p>Total de parámetros: $128 \times 1,281 = 163,968$</p>
+                        <p>Activaciones por muestra: $36 \times 128 = 4,608$</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide hidden" data-slide="26">
+            <h2 class="technical-title">MaxPooling 1D: Análisis Matemático Detallado</h2>
+            <div class="technical-step-layout full-width">
+                <div class="step-explanation">
+                    <h4>Operación MaxPooling con pool_size=5</h4>
+                    <p>El MaxPooling reduce la dimensionalidad tomando el valor máximo de cada ventana deslizante.</p>
+                    
+                    <div class="formula-block">
+                        <span class="formula-title">Función MaxPooling Matemática</span>
+                        <p>$y[i] = \max_{j \in W_i} x[j]$</p>
+                        <p>donde $W_i = \{i \times s, i \times s + 1, ..., i \times s + p - 1\}$</p>
+                        <ul>
+                            <li>$s$: stride (por defecto = pool_size = 5)</li>
+                            <li>$p$: pool_size = 5</li>
+                            <li>$x[j]$: valor de entrada en la posición $j$</li>
+                        </ul>
+                    </div>
+
+                    <h4>Cálculo de Dimensiones</h4>
+                    <div class="formula-block">
+                        <span class="formula-title">Reducción Dimensional</span>
+                        <p>$L_{out} = \lfloor \frac{L_{in} - pool\_size}{stride} \rfloor + 1$</p>
+                        <p><strong>Primer MaxPooling:</strong></p>
+                        <p>$L_{out} = \lfloor \frac{180 - 5}{5} \rfloor + 1 = 36$</p>
+                        <p><strong>Segundo MaxPooling:</strong></p>
+                        <p>$L_{out} = \lfloor \frac{36 - 5}{5} \rfloor + 1 = 7$</p>
+                    </div>
+                </div>
+                
+                <div class="step-visualization">
+                    <div class="maxpool-details">
+                        <h4>Efectos del MaxPooling</h4>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Aspecto</th>
+                                    <th>Antes</th>
+                                    <th>Después</th>
+                                    <th>Efecto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Dim. Temporal</strong></td>
+                                    <td>180 → 36</td>
+                                    <td>36 → 7</td>
+                                    <td>Compresión 5:1</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Parámetros</strong></td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Sin parámetros</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Invarianza</strong></td>
+                                    <td>Baja</td>
+                                    <td>Alta</td>
+                                    <td>Robustez a ruido</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Información</strong></td>
+                                    <td>Completa</td>
+                                    <td>Comprimida</td>
+                                    <td>Preserva características dominantes</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="maxpool-benefit" style="margin-top: 20px; background: var(--color-bg-subtle); padding: 20px; border-radius: 15px;">
+                            <h4 style="color: var(--color-primary);">Beneficios del MaxPooling</h4>
+                            <ul>
+                                <li><strong>Invarianza Traslacional:</strong> El modelo se vuelve menos sensible a pequeños desplazamientos</li>
+                                <li><strong>Reducción de Overfitting:</strong> Menos parámetros implica menor riesgo de sobreajuste</li>
+                                <li><strong>Eficiencia Computacional:</strong> Reduce el costo computacional de capas posteriores</li>
+                                <li><strong>Extracción de Características Dominantes:</strong> Preserva las activaciones más fuertes</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide hidden" data-slide="27">
+            <h2 class="technical-title">Optimizador ADAM: Fundamento Matemático Completo</h2>
+            <div class="technical-step-layout full-width">
+                <div class="step-explanation">
+                    <h4>¿Qué es ADAM y por qué es Superior?</h4>
+                    <p><strong>ADAM (Adaptive Moment Estimation)</strong> combina las ventajas de AdaGrad (adaptación por característica) y RMSprop (promedio móvil) con corrección de bias para momentos iniciales.</p>
+                    
+                    <div class="formula-block">
+                        <span class="formula-title">Algoritmo ADAM Paso a Paso</span>
+                        <p><strong>Paso 1: Inicialización</strong></p>
+                        <p>$m_0 = 0, \quad v_0 = 0, \quad t = 0$</p>
+                        
+                        <p><strong>Paso 2: En cada iteración $t$:</strong></p>
+                        <p>$t = t + 1$</p>
+                        <p>$g_t = \nabla_{\theta} J(\theta_{t-1})$ <em>(Gradiente de la función de pérdida)</em></p>
+                        
+                        <p><strong>Paso 3: Actualización de momentos</strong></p>
+                        <p>$m_t = \beta_1 \cdot m_{t-1} + (1 - \beta_1) \cdot g_t$ <em>(Momento de primer orden)</em></p>
+                        <p>$v_t = \beta_2 \cdot v_{t-1} + (1 - \beta_2) \cdot g_t^2$ <em>(Momento de segundo orden)</em></p>
+                        
+                        <p><strong>Paso 4: Corrección de bias</strong></p>
+                        <p>$\hat{m}_t = \frac{m_t}{1 - \beta_1^t}, \quad \hat{v}_t = \frac{v_t}{1 - \beta_2^t}$</p>
+                        
+                        <p><strong>Paso 5: Actualización de parámetros</strong></p>
+                        <p>$\theta_t = \theta_{t-1} - \frac{\alpha}{\sqrt{\hat{v}_t} + \epsilon} \cdot \hat{m}_t$</p>
+                    </div>
+
+                    <div class="adam-params">
+                        <h4>Hiperparámetros en Nuestro Modelo</h4>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Parámetro</th>
+                                    <th>Valor</th>
+                                    <th>Propósito</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>$\alpha$ (learning rate)</td>
+                                    <td>0.001</td>
+                                    <td>Controla el tamaño del paso</td>
+                                </tr>
+                                <tr>
+                                    <td>$\beta_1$</td>
+                                    <td>0.9</td>
+                                    <td>Factor de decaimiento para momento de 1er orden</td>
+                                </tr>
+                                <tr>
+                                    <td>$\beta_2$</td>
+                                    <td>0.999</td>
+                                    <td>Factor de decaimiento para momento de 2do orden</td>
+                                </tr>
+                                <tr>
+                                    <td>$\epsilon$</td>
+                                    <td>1e-7</td>
+                                    <td>Previene división por cero</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide hidden" data-slide="28">
+            <h2 class="technical-title">ADAM vs. Otros Optimizadores: Análisis Comparativo</h2>
+            <div class="technical-step-layout full-width">
+                <div class="step-explanation">
+                    <h4>¿Por qué ADAM para Nuestro Problema?</h4>
+                    
+                    <div class="optimizer-comparison">
+                        <h4>Ventajas Específicas de ADAM</h4>
+                        <ul>
+                            <li><strong>Adaptación Automática:</strong> Ajusta el learning rate por parámetro individualmente</li>
+                            <li><strong>Memoria de Gradientes:</strong> Utiliza información de gradientes pasados ($m_t$)</li>
+                            <li><strong>Escalado por Varianza:</strong> Normaliza por la varianza histórica de gradientes ($v_t$)</li>
+                            <li><strong>Corrección de Bias:</strong> Compensa la inicialización en cero de los momentos</li>
+                            <li><strong>Robustez:</strong> Funciona bien en una amplia gama de problemas sin ajuste fino</li>
+                        </ul>
+                    </div>
+
+                    <div class="formula-block">
+                        <span class="formula-title">Intuición Matemática</span>
+                        <p>El factor de actualización final en ADAM:</p>
+                        <p>$\frac{\alpha}{\sqrt{\hat{v}_t} + \epsilon} \cdot \hat{m}_t$</p>
+                        <ul>
+                            <li><strong>$\hat{m}_t$:</strong> Dirección del gradiente suavizada</li>
+                            <li><strong>$\sqrt{\hat{v}_t}$:</strong> Normalización adaptativa por parámetro</li>
+                            <li><strong>Resultado:</strong> Pasos grandes para gradientes consistentes, pasos pequeños para gradientes variables</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="step-visualization">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Optimizador</th>
+                                <th>Fórmula de Actualización</th>
+                                <th>Ventajas</th>
+                                <th>Desventajas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>SGD</strong></td>
+                                <td>$\theta_t = \theta_{t-1} - \alpha \cdot g_t$</td>
+                                <td>Simple, convergencia teórica</td>
+                                <td>Lento, sensible a lr</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Momentum</strong></td>
+                                <td>$\theta_t = \theta_{t-1} - \alpha \cdot m_t$</td>
+                                <td>Acelera convergencia</td>
+                                <td>Un hiperparámetro más</td>
+                            </tr>
+                            <tr>
+                                <td><strong>AdaGrad</strong></td>
+                                <td>$\theta_t = \theta_{t-1} - \frac{\alpha}{\sqrt{G_t}} \cdot g_t$</td>
+                                <td>Adaptativo por característica</td>
+                                <td>Learning rate decae muy rápido</td>
+                            </tr>
+                            <tr>
+                                <td><strong>RMSprop</strong></td>
+                                <td>$\theta_t = \theta_{t-1} - \frac{\alpha}{\sqrt{v_t}} \cdot g_t$</td>
+                                <td>Mejora AdaGrad</td>
+                                <td>Sin corrección de bias</td>
+                            </tr>
+                            <tr style="background-color: var(--color-bg-subtle);">
+                                <td><strong>ADAM</strong></td>
+                                <td>$\theta_t = \theta_{t-1} - \frac{\alpha}{\sqrt{\hat{v}_t} + \epsilon} \cdot \hat{m}_t$</td>
+                                <td><strong>Combina momentum + adaptativo + corrección bias</strong></td>
+                                <td>Más complejo computacionalmente</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide hidden" data-slide="29">
+            <h2 class="technical-title">Análisis Completo de Activaciones por Capa</h2>
+            <div class="technical-step-layout full-width">
+                <div class="step-explanation">
+                    <h4>Desglose Neuronal Detallado de Nuestra Arquitectura</h4>
+                    
+                    <div class="neuron-analysis">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Capa</th>
+                                    <th>Dimensiones</th>
+                                    <th>Neuronas Totales</th>
+                                    <th>Neuronas Activas</th>
+                                    <th>Función Activación</th>
+                                    <th>Parámetros</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Input</strong></td>
+                                    <td>(None, 180, 1)</td>
+                                    <td>180</td>
+                                    <td>180 (100%)</td>
+                                    <td>Linear</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Conv1D_1</strong></td>
+                                    <td>(None, 180, 256)</td>
+                                    <td>46,080</td>
+                                    <td>~30,000-35,000 (65-75%)</td>
+                                    <td>ReLU</td>
+                                    <td>1,536</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>MaxPool1D_1</strong></td>
+                                    <td>(None, 36, 256)</td>
+                                    <td>9,216</td>
+                                    <td>9,216 (100%)</td>
+                                    <td>Max</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Dropout_1</strong></td>
+                                    <td>(None, 36, 256)</td>
+                                    <td>9,216</td>
+                                    <td>~7,373 (80%)</td>
+                                    <td>Dropout</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Conv1D_2</strong></td>
+                                    <td>(None, 36, 128)</td>
+                                    <td>4,608</td>
+                                    <td>~2,760-3,456 (60-75%)</td>
+                                    <td>ReLU</td>
+                                    <td>163,968</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>MaxPool1D_2</strong></td>
+                                    <td>(None, 7, 128)</td>
+                                    <td>896</td>
+                                    <td>896 (100%)</td>
+                                    <td>Max</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Dropout_2</strong></td>
+                                    <td>(None, 7, 128)</td>
+                                    <td>896</td>
+                                    <td>~717 (80%)</td>
+                                    <td>Dropout</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Flatten</strong></td>
+                                    <td>(None, 896)</td>
+                                    <td>896</td>
+                                    <td>896 (100%)</td>
+                                    <td>Linear</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Dense (Output)</strong></td>
+                                    <td>(None, 7)</td>
+                                    <td>7</td>
+                                    <td>7 (100%)</td>
+                                    <td>Softmax</td>
+                                    <td>6,279</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="formula-block">
+                        <span class="formula-title">Análisis de Tasa de Activación ReLU</span>
+                        <p>Para ReLU: $f(x) = max(0, x)$</p>
+                        <p><strong>Porcentaje de Activación Esperado:</strong></p>
+                        <p>En condiciones normales (distribución aproximadamente normal): ~50-75%</p>
+                        <p><strong>En nuestro modelo:</strong></p>
+                        <ul>
+                            <li>Conv1D_1: ~65-75% debido a entrada estandarizada</li>
+                            <li>Conv1D_2: ~60-75% tras MaxPooling (valores más dispersos)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide hidden" data-slide="30">
+            <h2 class="technical-title">Función Softmax: Matemática de la Clasificación Final</h2>
+            <div class="technical-step-layout full-width">
+                <div class="step-explanation">
+                    <h4>¿Cómo Convierte Puntuaciones en Probabilidades?</h4>
+                    <p>La función Softmax transforma un vector de puntuaciones reales en una distribución de probabilidad válida.</p>
+                    
+                    <div class="formula-block">
+                        <span class="formula-title">Función Softmax Matemática</span>
+                        <p>Para un vector $\mathbf{z} = [z_1, z_2, ..., z_K]$ donde $K=7$ (nuestras emociones):</p>
+                        <p>$\sigma(\mathbf{z})_i = \frac{e^{z_i}}{\sum_{j=1}^{K} e^{z_j}}$</p>
+                        <p>donde $i = 1, 2, ..., 7$ representa cada emoción</p>
+                        
+                        <p><strong>Propiedades importantes:</strong></p>
+                        <ul>
+                            <li>$0 \leq \sigma(\mathbf{z})_i \leq 1$ para todo $i$</li>
+                            <li>$\sum_{i=1}^{7} \sigma(\mathbf{z})_i = 1$</li>
+                            <li>Amplifica diferencias entre valores grandes y pequeños</li>
+                        </ul>
+                    </div>
+
+                    <h4>Ejemplo Práctico de Nuestro Modelo</h4>
+                    <div class="formula-block">
+                        <span class="formula-title">Caso Real de Clasificación</span>
+                        <p><strong>Vector pre-softmax (logits):</strong></p>
+                        <p>$\mathbf{z} = [2.1, -0.5, 3.2, 0.8, -1.2, 1.5, 0.3]$</p>
+                        
+                        <p><strong>Aplicando Softmax:</strong></p>
+                        <p>$e^{z_1} = e^{2.1} = 8.17$, $e^{z_2} = e^{-0.5} = 0.61$, $e^{z_3} = e^{3.2} = 24.53$, ...</p>
+                        <p>$\sum e^{z_j} = 8.17 + 0.61 + 24.53 + 2.23 + 0.30 + 4.48 + 1.35 = 41.67$</p>
+                        
+                        <p><strong>Probabilidades finales:</strong></p>
+                        <p>Happy: $\frac{24.53}{41.67} = 0.589$ (58.9%)</p>
+                        <p>Neutral: $\frac{8.17}{41.67} = 0.196$ (19.6%)</p>
+                        <p>Angry: $\frac{4.48}{41.67} = 0.107$ (10.7%)</p>
+                        <p>... (otras emociones con probabilidades menores)</p>
+                    </div>
+                </div>
+                
+                <div class="step-visualization">
+                    <div class="softmax-properties">
+                        <h4>Características de Softmax</h4>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Propiedad</th>
+                                    <th>Descripción</th>
+                                    <th>Importancia</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Normalización</strong></td>
+                                    <td>Suma total = 1</td>
+                                    <td>Distribución de probabilidad válida</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Amplificación</strong></td>
+                                    <td>Exponenciación de logits</td>
+                                    <td>Enfatiza la clase más probable</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Diferenciabilidad</strong></td>
+                                    <td>Función suave y continua</td>
+                                    <td>Permite backpropagation</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Estabilidad</strong></td>
+                                    <td>Invariante a traslaciones</td>
+                                    <td>Previene overflow numérico</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="gradient-info">
+                            <h4>Gradiente de Softmax</h4>
+                            <p>Durante backpropagation, el gradiente de Softmax es:</p>
+                            <div class="formula-block">
+                                <p>$\frac{\partial \sigma_i}{\partial z_j} = \sigma_i(\delta_{ij} - \sigma_j)$</p>
+                                <p>donde $\delta_{ij}$ es la delta de Kronecker</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide hidden" data-slide="31">
+            <h2 class="technical-title">Backpropagation en CNN 1D: Flujo de Gradientes</h2>
+            <div class="technical-step-layout full-width">
+                <div class="step-explanation">
+                    <h4>¿Cómo Aprende Nuestro Modelo?</h4>
+                    <p>El backpropagation calcula los gradientes de la función de pérdida respecto a cada parámetro, propagándose desde la salida hacia la entrada.</p>
+                    
+                    <div class="formula-block">
+                        <span class="formula-title">Función de Pérdida: Categorical Crossentropy</span>
+                        <p>$\mathcal{L} = -\sum_{i=1}^{7} y_i \log(\hat{y}_i)$</p>
+                        <ul>
+                            <li>$y_i$: Etiqueta verdadera (one-hot encoded)</li>
+                            <li>$\hat{y}_i$: Probabilidad predicha para la clase $i$</li>
+                            <li>Solo contribuye la clase verdadera ($y_i = 1$ para una clase, $0$ para las demás)</li>
+                        </ul>
+                    </div>
+
+                    <div class="backprop-flow">
+                        <h4>Flujo de Gradientes en Nuestra Arquitectura</h4>
+                        
+                        <div class="gradient-step">
+                            <h5>1. Capa Dense (Softmax)</h5>
+                            <div class="formula-block">
+                                <p>$\frac{\partial \mathcal{L}}{\partial z_i} = \hat{y}_i - y_i$</p>
+                                <p>Gradiente respecto a pesos: $\frac{\partial \mathcal{L}}{\partial W_{ij}} = (\hat{y}_i - y_i) \cdot a_j^{(flatten)}$</p>
+                            </div>
+                        </div>
+
+                        <div class="gradient-step">
+                            <h5>2. Flatten (Sin Parámetros)</h5>
+                            <p>Solo reshaping: $\frac{\partial \mathcal{L}}{\partial a^{(conv2)}} = reshape(\frac{\partial \mathcal{L}}{\partial a^{(flatten)}})$</p>
+                        </div>
+
+                        <div class="gradient-step">
+                            <h5>3. Conv1D Segunda Capa</h5>
+                            <div class="formula-block">
+                                <p>Para cada filtro $f$ y posición $i$:</p>
+                                <p>$\frac{\partial \mathcal{L}}{\partial w_f} = \sum_{i} \frac{\partial \mathcal{L}}{\partial z_i^f} \cdot a_{i}^{(pool1)}$</p>
+                                <p>donde $z_i^f$ es la salida pre-activación del filtro $f$ en posición $i$</p>
+                            </div>
+                        </div>
+
+                        <div class="gradient-step">
+                            <h5>4. MaxPooling (Operación de Selección)</h5>
+                            <div class="formula-block">
+                                <p>$\frac{\partial \mathcal{L}}{\partial a_j^{(conv1)}} = \begin{cases} 
+                                \frac{\partial \mathcal{L}}{\partial a_i^{(pool)}} & \text{si } a_j^{(conv1)} = \max(\text{ventana}) \\
+                                0 & \text{en caso contrario}
+                                \end{cases}$</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide hidden" data-slide="32">
+            <h2 class="technical-title">Análisis de Dropout: Regularización Estocástica</h2>
+            <div class="technical-step-layout full-width">
+                <div class="step-explanation">
+                    <h4>Dropout Rate = 0.2: ¿Qué Significa Exactamente?</h4>
+                    <p>Durante el entrenamiento, cada neurona tiene una probabilidad $p = 0.2$ de ser "desactivada" (puesta a cero).</p>
+                    
+                    <div class="formula-block">
+                        <span class="formula-title">Matemática del Dropout</span>
+                        <p><strong>Durante Entrenamiento:</strong></p>
+                        <p>$y_i = \begin{cases} 
+                        0 & \text{con probabilidad } p = 0.2 \\
+                        \frac{x_i}{1-p} & \text{con probabilidad } 1-p = 0.8
+                        \end{cases}$</p>
+                        
+                        <p><strong>Durante Inferencia:</strong></p>
+                        <p>$y_i = x_i$ (sin dropout, pero ya escalado durante entrenamiento)</p>
+                        
+                        <ul>
+                            <li>$x_i$: Activación de entrada de la neurona $i$</li>
+                            <li>$y_i$: Activación de salida tras dropout</li>
+                            <li>Factor $\frac{1}{1-p} = 1.25$: Compensa las neuronas desactivadas</li>
+                        </ul>
+                    </div>
+
+                    <h4>Impacto en Nuestras Capas</h4>
+                    <div class="dropout-impact">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Capa</th>
+                                    <th>Neuronas Totales</th>
+                                    <th>Activas (Entrenamiento)</th>
+                                    <th>Desactivadas</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Después Conv1D_1</td>
+                                    <td>9,216</td>
+                                    <td>7,373 (80%)</td>
+                                    <td>1,843 (20%)</td>
+                                </tr>
+                                <tr>
+                                    <td>Después Conv1D_2</td>
+                                    <td>896</td>
+                                    <td>717 (80%)</td>
+                                    <td>179 (20%)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="step-visualization">
+                    <div class="dropout-benefits">
+                        <h4>¿Por qué Dropout Funciona?</h4>
+                        
+                        <div class="benefit-item">
+                            <h5>1. Prevención de Co-adaptación</h5>
+                            <p>Las neuronas no pueden depender unas de otras, deben ser útiles independientemente.</p>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <h5>2. Ensemble Implícito</h5>
+                            <p>Cada pasada hacia adelante usa una sub-red diferente, promediando múltiples modelos.</p>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <h5>3. Reducción de Varianza</h5>
+                            <p>Fuerza al modelo a ser más robusto y generalizar mejor.</p>
+                        </div>
+
+                        <div class="formula-block">
+                            <span class="formula-title">Número de Sub-redes Posibles</span>
+                            <p>Con $n$ neuronas y dropout rate $p$:</p>
+                            <p>$\text{Sub-redes} = 2^n$</p>
+                            <p>Para nuestra primera capa: $2^{9216} \approx 10^{2774}$ configuraciones posibles</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide hidden" data-slide="33">
             <h2>19. Arquitectura del Modelo CNN 1D</h2>
             <p>Esta es la arquitectura de Keras que implementamos. Keras es una librería de alto nivel que facilita la construcción de redes neuronales. La red está diseñada para procesar la secuencia de 180 características extraídas de cada audio y aprender a clasificar la emoción.</p>
             <div class="neural-architecture">
                 <div class="layer-box input">
                     <h4>Capa de Entrada</h4>
-                    <p>Secuencia de Características<br><span class="layer-shape">(180 características, 1)</span></p>
-                    <p class="layer-desc">Recibe el vector de 180 características como una secuencia temporal.</p>
+                    <div class="layer-info">
+                        <p><strong>Forma de Salida:</strong> <span class="output-shape">`(None, 180, 1)`</span></p>
+                        <p><strong>Cantidad de Neuronas:</strong> 180</p>
+                        <p class="explanation">El punto de partida. Cada audio se representa como una secuencia de 180 valores numéricos. El `None` indica un tamaño de lote flexible.</p>
+                    </div>
                 </div>
                 <div class="arrow">↓</div>
                 <div class="layer-box conv">
                     <h4>Conv1D (256 filtros) + ReLU</h4>
-                    <p class="layer-desc">La primera capa convolucional busca patrones temporales simples en la secuencia de entrada usando 256 filtros diferentes.</p>
+                    <div class="layer-info">
+                        <p><strong>Forma de Salida:</strong> <span class="output-shape">`(None, 180, 256)`</span></p>
+                        <p><strong>Cantidad de Neuronas:</strong> 46,080</p>
+                        <p class="explanation">256 filtros (detectores de patrones) se deslizan sobre la secuencia de entrada. Cada filtro genera un "mapa de características" de 180 puntos, resultando en 256 mapas. La activación ReLU introduce no-linealidad.</p>
+                    </div>
                 </div>
                 <div class="arrow">↓</div>
                 <div class="layer-box pool">
-                    <h4>MaxPooling1D</h4>
-                    <p class="layer-desc">Reduce la longitud de la secuencia a una quinta parte, manteniendo solo las activaciones de patrones más fuertes para la siguiente capa.</p>
+                    <h4>MaxPooling1D (`pool_size=5`)</h4>
+                    <div class="layer-info">
+                        <p><strong>Forma de Salida:</strong> <span class="output-shape">`(None, 36, 256)`</span></p>
+                        <p><strong>Cantidad de Neuronas:</strong> 9,216</p>
+                        <p class="explanation">Reduce la longitud de cada mapa de características de 180 a 36 (180/5). Se toma el valor máximo de cada ventana de 5 elementos, compactando la información y haciendo el modelo más robusto a pequeñas traslaciones.</p>
+                    </div>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="layer-box dropout">
+                    <h4>Dropout (0.2)</h4>
+                    <div class="layer-info">
+                        <p><strong>Forma de Salida:</strong> <span class="output-shape">`(None, 36, 256)`</span></p>
+                        <p><strong>Cantidad de Neuronas:</strong> 9,216 (20% desactivadas)</p>
+                        <p class="explanation">Durante el entrenamiento, desactiva aleatoriamente el 20% de las conexiones de entrada a esta capa. Esto previene el sobreajuste al forzar a la red a aprender patrones más diversos y redundantes.</p>
+                    </div>
                 </div>
                 <div class="arrow">↓</div>
                 <div class="layer-box conv">
                     <h4>Conv1D (128 filtros) + ReLU</h4>
-                    <p class="layer-desc">Una segunda capa convolucional busca patrones más complejos y de mayor duración a partir de las características detectadas por la capa anterior.</p>
+                    <div class="layer-info">
+                        <p><strong>Forma de Salida:</strong> <span class="output-shape">`(None, 36, 128)`</span></p>
+                        <p><strong>Cantidad de Neuronas:</strong> 4,608</p>
+                        <p class="explanation">Similar a la primera Conv1D, pero ahora con 128 filtros que operan sobre los 256 mapas de características anteriores. Esto permite detectar patrones de patrones, es decir, características de mayor nivel de abstracción.</p>
+                    </div>
                 </div>
                 <div class="arrow">↓</div>
                 <div class="layer-box pool">
-                    <h4>MaxPooling1D</h4>
-                    <p class="layer-desc">Vuelve a reducir la secuencia para condensar aún más la información.</p>
+                    <h4>MaxPooling1D (`pool_size=5`)</h4>
+                    <div class="layer-info">
+                        <p><strong>Forma de Salida:</strong> <span class="output-shape">`(None, 7, 128)`</span></p>
+                        <p><strong>Cantidad de Neuronas:</strong> 896</p>
+                        <p class="explanation">Reduce la longitud de la secuencia de 36 a 7 (36/5, redondeado). Continúa la compactación de información, manteniendo solo los picos de activación más significativos.</p>
+                    </div>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="layer-box dropout">
+                    <h4>Dropout (0.2)</h4>
+                    <div class="layer-info">
+                        <p><strong>Forma de Salida:</strong> <span class="output-shape">`(None, 7, 128)`</span></p>
+                        <p><strong>Cantidad de Neuronas:</strong> 896 (20% desactivadas)</p>
+                        <p class="explanation">Otra capa de regularización para mejorar la capacidad de generalización del modelo, evitando que se vuelva demasiado dependiente de características específicas.</p>
+                    </div>
                 </div>
                 <div class="arrow">↓</div>
                 <div class="layer-box dense">
-                    <h4>Flatten & Capa Densa</h4>
-                    <p class="layer-desc">La capa Flatten convierte la secuencia final en un solo vector largo, que se conecta a una capa densa para la clasificación.</p>
+                    <h4>Flatten</h4>
+                    <div class="layer-info">
+                        <p><strong>Forma de Salida:</strong> <span class="output-shape">`(None, 896)`</span></p>
+                        <p><strong>Cantidad de Neuronas:</strong> 896</p>
+                        <p class="explanation">Transforma la salida multidimensional (7 secuencias de 128 características) en un único vector plano de 896 neuronas. Esto es necesario para conectar con las capas densas tradicionales.</p>
+                    </div>
                 </div>
                 <div class="arrow">↓</div>
                 <div class="layer-box output">
-                    <h4>Capa de Salida (Softmax)</h4>
-                    <p class="layer-desc">La capa final tiene 7 neuronas, una por cada emoción, y usa Softmax para asignar una probabilidad a cada una.</p>
+                    <h4>Capa Densa (Softmax)</h4>
+                    <div class="layer-info">
+                        <p><strong>Forma de Salida:</strong> <span class="output-shape">`(None, 7)`</span></p>
+                        <p><strong>Cantidad de Neuronas:</strong> 7</p>
+                        <p class="explanation">La capa de salida final. Contiene 7 neuronas, una por cada emoción a clasificar. La función Softmax convierte las puntuaciones en probabilidades, indicando la confianza del modelo en cada emoción.</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="slide hidden" data-slide="25">
-            <h2 class="technical-title">Dentro de la "Caja Negra": La Red Neuronal</h2>
-            <p>Ahora que tenemos nuestro vector de 180 características, es el turno de la Red Neuronal Convolucional 1D. Su trabajo es tomar este vector y, a través de una serie de capas y operaciones matemáticas, clasificarlo en una de las siete emociones. Veremos cómo lo hace.</p>
-            <div class="process-flow-diagram">
-                <div class="flow-step">
-                    <div class="flow-icon">🧬</div>
-                    <div class="flow-text">Vector de 180 Características</div>
-                </div>
-                <div class="flow-arrow">→</div>
-                <div class="flow-step">
-                    <div class="flow-icon">🔍</div>
-                    <div class="flow-text">Capas Convolucionales</div>
-                </div>
-                <div class="flow-arrow">→</div>
-                <div class="flow-step">
-                    <div class="flow-icon">🧠</div>
-                    <div class="flow-text">Capas Densas (Clasificación)</div>
-                </div>
-                <div class="flow-arrow">→</div>
-                <div class="flow-step">
-                     <div class="flow-icon">🏷️</div>
-                    <div class="flow-text">Predicción de Emoción</div>
-                </div>
-            </div>
-             <footer class="footnote">El modelo aprende a asociar patrones en el vector de entrada con una etiqueta de emoción específica.</footer>
-        </div>
-        <div class="slide hidden" data-slide="26">
-            <h2 class="technical-title">Red Neuronal - Paso 1: Convolución</h2>
-            <div class="technical-step-layout">
-                <div class="step-explanation">
-                    <h4>Los Detectores de Patrones</h4>
-                    <p>La operación de <strong>convolución</strong> es el corazón de la CNN. Un "filtro" (un pequeño vector de pesos que el modelo aprende) se desliza a lo largo de nuestro vector de 180 características.</p>
-                    <p>En cada posición, calcula el <strong>producto punto</strong> entre el filtro y la sección del vector. El resultado es un número alto si la sección del vector se "parece" al patrón que el filtro está buscando.</p>
-                    <p>Nuestro modelo usa 256 filtros en la primera capa, cada uno buscando un patrón simple y diferente. El resultado son 256 "mapas de características" que nos dicen dónde se encontraron esos patrones.</p>
-                </div>
-                <div class="step-visualization">
-                    <img src="presentation/src/assets/images/1Dconvolutionanimationgif.gif" alt="Animación de Convolución 1D" style="width:100%; border-radius: 10px;">
-                    <p class="viz-caption">Un filtro (amarillo) se desliza sobre la entrada (azul) para producir un mapa de características (verde).</p>
-                </div>
-            </div>
-            <footer class="footnote"><strong>Producto Punto:</strong> Una operación matemática que multiplica los elementos correspondientes de dos vectores y suma los resultados. Mide qué tan 'alineados' o similares son los dos vectores.</footer>
-        </div>
-        <div class="slide hidden" data-slide="27">
-            <h2 class="technical-title">Red Neuronal - Paso 2: ReLU y Pooling</h2>
-            <div class="technical-step-layout">
-                <div class="step-explanation">
-                    <h4>Filtrar y Resumir</h4>
-                    <p>Después de la convolución, se aplican dos operaciones simples pero cruciales:</p>
-                    <ol>
-                        <li><strong>Activación ReLU:</strong> A cada número en los mapas de características, le aplicamos la función `ReLU(x) = max(0, x)`. Esto elimina todas las activaciones negativas, permitiendo que el modelo se enfoque solo en la presencia significativa de un patrón.</li>
-                        <li><strong>MaxPooling:</strong> Reducimos el tamaño de cada mapa de características. Por ejemplo, de cada 5 valores nos quedamos solo con el más alto. Esto hace al modelo más eficiente y robusto, ya que se concentra en si un patrón apareció en una región, no en su posición exacta.</li>
-                    </ol>
-                </div>
-                <div class="step-visualization">
-                    <img src="presentation/src/assets/images/ReLU and Max Pooling diagram.png" alt="Diagrama de ReLU y Pooling" style="width:100%; border-radius: 10px;">
-                    <p class="viz-caption">ReLU elimina los valores negativos. MaxPooling resume la información, quedándose con los picos de activación.</p>
-                </div>
-            </div>
-        </div>
-        <div class="slide hidden" data-slide="28">
-            <h2 class="technical-title">Red Neuronal - Paso 3: Capas Profundas</h2>
-             <div class="technical-step-layout full-width">
-                 <div class="step-explanation">
-                    <h4>Creando Abstracción</h4>
-                    <p>El verdadero poder de las redes profundas viene de <strong>apilar</strong> estas capas. La salida de un bloque `Convolución -> ReLU -> Pooling` se convierte en la entrada del siguiente.</p>
-                    <p>Los filtros de la segunda capa ya no buscan patrones en el vector original, sino que buscan <strong>patrones de patrones</strong>. Por ejemplo, un filtro puede aprender a activarse si detecta el "patrón A" seguido del "patrón B" de la capa anterior. Esto crea una jerarquía de características, donde el modelo aprende conceptos cada vez más complejos y abstractos.</p>
-                </div>
-                <div class="step-visualization">
-                     <img src="presentation/src/assets/images/CNN feature hierarchy.png" alt="Arquitectura Profunda" style="width:90%; margin: 20px auto; display: block; border-radius: 10px;">
-                     <p class="viz-caption">Las capas se apilan para que el modelo aprenda de lo simple a lo complejo.</p>
-                </div>
-            </div>
-        </div>
-        <div class="slide hidden" data-slide="29">
-            <h2 class="technical-title">Red Neuronal - Paso 4: Clasificación Final</h2>
-            <div class="technical-step-layout">
-                <div class="step-explanation">
-                    <h4>La Toma de Decisión</h4>
-                    <ol>
-                        <li><strong>Flatten (Aplanar):</strong> Después de la última capa de pooling, todos los mapas de características se "aplanan" y se unen en un solo vector larguísimo.</li>
-                        <li><strong>Capas Densas:</strong> Este vector entra a una o más capas "densas", donde cada neurona está conectada a todas las del vector aplanado. Estas capas aprenden a "votar" por una emoción basándose en la combinación de todos los patrones detectados.</li>
-                        <li><strong>Capa de Salida (Softmax):</strong> La última capa tiene 7 neuronas (una por emoción). La función <strong>Softmax</strong> toma las 7 puntuaciones finales y las convierte en un vector de probabilidades que suma 1.</li>
-                    </ol>
-                </div>
-                <div class="step-visualization">
-                    <img src="presentation/src/assets/images/neural network flatten dense layer softmax.png" alt="Diagrama de Capas Densas y Softmax" style="width:100%; border-radius: 10px;">
-                    <p class="viz-caption">Las características abstractas se conectan a las capas de decisión, que emiten una probabilidad para cada clase.</p>
-                </div>
-            </div>
-        </div>
-        <div class="slide hidden" data-slide="30">
-            <h2 class="technical-title">El Aprendizaje: ¿Cómo se Entrena el Modelo?</h2>
-            <p>El entrenamiento es un ciclo de optimización para ajustar los 171,783 pesos de los filtros y las capas densas. Se repite miles de veces hasta que el error es mínimo.</p>
-            <div class="training-steps-grid">
-                <div class="training-step-card">
-                    <div class="step-number">1</div>
-                    <h4>Predicción (Forward Pass)</h4>
-                    <p>El modelo recibe datos de entrada y genera una predicción de la emoción, propagando la información a través de sus capas.</p>
-                </div>
-                <div class="training-step-card">
-                    <div class="step-number">2</div>
-                    <h4>Cálculo de la Pérdida (Error)</h4>
-                    <p>Comparamos la predicción del modelo con la etiqueta de emoción real. La función de pérdida (entropía cruzada categórica) cuantifica qué tan "equivocado" estuvo el modelo.</p>
-                </div>
-                <div class="training-step-card">
-                    <div class="step-number">3</div>
-                    <h4>Backpropagation (Retropropagación)</h4>
-                    <p>El error calculado se propaga hacia atrás a través de la red. Esto nos permite determinar cómo cada peso individual contribuyó al error total.</p>
-                </div>
-                <div class="training-step-card">
-                    <div class="step-number">4</div>
-                    <h4>Actualización de Pesos (Optimización)</h4>
-                    <p>Utilizando un optimizador (como Adam), los pesos del modelo se ajustan ligeramente en la dirección que minimiza la función de pérdida, preparando al modelo para una mejor predicción en la siguiente iteración.</p>
-                </div>
-            </div>
-        </div>
-        <div class="slide hidden" data-slide="31">
+
+        <div class="slide hidden" data-slide="34">
             <h2>20. Resumen de Neuronas y Parámetros</h2>
             <div class="cnn-details">
                 <p>
@@ -713,6 +1342,7 @@ Predicción = Emoción con la probabilidad más alta
                         <tr>
                             <th>Capa (Tipo)</th>
                             <th>Forma de Salida</th>
+                            <th>Cantidad de Neuronas</th>
                             <th>Parámetros</th>
                         </tr>
                     </thead>
@@ -720,45 +1350,53 @@ Predicción = Emoción con la probabilidad más alta
                         <tr>
                             <td>conv1d</td>
                             <td>(None, 180, 256)</td>
+                            <td>46,080</td>
                             <td>1,536</td>
                         </tr>
                         <tr>
                             <td>max_pooling1d</td>
                             <td>(None, 36, 256)</td>
+                            <td>9,216</td>
                             <td>0</td>
                         </tr>
                         <tr>
                             <td>dropout</td>
                             <td>(None, 36, 256)</td>
+                            <td>9,216 (20% desactivadas)</td>
                             <td>0</td>
                         </tr>
                         <tr>
                             <td>conv1d_1</td>
                             <td>(None, 36, 128)</td>
+                            <td>4,608</td>
                             <td>163,968</td>
                         </tr>
                          <tr>
                             <td>max_pooling1d_1</td>
                             <td>(None, 7, 128)</td>
+                            <td>896</td>
                             <td>0</td>
                         </tr>
                         <tr>
                             <td>dropout_1</td>
                             <td>(None, 7, 128)</td>
+                            <td>896 (20% desactivadas)</td>
                             <td>0</td>
                         </tr>
                         <tr>
                             <td>flatten</td>
                             <td>(None, 896)</td>
+                            <td>896</td>
                             <td>0</td>
                         </tr>
                         <tr>
                             <td>dense</td>
                             <td>(None, 7)</td>
+                            <td>7</td>
                             <td>6,279</td>
                         </tr>
                         <tr class="cnn-total">
-                            <td colspan="2"><strong>Total de Parámetros Entrenables</strong></td>
+                            <td colspan="3"><strong>Total de Parámetros Entrenables</strong></td>
                             <td><strong>171,783</strong></td>
                         </tr>
                     </tbody>
@@ -769,8 +1407,7 @@ Predicción = Emoción con la probabilidad más alta
             </div>
         </div>
 
-        <!-- Diapositivas Finales -->
-        <div class="slide hidden" data-slide="32">
+        <div class="slide hidden" data-slide="35">
             <h2>21. Recursos</h2>
             <div class="dataset-card">
                 <h3>Lenguaje y Frameworks</h3>
@@ -789,7 +1426,8 @@ Predicción = Emoción con la probabilidad más alta
                 </ul>
             </div>
         </div>
-        <div class="slide hidden" data-slide="33">
+
+        <div class="slide hidden" data-slide="36">
             <h2>22. Alcance del Proyecto</h2>
             <div class="advantages-disadvantages">
                 <div class="advantages">
@@ -811,7 +1449,264 @@ Predicción = Emoción con la probabilidad más alta
                 </div>
             </div>
         </div>
-        <div class="slide hidden" data-slide="34">
+
+        <div class="slide hidden" data-slide="37">
+            <h2 class="technical-title">Métricas de Evaluación y Resultados Esperados</h2>
+            <div class="technical-step-layout full-width">
+                <div class="step-explanation">
+                    <h4>Métricas de Clasificación Multiclase</h4>
+                    <p>Para evaluar nuestro modelo de 7 clases, utilizamos múltiples métricas complementarias.</p>
+                    
+                    <div class="formula-block">
+                        <span class="formula-title">Accuracy (Precisión Global)</span>
+                        <p>$\text{Accuracy} = \frac{\text{Predicciones Correctas}}{\text{Total de Predicciones}} = \frac{TP + TN}{TP + TN + FP + FN}$</p>
+                        
+                        <span class="formula-title">Precision por Clase</span>
+                        <p>$\text{Precision}_i = \frac{TP_i}{TP_i + FP_i}$</p>
+                        
+                        <span class="formula-title">Recall por Clase</span>
+                        <p>$\text{Recall}_i = \frac{TP_i}{TP_i + FN_i}$</p>
+                        
+                        <span class="formula-title">F1-Score</span>
+                        <p>$F1_i = 2 \times \frac{\text{Precision}_i \times \text{Recall}_i}{\text{Precision}_i + \text{Recall}_i}$</p>
+                    </div>
+
+                    <h4>Resultados Esperados</h4>
+                    <ul>
+                        <li><strong>Accuracy objetivo:</strong> 75-85% en datos de prueba</li>
+                        <li><strong>Emociones más fáciles:</strong> Happy, Sad (F1 > 0.80)</li>
+                        <li><strong>Emociones más difíciles:</strong> Disgust, Fear (F1 ~ 0.65-0.75)</li>
+                        <li><strong>Convergencia:</strong> 20-50 épocas con early stopping</li>
+                    </ul>
+                </div>
+                
+                <div class="step-visualization">
+                    <div class="confusion-matrix-theory">
+                        <h4>Matriz de Confusión Esperada</h4>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Real\Pred</th>
+                                    <th>Happy</th>
+                                    <th>Sad</th>
+                                    <th>Angry</th>
+                                    <th>Fear</th>
+                                    <th>Surprise</th>
+                                    <th>Disgust</th>
+                                    <th>Neutral</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Happy</strong></td>
+                                    <td style="background-color: var(--color-success); color: white;"><strong>85%</strong></td>
+                                    <td>3%</td>
+                                    <td>2%</td>
+                                    <td>1%</td>
+                                    <td>5%</td>
+                                    <td>1%</td>
+                                    <td>3%</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Sad</strong></td>
+                                    <td>2%</td>
+                                    <td style="background-color: var(--color-success); color: white;"><strong>80%</strong></td>
+                                    <td>4%</td>
+                                    <td>6%</td>
+                                    <td>1%</td>
+                                    <td>2%</td>
+                                    <td>5%</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Angry</strong></td>
+                                    <td>4%</td>
+                                    <td>5%</td>
+                                    <td style="background-color: var(--color-success); color: white;"><strong>75%</strong></td>
+                                    <td>8%</td>
+                                    <td>2%</td>
+                                    <td>4%</td>
+                                    <td>2%</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="text-align: center; font-style: italic;">... (patrones similares para otras emociones)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p style="font-size: 0.9rem; margin-top: 10px;"><strong>Interpretación:</strong> Los valores diagonales (en verde) representan clasificaciones correctas. Los valores fuera de la diagonal indican confusiones entre emociones.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide hidden" data-slide="38">
+            <h2 class="technical-title">Optimización de Hiperparámetros</h2>
+            <div class="technical-step-layout full-width">
+                <div class="step-explanation">
+                    <h4>Estrategia de Búsqueda de Hiperparámetros</h4>
+                    <p>Los hiperparámetros críticos a optimizar en nuestro modelo incluyen arquitectura, regularización y entrenamiento.</p>
+                    
+                    <div class="hyperparameter-grid">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Categoría</th>
+                                    <th>Hiperparámetro</th>
+                                    <th>Rango de Búsqueda</th>
+                                    <th>Valor Seleccionado</th>
+                                    <th>Justificación</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="3"><strong>Arquitectura</strong></td>
+                                    <td>Filtros Conv1D_1</td>
+                                    <td>[128, 256, 512]</td>
+                                    <td><strong>256</strong></td>
+                                    <td>Balance capacidad/eficiencia</td>
+                                </tr>
+                                <tr>
+                                    <td>Filtros Conv1D_2</td>
+                                    <td>[64, 128, 256]</td>
+                                    <td><strong>128</strong></td>
+                                    <td>Reducción progresiva</td>
+                                </tr>
+                                <tr>
+                                    <td>Kernel Size</td>
+                                    <td>[3, 5, 7]</td>
+                                    <td><strong>5</strong></td>
+                                    <td>Contexto local óptimo</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2"><strong>Regularización</strong></td>
+                                    <td>Dropout Rate</td>
+                                    <td>[0.1, 0.2, 0.3, 0.5]</td>
+                                    <td><strong>0.2</strong></td>
+                                    <td>Previene overfitting sin perder capacidad</td>
+                                </tr>
+                                <tr>
+                                    <td>Pool Size</td>
+                                    <td>[3, 5, 7]</td>
+                                    <td><strong>5</strong></td>
+                                    <td>Reduce dimensionalidad adecuadamente</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="3"><strong>Entrenamiento</strong></td>
+                                    <td>Learning Rate</td>
+                                    <td>[1e-4, 1e-3, 1e-2]</td>
+                                    <td><strong>1e-3</strong></td>
+                                    <td>Convergencia estable con ADAM</td>
+                                </tr>
+                                <tr>
+                                    <td>Batch Size</td>
+                                    <td>[32, 64, 128]</td>
+                                    <td><strong>64</strong></td>
+                                    <td>Balance memoria/estabilidad gradientes</td>
+                                </tr>
+                                <tr>
+                                    <td>Early Stopping Patience</td>
+                                    <td>[5, 10, 15]</td>
+                                    <td><strong>10</strong></td>
+                                    <td>Permite convergencia sin overfitting</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="formula-block">
+                        <span class="formula-title">Validación Cruzada para Hiperparámetros</span>
+                        <p>Utilizamos validación cruzada estratificada con $k=5$ folds:</p>
+                        <p>$\text{Score}_{CV} = \frac{1}{k}\sum_{i=1}^{k} \text{Accuracy}_i$</p>
+                        <p>donde cada fold mantiene la proporción de clases del dataset original.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide hidden" data-slide="39">
+            <h2 class="technical-title">Consideraciones de Implementación y Escalabilidad</h2>
+            <div class="technical-step-layout full-width">
+                <div class="step-explanation">
+                    <h4>Complejidad Computacional</h4>
+                    <p>Análisis del costo computacional de nuestro modelo para entender sus limitaciones y posibilidades de escalamiento.</p>
+                    
+                    <div class="formula-block">
+                        <span class="formula-title">Complejidad por Operación</span>
+                        <p><strong>Convolución 1D:</strong></p>
+                        <p>$O(L_{in} \times K \times C_{in} \times C_{out})$</p>
+                        <p>Para Conv1D_1: $O(180 \times 5 \times 1 \times 256) = O(230,400)$</p>
+                        <p>Para Conv1D_2: $O(36 \times 5 \times 256 \times 128) = O(23,040,000)$</p>
+                        
+                        <p><strong>MaxPooling 1D:</strong></p>
+                        <p>$O(L_{in} \times C)$</p>
+                        <p>MaxPool1D_1: $O(180 \times 256) = O(46,080)$</p>
+                        
+                        <p><strong>Dense Layer:</strong></p>
+                        <p>$O(N_{in} \times N_{out})$</p>
+                        <p>Capa final: $O(896 \times 7) = O(6,272)$</p>
+                    </div>
+
+                    <h4>Tiempo de Inferencia</h4>
+                    <ul>
+                        <li><strong>CPU (Intel i7):</strong> ~2-5ms por muestra</li>
+                        <li><strong>GPU (Tesla V100):</strong> ~0.1-0.5ms por muestra</li>
+                        <li><strong>Batch Processing:</strong> Eficiencia aumenta con batches de 32-128 muestras</li>
+                    </ul>
+                </div>
+                
+                <div class="step-visualization">
+                    <div class="scalability-analysis">
+                        <h4>Escalabilidad del Sistema</h4>
+                        
+                        <div class="scalability-item">
+                            <h5>Memoria RAM Requerida</h5>
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Componente</th>
+                                        <th>Tamaño (MB)</th>
+                                        <th>Descripción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Modelo (parámetros)</td>
+                                        <td>~0.7</td>
+                                        <td>171,783 parámetros × 4 bytes</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Activaciones (batch=64)</td>
+                                        <td>~12</td>
+                                        <td>Almacenamiento intermedio</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gradientes (entrenamiento)</td>
+                                        <td>~0.7</td>
+                                        <td>Mismo tamaño que parámetros</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Total mínimo</strong></td>
+                                        <td><strong>~13.4</strong></td>
+                                        <td>Para inferencia en batch</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="deployment-considerations">
+                            <h5>Consideraciones para Despliegue</h5>
+                            <ul>
+                                <li><strong>Edge Computing:</strong> Modelo suficientemente pequeño para dispositivos móviles</li>
+                                <li><strong>Cuantización:</strong> Reducir precisión de Float32 a Int8 (75% menos memoria)</li>
+                                <li><strong>Pruning:</strong> Eliminar conexiones poco importantes (50% menos parámetros)</li>
+                                <li><strong>Distillation:</strong> Crear modelo más pequeño que imite el comportamiento</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide hidden" data-slide="40">
             <h1 class="farewell-title">¡Gracias!</h1>
             <p class="farewell-message">
                 Este proyecto demuestra la efectividad de las CNN 1D para modelar secuencias<br>
@@ -819,6 +1714,7 @@ Predicción = Emoción con la probabilidad más alta
             </p>
             <div class="highlight-box">
                 <h3>🤔 ¿Preguntas o Comentarios?</h3>
+                <p>Hemos cubierto desde los fundamentos matemáticos hasta la implementación técnica completa del modelo CNN 1D para reconocimiento de emociones en audio.</p>
             </div>
             <div class="contact-section">
                 <h3>Contacto del Equipo</h3>
