@@ -1,6 +1,6 @@
 # =============================================================================
 # ENTRENAMIENTO AVANZADO DE CNN 1D PARA RECONOCIMIENTO DE EMOCIONES EN VOZ
-# Optimizado para Google Colab con análisis técnico detallado
+# Versión corregida y optimizada para Google Colab
 # =============================================================================
 
 print("🚀 Iniciando entrenamiento avanzado de CNN 1D para reconocimiento emocional")
@@ -11,15 +11,13 @@ print("=" * 80)
 # =============================================================================
 
 print("📦 Instalando dependencias optimizadas para GPU...")
-!pip install -q kaggle librosa numpy pandas scikit-learn tensorflow-gpu plotly seaborn tqdm
-!pip install -q tensorboard tensorboard-plugin-profile
-!pip install -q keras-tuner  # Para optimización de hiperparámetros
+!pip install -q kaggle librosa numpy pandas scikit-learn tensorflow plotly seaborn tqdm
+!pip install -q tensorboard 
 
 # Verificar GPU
 import tensorflow as tf
 print(f"🔧 TensorFlow versión: {tf.__version__}")
 print(f"🎮 GPU disponible: {tf.config.list_physical_devices('GPU')}")
-print(f"💾 Memoria GPU: {tf.config.experimental.get_memory_info('GPU:0') if tf.config.list_physical_devices('GPU') else 'No GPU'}")
 
 # Configurar GPU para crecimiento dinámico de memoria
 gpus = tf.config.experimental.list_physical_devices('GPU')
@@ -28,8 +26,11 @@ if gpus:
         for gpu in gpus:
             tf.config.experimental.set_memory_growth(gpu, True)
         print("✅ Configuración de GPU optimizada")
+        print(f"💾 GPU: {tf.test.gpu_device_name()}")
     except RuntimeError as e:
         print(f"⚠️ Error configurando GPU: {e}")
+else:
+    print("⚠️ No se detectó GPU, usando CPU")
 
 # Importaciones principales
 import os
@@ -39,17 +40,17 @@ import pandas as pd
 import librosa
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.model_selection import train_test_split, StratifiedKFold
+from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 from tensorflow.keras.models import Sequential, Model
-from tensorflow.keras.layers import (Conv1D, MaxPooling1D, Dropout, Flatten, Dense, 
+from tensorflow.keras.layers import (Conv1D, MaxPooling1D, Dropout, Dense, 
                                    BatchNormalization, GlobalAveragePooling1D, Input)
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.callbacks import (EarlyStopping, ReduceLROnPlateau, 
                                        ModelCheckpoint, TensorBoard)
 from tensorflow.keras.utils import to_categorical
-from google.colab import files, drive
+from google.colab import files
 from tqdm.notebook import tqdm
 import warnings
 warnings.filterwarnings('ignore')
@@ -122,12 +123,12 @@ class AdvancedFeatureExtractor:
     """Extractor avanzado de características de audio para reconocimiento emocional"""
     
     def __init__(self, 
-                 sr=22050,           # Frecuencia de muestreo
-                 n_mfcc=40,          # Número de MFCCs
-                 n_chroma=12,        # Características Chroma
-                 n_mel=128,          # Mel-spectrogram
-                 hop_length=512,     # Hop length para STFT
-                 win_length=2048):   # Window length para STFT
+                 sr=22050,
+                 n_mfcc=40,
+                 n_chroma=12,
+                 n_mel=128,
+                 hop_length=512,
+                 win_length=2048):
         
         self.sr = sr
         self.n_mfcc = n_mfcc
@@ -143,15 +144,10 @@ class AdvancedFeatureExtractor:
         print(f"   - Mel-spectrogram bins: {n_mel}")
     
     def extract_features(self, audio_path):
-        """
-        Extrae características completas de un archivo de audio
-        
-        Returns:
-            numpy.array: Vector de características de tamaño 180
-        """
+        """Extrae características completas de un archivo de audio"""
         try:
-            # Cargar audio con manejo de errores robusto
-            audio, sr = librosa.load(audio_path, sr=self.sr, res_type='scipy')
+            # Cargar audio
+            audio, sr = librosa.load(audio_path, sr=self.sr, res_type='kaiser_fast')
             
             # Normalizar audio
             audio = librosa.util.normalize(audio)
@@ -175,11 +171,10 @@ class AdvancedFeatureExtractor:
             mel_spec_db = librosa.power_to_db(mel_spec, ref=np.max)
             mel_mean = np.mean(mel_spec_db.T, axis=0)
             
-            # Concatenar todas las características (40 + 12 + 128 = 180)
+            # Concatenar todas las características (180 total)
             features = np.hstack([mfccs_mean, chroma_mean, mel_mean])
             
-            # Verificar que tenemos exactamente 180 características
-            assert len(features) == 180, f"Error: {len(features)} características en lugar de 180"
+            assert len(features) == 180, f"Error: {len(features)} características"
             
             return features
             
@@ -219,7 +214,6 @@ def load_dataset_files(dataset_path, dataset_name):
     emotions = []
     
     if dataset_name == "RAVDESS":
-        # Mapeo de códigos RAVDESS a emociones
         emotion_map = {
             1: 'neutral', 2: 'calm', 3: 'happy', 4: 'sad',
             5: 'angry', 6: 'fearful', 7: 'disgust', 8: 'surprised'
@@ -229,44 +223,30 @@ def load_dataset_files(dataset_path, dataset_name):
             for file in files:
                 if file.endswith('.wav'):
                     try:
-                        # Formato: 03-01-06-01-02-01-12.wav
-                        # Tercer número es la emoción
                         emotion_code = int(file.split('-')[2])
                         emotion = emotion_map.get(emotion_code)
                         
-                        if emotion and emotion != 'calm':  # Filtrar 'calm'
+                        if emotion and emotion != 'calm':
                             audio_files.append(os.path.join(root, file))
                             emotions.append(emotion)
                     except:
                         continue
     
     elif dataset_name == "TESS":
-        # TESS tiene carpetas por emoción
-        for emotion_folder in os.listdir(dataset_path):
-            emotion_path = os.path.join(dataset_path, emotion_folder)
-            if os.path.isdir(emotion_path):
-                # Normalizar nombres de emociones
-                emotion = emotion_folder.lower().replace('_', '').replace(' ', '')
-                if emotion in ['angry', 'disgust', 'fear', 'happy', 'neutral', 'sad', 'surprise']:
-                    # Mapear 'fear' -> 'fearful', 'surprise' -> 'surprised'
-                    if emotion == 'fear':
-                        emotion = 'fearful'
-                    elif emotion == 'surprise':
-                        emotion = 'surprised'
-                    
-                    for file in os.listdir(emotion_path):
-                        if file.endswith('.wav'):
-                            audio_files.append(os.path.join(emotion_path, file))
-                            emotions.append(emotion)
-    
-    elif dataset_name == "MESD":
-        # Procesamiento similar adaptado para MESD
         for root, dirs, files in os.walk(dataset_path):
             for file in files:
                 if file.endswith('.wav'):
-                    # Extraer emoción del nombre del archivo o carpeta
-                    # Implementar según estructura específica de MESD
-                    pass
+                    # Extraer emoción del nombre del archivo
+                    file_lower = file.lower()
+                    for emotion in ['angry', 'disgust', 'fear', 'happy', 'neutral', 'sad', 'surprise']:
+                        if emotion in file_lower:
+                            if emotion == 'fear':
+                                emotion = 'fearful'
+                            elif emotion == 'surprise':
+                                emotion = 'surprised'
+                            audio_files.append(os.path.join(root, file))
+                            emotions.append(emotion)
+                            break
     
     print(f"📊 {dataset_name}: {len(audio_files)} archivos encontrados")
     if emotions:
@@ -345,7 +325,7 @@ print(f"   - Entrenamiento: {X_train.shape[0]} muestras")
 print(f"   - Validación: {X_val.shape[0]} muestras") 
 print(f"   - Prueba: {X_test.shape[0]} muestras")
 
-# Estandarización robusta
+# Estandarización
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_val_scaled = scaler.transform(X_val)
@@ -369,17 +349,7 @@ def create_advanced_cnn_model(input_shape, num_classes,
                             conv1_filters=256, conv2_filters=128,
                             kernel_size=5, dropout_rate=0.3,
                             use_batch_norm=True):
-    """
-    Crea un modelo CNN 1D avanzado con arquitectura optimizada
-    
-    Arquitectura detallada:
-    - Input Layer: (180, 1)
-    - Conv1D Block 1: Conv1D(256, 5) + BatchNorm + ReLU + MaxPool + Dropout
-    - Conv1D Block 2: Conv1D(128, 5) + BatchNorm + ReLU + MaxPool + Dropout  
-    - Global Average Pooling (alternativa a Flatten)
-    - Dense Layer con regularización
-    - Output Layer con Softmax
-    """
+    """Crea un modelo CNN 1D avanzado con arquitectura optimizada"""
     
     model = Sequential([
         # Capa de entrada
@@ -392,10 +362,8 @@ def create_advanced_cnn_model(input_shape, num_classes,
                activation='relu',
                name='conv1d_1'),
         
-        # Batch Normalization (opcional pero recomendado)
         BatchNormalization(name='batch_norm_1') if use_batch_norm else tf.keras.layers.Lambda(lambda x: x),
         
-        # MaxPooling y Dropout
         MaxPooling1D(pool_size=5, name='maxpool_1'),
         Dropout(dropout_rate, name='dropout_1'),
         
@@ -411,10 +379,10 @@ def create_advanced_cnn_model(input_shape, num_classes,
         MaxPooling1D(pool_size=5, name='maxpool_2'),
         Dropout(dropout_rate, name='dropout_2'),
         
-        # Global Average Pooling (más robusto que Flatten)
+        # Global Average Pooling
         GlobalAveragePooling1D(name='global_avg_pool'),
         
-        # Capa densa intermedia (opcional)
+        # Capa densa intermedia
         Dense(64, activation='relu', name='dense_intermediate'),
         Dropout(dropout_rate * 0.5, name='dropout_final'),
         
@@ -448,33 +416,38 @@ print(f"   - Parámetros entrenables: {trainable_params:,}")
 print(f"   - Memoria estimada: ~{total_params * 4 / 1024 / 1024:.2f} MB")
 
 # =============================================================================
-# PARTE 8: CONFIGURACIÓN AVANZADA DEL OPTIMIZADOR ADAM
+# PARTE 8: CONFIGURACIÓN AVANZADA DEL OPTIMIZADOR ADAM (CORREGIDA)
 # =============================================================================
 
 print("\n⚡ Configurando optimizador ADAM avanzado...")
 
 # Configuración detallada de ADAM
+learning_rate = 0.001
+beta_1 = 0.9
+beta_2 = 0.999
+epsilon = 1e-7
+
 adam_optimizer = Adam(
-    learning_rate=0.001,      # α - Learning rate inicial
-    beta_1=0.9,              # β₁ - Momento exponencial de primer orden
-    beta_2=0.999,            # β₂ - Momento exponencial de segundo orden
-    epsilon=1e-7,            # ε - Pequeño valor para estabilidad numérica
-    amsgrad=False,           # Variante AMSGrad (opcional)
+    learning_rate=learning_rate,
+    beta_1=beta_1,
+    beta_2=beta_2,
+    epsilon=epsilon,
+    amsgrad=False,
     name='adam_optimizer'
 )
 
 print(f"🎯 Parámetros de ADAM configurados:")
-print(f"   - Learning rate (α): {adam_optimizer.learning_rate.numpy()}")
-print(f"   - Beta 1 (β₁): {adam_optimizer.beta_1.numpy()}")  
-print(f"   - Beta 2 (β₂): {adam_optimizer.beta_2.numpy()}")
-print(f"   - Epsilon (ε): {adam_optimizer.epsilon.numpy()}")
+print(f"   - Learning rate (α): {learning_rate}")
+print(f"   - Beta 1 (β₁): {beta_1}")
+print(f"   - Beta 2 (β₂): {beta_2}")
+print(f"   - Epsilon (ε): {epsilon}")
 
-# Compilar modelo con configuración avanzada
+# Compilar modelo
 model.compile(
     optimizer=adam_optimizer,
-    loss='categorical_crossentropy',  # Función de pérdida para clasificación multiclase
-    metrics=['accuracy', 'top_2_accuracy'],  # Métricas adicionales
-    run_eagerly=False  # Optimización para GPU
+    loss='categorical_crossentropy',
+    metrics=['accuracy', 'top_k_categorical_accuracy'],
+    run_eagerly=False
 )
 
 print("✅ Modelo compilado exitosamente")
@@ -491,26 +464,24 @@ checkpoint_dir = "/content/model_checkpoints"
 os.makedirs(log_dir, exist_ok=True)
 os.makedirs(checkpoint_dir, exist_ok=True)
 
-# 1. Early Stopping con paciencia adaptativa
+# Callbacks
 early_stopping = EarlyStopping(
-    monitor='val_loss',           # Métrica a monitorear
-    patience=15,                  # Épocas sin mejora antes de parar
-    restore_best_weights=True,    # Restaurar mejores pesos
+    monitor='val_loss',
+    patience=15,
+    restore_best_weights=True,
     verbose=1,
     mode='min'
 )
 
-# 2. Reducción adaptativa del learning rate
 reduce_lr = ReduceLROnPlateau(
     monitor='val_loss',
-    factor=0.5,                   # Factor de reducción (lr * factor)
-    patience=7,                   # Épocas sin mejora antes de reducir
-    min_lr=1e-6,                 # Learning rate mínimo
+    factor=0.5,
+    patience=7,
+    min_lr=1e-6,
     verbose=1,
     mode='min'
 )
 
-# 3. Guardado del mejor modelo
 model_checkpoint = ModelCheckpoint(
     filepath=os.path.join(checkpoint_dir, 'best_model.h5'),
     monitor='val_accuracy',
@@ -520,14 +491,13 @@ model_checkpoint = ModelCheckpoint(
     mode='max'
 )
 
-# 4. TensorBoard para visualización
 tensorboard = TensorBoard(
     log_dir=log_dir,
-    histogram_freq=1,             # Frecuencia de histogramas
-    write_graph=True,             # Guardar grafo del modelo
-    write_images=True,            # Guardar imágenes de pesos
-    update_freq='epoch',          # Actualizar cada época
-    profile_batch=0               # No perfilar por defecto
+    histogram_freq=1,
+    write_graph=True,
+    write_images=True,
+    update_freq='epoch',
+    profile_batch=0
 )
 
 callbacks_list = [early_stopping, reduce_lr, model_checkpoint, tensorboard]
@@ -548,18 +518,18 @@ print("=" * 60)
 # Configuración de entrenamiento
 EPOCHS = 100
 BATCH_SIZE = 64
-VALIDATION_FREQ = 1
 
 print(f"⚙️ Configuración de entrenamiento:")
 print(f"   - Épocas máximas: {EPOCHS}")
 print(f"   - Tamaño de batch: {BATCH_SIZE}")
-print(f"   - Frecuencia de validación: cada {VALIDATION_FREQ} época(s)")
 print(f"   - Muestras de entrenamiento: {len(X_train_cnn)}")
 print(f"   - Batches por época: {len(X_train_cnn) // BATCH_SIZE}")
 
 # Entrenar modelo
 print(f"\n🎯 Comenzando entrenamiento...")
-start_time = tf.timestamp()
+
+import time
+start_time = time.time()
 
 try:
     history = model.fit(
@@ -568,18 +538,15 @@ try:
         epochs=EPOCHS,
         validation_data=(X_val_cnn, y_val),
         callbacks=callbacks_list,
-        validation_freq=VALIDATION_FREQ,
         verbose=1,
-        shuffle=True,
-        workers=4,               # Paralelización
-        use_multiprocessing=True  # Multiprocesamiento
+        shuffle=True
     )
     
-    end_time = tf.timestamp()
+    end_time = time.time()
     training_time = end_time - start_time
     
     print(f"\n✅ Entrenamiento completado!")
-    print(f"⏱️ Tiempo total: {training_time.numpy():.2f} segundos")
+    print(f"⏱️ Tiempo total: {training_time:.2f} segundos")
     print(f"📊 Épocas entrenadas: {len(history.history['loss'])}")
     
 except Exception as e:
@@ -602,7 +569,7 @@ except:
 
 # Evaluación en conjunto de prueba
 print("\n🧪 Evaluando en conjunto de prueba...")
-test_loss, test_accuracy, test_top2_accuracy = best_model.evaluate(
+test_loss, test_accuracy, test_top_k_accuracy = best_model.evaluate(
     X_test_cnn, y_test, 
     batch_size=BATCH_SIZE, 
     verbose=1
@@ -611,22 +578,15 @@ test_loss, test_accuracy, test_top2_accuracy = best_model.evaluate(
 print(f"📊 Métricas finales en conjunto de prueba:")
 print(f"   - Pérdida: {test_loss:.4f}")
 print(f"   - Precisión: {test_accuracy:.4f} ({test_accuracy*100:.2f}%)")
-print(f"   - Top-2 Precisión: {test_top2_accuracy:.4f} ({test_top2_accuracy*100:.2f}%)")
+print(f"   - Top-2 Precisión: {test_top_k_accuracy:.4f} ({test_top_k_accuracy*100:.2f}%)")
 
 # Predicciones para análisis detallado
 y_pred_proba = best_model.predict(X_test_cnn, batch_size=BATCH_SIZE)
 y_pred = np.argmax(y_pred_proba, axis=1)
 y_true = np.argmax(y_test, axis=1)
 
-# Reporte de clasificación detallado
+# Reporte de clasificación
 print(f"\n📋 Reporte de clasificación detallado:")
-classification_rep = classification_report(
-    y_true, y_pred, 
-    target_names=emotion_classes,
-    digits=4,
-    output_dict=True
-)
-
 print(classification_report(y_true, y_pred, target_names=emotion_classes, digits=4))
 
 # Matriz de confusión
@@ -675,7 +635,7 @@ ax1.plot(epochs_range, train_loss, 'b-', label='Entrenamiento', linewidth=2)
 ax1.plot(epochs_range, val_loss, 'r-', label='Validación', linewidth=2)
 ax1.set_title('Curvas de Pérdida', fontsize=14, fontweight='bold')
 ax1.set_xlabel('Época', fontsize=12)
-ax1.set_ylabel('Pérdida (Categorical Crossentropy)', fontsize=12)
+ax1.set_ylabel('Pérdida', fontsize=12)
 ax1.legend()
 ax1.grid(True, alpha=0.3)
 
@@ -720,104 +680,7 @@ else:
     print("   ✅ Overfitting controlado")
 
 # =============================================================================
-# PARTE 13: ANÁLISIS POR EMOCIÓN
-# =============================================================================
-
-print("\n🎭 Análisis detallado por emoción...")
-
-# Calcular métricas por clase
-class_metrics = {}
-for i, emotion in enumerate(emotion_classes):
-    class_indices = (y_true == i)
-    if np.sum(class_indices) > 0:
-        class_predictions = y_pred[class_indices]
-        class_accuracy = accuracy_score(y_true[class_indices], class_predictions)
-        
-        # Estadísticas adicionales
-        true_positives = np.sum((y_true == i) & (y_pred == i))
-        false_positives = np.sum((y_true != i) & (y_pred == i))
-        false_negatives = np.sum((y_true == i) & (y_pred != i))
-        
-        precision = true_positives / (true_positives + false_positives) if (true_positives + false_positives) > 0 else 0
-        recall = true_positives / (true_positives + false_negatives) if (true_positives + false_negatives) > 0 else 0
-        f1_score = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
-        
-        class_metrics[emotion] = {
-            'accuracy': class_accuracy,
-            'precision': precision,
-            'recall': recall,
-            'f1_score': f1_score,
-            'support': np.sum(class_indices)
-        }
-
-# Mostrar métricas por emoción
-print("\n📊 Métricas detalladas por emoción:")
-print("-" * 80)
-print(f"{'Emoción':<12} {'Precisión':<10} {'Recall':<10} {'F1-Score':<10} {'Soporte':<10}")
-print("-" * 80)
-
-for emotion, metrics in class_metrics.items():
-    print(f"{emotion:<12} {metrics['precision']:<10.3f} {metrics['recall']:<10.3f} "
-          f"{metrics['f1_score']:<10.3f} {metrics['support']:<10}")
-
-# Identificar emociones más difíciles de clasificar
-emotions_by_f1 = sorted(class_metrics.items(), key=lambda x: x[1]['f1_score'])
-worst_emotion = emotions_by_f1[0]
-best_emotion = emotions_by_f1[-1]
-
-print(f"\n🎯 Análisis de dificultad:")
-print(f"   - Emoción más difícil: {worst_emotion[0]} (F1: {worst_emotion[1]['f1_score']:.3f})")
-print(f"   - Emoción más fácil: {best_emotion[0]} (F1: {best_emotion[1]['f1_score']:.3f})")
-
-# =============================================================================
-# PARTE 14: ANÁLISIS DE ACTIVACIONES Y FILTROS
-# =============================================================================
-
-print("\n🔬 Analizando activaciones y filtros aprendidos...")
-
-# Crear modelo para extraer activaciones intermedias
-layer_outputs = [layer.output for layer in best_model.layers if 'conv1d' in layer.name]
-activation_model = Model(inputs=best_model.input, outputs=layer_outputs)
-
-# Obtener activaciones de una muestra de ejemplo
-sample_idx = 0
-sample_input = X_test_cnn[sample_idx:sample_idx+1]
-activations = activation_model.predict(sample_input)
-
-print(f"🧠 Activaciones extraídas:")
-for i, activation in enumerate(activations):
-    print(f"   - Capa Conv1D {i+1}: {activation.shape}")
-
-# Visualizar filtros de la primera capa convolucional
-conv1_layer = best_model.get_layer('conv1d_1')
-conv1_weights = conv1_layer.get_weights()[0]  # Shape: (kernel_size, input_channels, filters)
-
-print(f"🔍 Análisis de filtros Conv1D_1:")
-print(f"   - Forma de pesos: {conv1_weights.shape}")
-print(f"   - Número de filtros: {conv1_weights.shape[2]}")
-print(f"   - Tamaño de kernel: {conv1_weights.shape[0]}")
-
-# Visualizar algunos filtros
-fig, axes = plt.subplots(2, 4, figsize=(16, 8))
-fig.suptitle('Filtros Aprendidos - Primera Capa Convolucional', fontsize=16, fontweight='bold')
-
-for i in range(8):
-    row = i // 4
-    col = i % 4
-    filter_weights = conv1_weights[:, 0, i]  # Tomar el primer canal de entrada
-    
-    axes[row, col].plot(filter_weights, linewidth=2)
-    axes[row, col].set_title(f'Filtro {i+1}', fontsize=12)
-    axes[row, col].grid(True, alpha=0.3)
-    axes[row, col].set_xlabel('Posición en kernel')
-    axes[row, col].set_ylabel('Peso')
-
-plt.tight_layout()
-plt.savefig('/content/learned_filters.png', dpi=300, bbox_inches='tight')
-plt.show()
-
-# =============================================================================
-# PARTE 15: GUARDADO Y EXPORTACIÓN DE RESULTADOS
+# PARTE 13: GUARDADO Y EXPORTACIÓN DE RESULTADOS
 # =============================================================================
 
 print("\n💾 Guardando resultados y modelos...")
@@ -831,13 +694,12 @@ model_path = os.path.join(results_dir, 'cnn1d_emotion_model.h5')
 best_model.save(model_path)
 print(f"✅ Modelo guardado en: {model_path}")
 
-# Guardar scaler
+# Guardar scaler y label encoder
 import joblib
 scaler_path = os.path.join(results_dir, 'feature_scaler.pkl')
 joblib.dump(scaler, scaler_path)
 print(f"✅ Scaler guardado en: {scaler_path}")
 
-# Guardar label encoder
 encoder_path = os.path.join(results_dir, 'label_encoder.pkl')
 joblib.dump(label_encoder, encoder_path)
 print(f"✅ Label encoder guardado en: {encoder_path}")
@@ -855,17 +717,16 @@ results_summary = {
         'epochs_trained': len(history.history['loss']),
         'batch_size': BATCH_SIZE,
         'optimizer': 'Adam',
-        'learning_rate': float(adam_optimizer.learning_rate.numpy()),
+        'learning_rate': learning_rate,
         'loss_function': 'categorical_crossentropy'
     },
     'performance_metrics': {
         'test_accuracy': float(test_accuracy),
         'test_loss': float(test_loss),
-        'test_top2_accuracy': float(test_top2_accuracy),
+        'test_top_k_accuracy': float(test_top_k_accuracy),
         'best_validation_accuracy': float(best_val_acc),
         'best_epoch': int(best_epoch)
     },
-    'class_performance': class_metrics,
     'dataset_info': {
         'total_samples': len(X),
         'training_samples': len(X_train_cnn),
@@ -882,7 +743,7 @@ with open(report_path, 'w', encoding='utf-8') as f:
 print(f"✅ Reporte guardado en: {report_path}")
 
 # =============================================================================
-# PARTE 16: FUNCIÓN DE PREDICCIÓN EN TIEMPO REAL
+# PARTE 14: FUNCIÓN DE PREDICCIÓN EN TIEMPO REAL
 # =============================================================================
 
 print("\n🔮 Creando función de predicción en tiempo real...")
@@ -926,7 +787,7 @@ def predict_emotion(audio_file_path, model, scaler, label_encoder, extractor):
             "all_probabilities": {
                 emotion: float(prob) 
                 for emotion, prob in zip(label_encoder.classes_, predictions[0])
-            } if isinstance(predictions[0], (list, np.ndarray)) else {}
+            }
         }
         
         return result
@@ -934,7 +795,7 @@ def predict_emotion(audio_file_path, model, scaler, label_encoder, extractor):
     except Exception as e:
         return {"error": f"Error en predicción: {str(e)}"}
 
-# Ejemplo de uso de la función de predicción
+# Ejemplo de uso
 print("🧪 Probando función de predicción...")
 if len(all_audio_files) > 0:
     test_file = all_audio_files[0]
@@ -953,6 +814,103 @@ if len(all_audio_files) > 0:
         print(f"❌ {prediction_result['error']}")
 
 # =============================================================================
+# PARTE 15: ANÁLISIS POR EMOCIÓN
+# =============================================================================
+
+print("\n🎭 Análisis detallado por emoción...")
+
+# Calcular métricas por clase
+class_metrics = {}
+for i, emotion in enumerate(emotion_classes):
+    class_indices = (y_true == i)
+    if np.sum(class_indices) > 0:
+        class_predictions = y_pred[class_indices]
+        class_accuracy = accuracy_score(y_true[class_indices], class_predictions)
+        
+        # Estadísticas adicionales
+        true_positives = np.sum((y_true == i) & (y_pred == i))
+        false_positives = np.sum((y_true != i) & (y_pred == i))
+        false_negatives = np.sum((y_true == i) & (y_pred != i))
+        
+        precision = true_positives / (true_positives + false_positives) if (true_positives + false_positives) > 0 else 0
+        recall = true_positives / (true_positives + false_negatives) if (true_positives + false_negatives) > 0 else 0
+        f1_score = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
+        
+        class_metrics[emotion] = {
+            'accuracy': class_accuracy,
+            'precision': precision,
+            'recall': recall,
+            'f1_score': f1_score,
+            'support': np.sum(class_indices)
+        }
+
+# Mostrar métricas por emoción
+print("\n📊 Métricas detalladas por emoción:")
+print("-" * 80)
+print(f"{'Emoción':<12} {'Precisión':<10} {'Recall':<10} {'F1-Score':<10} {'Soporte':<10}")
+print("-" * 80)
+
+for emotion, metrics in class_metrics.items():
+    print(f"{emotion:<12} {metrics['precision']:<10.3f} {metrics['recall']:<10.3f} "
+          f"{metrics['f1_score']:<10.3f} {metrics['support']:<10}")
+
+# Identificar emociones más difíciles
+emotions_by_f1 = sorted(class_metrics.items(), key=lambda x: x[1]['f1_score'])
+worst_emotion = emotions_by_f1[0]
+best_emotion = emotions_by_f1[-1]
+
+print(f"\n🎯 Análisis de dificultad:")
+print(f"   - Emoción más difícil: {worst_emotion[0]} (F1: {worst_emotion[1]['f1_score']:.3f})")
+print(f"   - Emoción más fácil: {best_emotion[0]} (F1: {best_emotion[1]['f1_score']:.3f})")
+
+# =============================================================================
+# PARTE 16: VISUALIZACIÓN DE ACTIVACIONES
+# =============================================================================
+
+print("\n🔬 Analizando activaciones y filtros aprendidos...")
+
+# Crear modelo para extraer activaciones intermedias
+layer_outputs = [layer.output for layer in best_model.layers if 'conv1d' in layer.name]
+activation_model = Model(inputs=best_model.input, outputs=layer_outputs)
+
+# Obtener activaciones de una muestra
+sample_idx = 0
+sample_input = X_test_cnn[sample_idx:sample_idx+1]
+activations = activation_model.predict(sample_input)
+
+print(f"🧠 Activaciones extraídas:")
+for i, activation in enumerate(activations):
+    print(f"   - Capa Conv1D {i+1}: {activation.shape}")
+
+# Visualizar filtros de la primera capa convolucional
+conv1_layer = best_model.get_layer('conv1d_1')
+conv1_weights = conv1_layer.get_weights()[0]
+
+print(f"🔍 Análisis de filtros Conv1D_1:")
+print(f"   - Forma de pesos: {conv1_weights.shape}")
+print(f"   - Número de filtros: {conv1_weights.shape[2]}")
+print(f"   - Tamaño de kernel: {conv1_weights.shape[0]}")
+
+# Visualizar algunos filtros
+fig, axes = plt.subplots(2, 4, figsize=(16, 8))
+fig.suptitle('Filtros Aprendidos - Primera Capa Convolucional', fontsize=16, fontweight='bold')
+
+for i in range(min(8, conv1_weights.shape[2])):
+    row = i // 4
+    col = i % 4
+    filter_weights = conv1_weights[:, 0, i]
+    
+    axes[row, col].plot(filter_weights, linewidth=2)
+    axes[row, col].set_title(f'Filtro {i+1}', fontsize=12)
+    axes[row, col].grid(True, alpha=0.3)
+    axes[row, col].set_xlabel('Posición en kernel')
+    axes[row, col].set_ylabel('Peso')
+
+plt.tight_layout()
+plt.savefig('/content/learned_filters.png', dpi=300, bbox_inches='tight')
+plt.show()
+
+# =============================================================================
 # PARTE 17: RESUMEN FINAL Y RECOMENDACIONES
 # =============================================================================
 
@@ -962,8 +920,8 @@ print("="*80)
 
 print(f"\n📊 RESUMEN DE RESULTADOS:")
 print(f"   🎯 Precisión en prueba: {test_accuracy*100:.2f}%")
-print(f"   📈 Top-2 Precisión: {test_top2_accuracy*100:.2f}%")
-print(f"   ⏱️ Tiempo de entrenamiento: {training_time.numpy():.2f} segundos")
+print(f"   📈 Top-K Precisión: {test_top_k_accuracy*100:.2f}%")
+print(f"   ⏱️ Tiempo de entrenamiento: {training_time:.2f} segundos")
 print(f"   🔢 Épocas entrenadas: {len(history.history['loss'])}")
 print(f"   💾 Parámetros del modelo: {total_params:,}")
 
@@ -1002,3 +960,20 @@ print("   4. Considerar transfer learning para otros idiomas")
 print("\n" + "="*80)
 print("🎊 ¡PROYECTO DE CNN 1D COMPLETADO CON ÉXITO!")
 print("="*80)
+
+# =============================================================================
+# PARTE 18: DESCARGA DE ARCHIVOS (OPCIONAL)
+# =============================================================================
+
+print("\n📥 ¿Deseas descargar los archivos generados?")
+print("Ejecuta las siguientes líneas para descargar:")
+print("```python")
+print("# Descargar modelo")
+print("files.download('/content/results/cnn1d_emotion_model.h5')")
+print("# Descargar reporte")
+print("files.download('/content/results/training_report.json')")
+print("# Descargar imágenes")
+print("files.download('/content/confusion_matrix.png')")
+print("files.download('/content/training_curves.png')")
+print("files.download('/content/learned_filters.png')")
+print("```")
