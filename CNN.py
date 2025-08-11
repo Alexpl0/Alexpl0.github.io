@@ -217,7 +217,7 @@ else:
     )
     fig_pca.write_html(os.path.join(output_dir, "pca_3d_plot.html"))
     print(f"Gráfica 3D de PCA guardada en: {os.path.join(output_dir, 'pca_3d_plot.html')}")
-
+# 
     # LDA 3D
     n_components_lda = min(len(np.unique(y_for_viz)) - 1, X_for_viz.shape[1])
     if n_components_lda >= 3:

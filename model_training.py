@@ -12,7 +12,8 @@ print("=" * 80)
 
 print("📦 Instalando dependencias optimizadas para GPU...")
 !pip install -q kaggle librosa numpy pandas scikit-learn tensorflow plotly seaborn tqdm
-!pip install -q tensorboard 
+!pip install -q tensorboard
+!pip install -q resampy  # <--- Agrega esta línea para instalar resampy
 
 # Verificar GPU
 import tensorflow as tf
